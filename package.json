@@ -10,7 +10,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LillKonst/Happy-Tails--js2CA.git"
+    "url": "git+https://github.com/LillKonst/Happy-Tails--js2CA.git",
+    "dev": "npm run watch & live server"
   },
   "keywords": [],
   "author": "",
