@@ -25,6 +25,10 @@ body {
   object-fit: cover;
 }
 
+.logo {
+  width: 14%;
+}
+
 .button-custom {
   border-color: transparent;
 }
