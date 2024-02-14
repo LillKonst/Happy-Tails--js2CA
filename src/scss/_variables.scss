@@ -1,0 +1,34 @@
+// Here we will put all styles concerning colours and fonts
+
+// Colors - change to correct colors 
+$primary: #CAB9E7; 
+$secondary: #FFFAFA;
+$tertiary: #A485D5;
+
+
+
+h1 {
+    font-size: 2em;
+}
+
+
+.btn-custom {
+    background-color: $primary !important; 
+}
+
+.btn-custom, .btn-custom:focus {
+    background-color: $primary;
+    border-color: $primary;
+    color: $secondary;
+    margin: 20px; 
+  
+    &:hover, &:disabled {
+      background-color: $tertiary;
+      border-color: $tertiary;
+    }
+
+    &:active {
+      background-color: $tertiary !important;
+
+    }
+  }
