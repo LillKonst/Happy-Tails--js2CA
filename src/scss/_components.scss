@@ -1,19 +1,20 @@
 // Here we will add all styles concerning components, such as buttons, cards etc
 
-
 .profile-img-container {
-    width: 200px;
-    height: 200px; 
+  width: 200px;
+  height: 200px;
 
-.img {
+  .img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+}
 
+.logo {
+  width: 14%;
 }
 
 .button-custom {
-    border-color: transparent; 
+  border-color: transparent;
 }
-

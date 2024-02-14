@@ -23,8 +23,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg secondary">
-            <div class="container">
-                <a class="navbar-brand" href="/html/profile/index.html">HappyTails</a>
+            <div class="container d-flex align-items-end">
+                <img class="logo" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -32,35 +32,60 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" aria-current="page" href="/html/profile/index.html">Profile</a>
-                        <a class="nav-link" href="/html/feed/index.html">Feed</a>
-                        <a id="logout" class="nav-link" href="">Log out</a> </div>
+                        <a class="nav-link" aria-current="page" href="/html/profile/index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                            </svg>
+                        </a>
+                        <a class="nav-link" href="/html/feed/index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-house" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                            </svg>
+                        </a>
                     </div>
+                    <a id="logout" class="nav-link" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                        </svg>
+                    </a>
                 </div>
+
+            </div>
         </nav>
     </header>
     <main class="d-flex">
         <section class="container-md col-lg-9 position-relative profile-section">
-        <div class="container">
-            <div class="row">
-                <div class="container d-flex flex-column align-items-center mb-4 mt-3">
-                    <div class="profile-img-container">
-                        <img src="/images/kompis.JPG" alt="pitbull staffy on the grass smiling" class="img rounded-circle">
-                    </div>
-                    <h1>@kristakz</h1>
-                    <div class="row">
-                        <div class="d-flex justify-content-around text-center m-3">
-                            <p class="m-2">posts
-                                <br>5
-                            </p>
-                            <p class="m-2">followers
-                                <br> 59
-                            </p>
-                            <p class="m-2">following <br> 39</p>
+            <div class="container">
+                <div class="row">
+                    <div class="container d-flex flex-column align-items-center mb-4 mt-3">
+                        <div class="profile-img-container">
+                            <img src="/images/kompis.JPG" alt="pitbull staffy on the grass smiling"
+                                class="img rounded-circle">
                         </div>
-                    </div>
-                    <div class="follow-button">
-                        <button class="btn btn-primary my-2 btn-custom"><i class="fa-solid fa-user-plus"></i> Follow</button>
+                        <h1>@kristakz</h1>
+                        <div class="row">
+                            <div class="d-flex justify-content-around text-center m-3">
+                                <p class="m-2">posts
+                                    <br>5
+                                </p>
+                                <p class="m-2">followers
+                                    <br> 59
+                                </p>
+                                <p class="m-2">following <br> 39</p>
+                            </div>
+                        </div>
+                        <div class="follow-button">
+                            <button class="btn btn-primary my-2 btn-custom"><i class="fa-solid fa-user-plus"></i>
+                                Follow</button>
 
 
                             <!-- <form class="d-flex" role="search">
@@ -68,24 +93,10 @@
                             <button class="btn btn-outline-secondary text-black" type="submit">Search</button>
                         </form>-->
 
-                    </div>
-                </div>
-                <div class="col-sm-8 ms-2 custom-border">
-                   <!-- <h2 class="text-start">Profile - @kristakaz</h2>-->
-                    <div class="col text-start secondary p-3 my-3 rounded">
-                        <p class="text-gray my-2">@kristakaz - 02/01/24 12:34</p>
-                        <p>🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                            She's always ready for cuddles and has mastered the art of the puppy eyes.
-                            #ProudPetParent #FluffyLove</p>
-                        <img class="img-fluid" src="/images/mike-burke-gxyfJQg7Lno-unsplash.jpg"
-                            alt="pitbull laying on the floor and looking at the camera">
-                        <div class="btn-actions py-3">
-                            <button class="btn btn-sm btn-outline-primary">Like</button>
-                            <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
                         </div>
                     </div>
                     <div class="col-sm-8 ms-2 custom-border">
-                        <h2 class="text-start">Profile - @kristakaz</h2>
+                        <!-- <h2 class="text-start">Profile - @kristakaz</h2>-->
                         <div class="col text-start secondary p-3 my-3 rounded">
                             <p class="text-gray my-2">@kristakaz - 02/01/24 12:34</p>
                             <p>🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
@@ -98,36 +109,50 @@
                                 <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
                             </div>
                         </div>
-                        <div class="col text-start secondary p-3 my-3 rounded">
-                            <p>@kristakaz - 15/01/24 15:04</p>
-                            <p>“Dogs are not our whole life, but they make our lives whole.” - Roger Caras</p>
-                            <div class="btn-actions py-3">
-                                <button class="btn btn-sm btn-outline-primary">Like</button>
-                                <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                        <div class="col-sm-8 ms-2 custom-border">
+                            <h2 class="text-start">Profile - @kristakaz</h2>
+                            <div class="col text-start secondary p-3 my-3 rounded">
+                                <p class="text-gray my-2">@kristakaz - 02/01/24 12:34</p>
+                                <p>🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
+                                    She's always ready for cuddles and has mastered the art of the puppy eyes.
+                                    #ProudPetParent #FluffyLove</p>
+                                <img class="img-fluid" src="/images/mike-burke-gxyfJQg7Lno-unsplash.jpg"
+                                    alt="pitbull laying on the floor and looking at the camera">
+                                <div class="btn-actions py-3">
+                                    <button class="btn btn-sm btn-outline-primary">Like</button>
+                                    <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col text-start secondary p-3 my-3 rounded">
-                            <p>@kristakaz - 24/01/24 11:11</p>
-                            <p>Hey! Looking for a dogsitter for the following dates: 20/02-26/02. Is anyone
-                                available? Price can be discussed!</p>
-                            <div class="btn-actions py-3">
-                                <button class="btn btn-sm btn-outline-primary">Like</button>
-                                <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                            <div class="col text-start secondary p-3 my-3 rounded">
+                                <p>@kristakaz - 15/01/24 15:04</p>
+                                <p>“Dogs are not our whole life, but they make our lives whole.” - Roger Caras</p>
+                                <div class="btn-actions py-3">
+                                    <button class="btn btn-sm btn-outline-primary">Like</button>
+                                    <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col text-start secondary p-3 my-3 rounded">
-                            <p>@kristakaz - 12/01/24 12:12</p>
-                            <p>🐾 #ProudPetParent #FluffyLove</p>
-                            <img class="img-fluid" src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg"
-                                alt="pitbull laying on the floor and looking at the camera">
-                            <div class="btn-actions py-3">
-                                <button class="btn btn-sm btn-outline-primary">Like</button>
-                                <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                            <div class="col text-start secondary p-3 my-3 rounded">
+                                <p>@kristakaz - 24/01/24 11:11</p>
+                                <p>Hey! Looking for a dogsitter for the following dates: 20/02-26/02. Is anyone
+                                    available? Price can be discussed!</p>
+                                <div class="btn-actions py-3">
+                                    <button class="btn btn-sm btn-outline-primary">Like</button>
+                                    <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col text-start secondary p-3 my-3 rounded">
+                                <p>@kristakaz - 12/01/24 12:12</p>
+                                <p>🐾 #ProudPetParent #FluffyLove</p>
+                                <img class="img-fluid" src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg"
+                                    alt="pitbull laying on the floor and looking at the camera">
+                                <div class="btn-actions py-3">
+                                    <button class="btn btn-sm btn-outline-primary">Like</button>
+                                    <button class="btn btn-sm btn-outline-secondary text-white">Comment</button>
+                                </div>
+                            </div>
 
 
-                    </div>
+                        </div>
         </section>
         <section class="container-md col-lg-3 d-flex flex-column align-items-center d-none d-lg-block">
             <div class="row">
