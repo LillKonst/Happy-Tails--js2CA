@@ -34,6 +34,10 @@ body {
   border-color: transparent;
 }
 
+.btn-icon .btn-icon:focus {
+  border: none;
+}
+
 h1 {
   font-size: 2em;
 }
@@ -83,6 +87,10 @@ h4 {
 .btn-custom:active,
 .btn-custom:focus:active {
   background-color: #a485d5 !important;
+}
+
+.modal-custom {
+  background-color: #fffafa;
 }
 
 /*# sourceMappingURL=styles.css.map */
