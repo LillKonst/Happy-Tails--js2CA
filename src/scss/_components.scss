@@ -18,3 +18,10 @@
 .button-custom {
   border-color: transparent;
 }
+
+//Trying to remove the border when icon is clicked. Currently not working
+.btn-icon {
+    .btn-icon:focus {
+        border: none;
+    }
+}
