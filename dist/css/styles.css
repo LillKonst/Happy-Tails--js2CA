@@ -46,6 +46,15 @@ body {
   border: none;
 }
 
+.title-box {
+  height: 42.8px;
+  width: 50%;
+}
+
+.media-btn {
+  width: fit-content;
+}
+
 h1 {
   font-size: 2em;
 }

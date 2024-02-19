@@ -1,7 +1,7 @@
 const NOROFF_API_URL = "https://v2.api.noroff.dev/docs/v2/social/posts";
 
 // const user_post = document.querySelector
-
+/*
 const post_body = document.querySelector("post_body");
 
 
@@ -28,3 +28,5 @@ image_input.addEventListener("change", function() {
     });
     reader.readAsDataURL(this.files[0]);
 })
+*/
+
