@@ -5,14 +5,3 @@ body {
   margin: 0px 60px 0px 60px;
   font-family: Poppins, sans-serif;
 }
-
-.profile-section {
-  border-right: 0.1em solid rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 20px 0px 0px 20px;
-
-  @media (max-width: 992px) {
-    border: none;
-    padding: 0;
-  }
-}
