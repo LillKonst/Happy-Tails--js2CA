@@ -1,9 +1,30 @@
 // Here we will put all styles concerning colours and fonts
 
 // Colors - change to correct colors
-$primary: #cab9e7;
+$primary: #b293e3;
 $secondary: #fffafa;
-$tertiary: #a485d5;
+$tertiary: #9770d7;
+
+.primary,
+.btn-primary {
+  background-color: $primary;
+  border: $primary;
+  border-color: $primary;
+}
+
+button {
+  text-decoration: none;
+}
+
+.btn:hover,
+.btn-check,
+.btn:active {
+  background-color: $tertiary;
+}
+
+a {
+  text-decoration: none;
+}
 
 h1 {
   font-size: 2em;
@@ -16,6 +37,10 @@ h3 {
 h4 {
   font-size: 10px;
   color: $tertiary !important;
+}
+
+.hidden {
+  display: none;
 }
 
 .card-text {
