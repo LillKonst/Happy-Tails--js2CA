@@ -1,6 +1,6 @@
 const NOROFF_API_URL = "https://v2.api.noroff.dev";
 
-// function to creat a post-- creat a new file post.js and exclude it from this js file
+// function to create a post-- create a new file post.js and exclude it from this js file
 async function createPost(title, body, apiKey, accessToken) {
   const options = {
     method: "POST",
