@@ -1,34 +1,5 @@
 import { login } from "./login-function.js";
 
-const NOROFF_API_URL = "https://v2.api.noroff.dev";
-
-function isLoggedIn(email) {
-  return localStorage.getItem("logged-in-email") === email;
-}
-
-//register
-function isRegistered(email) {
-  return localStorage.getItem(`${email}-registered`) ? true : false;
-}
-
-/* //GENERATE API KEY
-const generateAPIKey = async (email, accessToken) => {
-  const apiKeyResponse = await fetch(`${NOROFF_API_URL}/auth/create-api-key`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify({
-      name: "User api key",
-    }),
-  });
-  const apiKeyResponseJson = await apiKeyResponse.json();
-  const apiKey = apiKeyResponseJson.data.key;
-  localStorage.setItem(`${email}-api-key`, apiKey); // Store the API key
-  return apiKey;
-}; */
-
 //SIGN IN BUTTON
 document.getElementById("signIn").addEventListener("submit", function (event) {
   event.preventDefault();

@@ -32,6 +32,7 @@ async function register(name, email, password) {
     return false;
   }
   if (isRegistered(email)) {
+    console.log("Already registered");
     return true;
   }
   const response = await fetch(`${NOROFF_API_URL}/auth/register`, {
