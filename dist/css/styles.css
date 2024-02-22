@@ -16,34 +16,12 @@ body {
   }
 }
 
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 999;
-  background-color: #cab9e7;
-  color: #000;
-}
-.bottom-nav a {
-  color: #000;
-}
-@media (min-width: 768px) {
-  .bottom-nav {
-    position: absolute;
-    top: 45px;
-    left: 250px;
-    width: fit-content;
-    bottom: auto;
-    box-shadow: none;
-    margin-bottom: 10px;
-    justify-content: flex-start;
-    background-color: transparent;
-  }
+#display_image {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
 }
 
 .profile-img-container {
@@ -57,7 +35,7 @@ body {
 }
 
 .logo {
-  width: 200px;
+  width: 36%;
 }
 
 .button-custom {
@@ -68,25 +46,13 @@ body {
   border: none;
 }
 
-.primary,
-.btn-primary {
-  background-color: #b293e3;
-  border: #b293e3;
-  border-color: #b293e3;
+.title-box {
+  height: 42.8px;
+  width: 50%;
 }
 
-button {
-  text-decoration: none;
-}
-
-.btn:hover,
-.btn-check,
-.btn:active {
-  background-color: #9770d7;
-}
-
-a {
-  text-decoration: none;
+.media-btn {
+  width: fit-content;
 }
 
 h1 {
@@ -99,11 +65,7 @@ h3 {
 
 h4 {
   font-size: 10px;
-  color: #9770d7 !important;
-}
-
-.hidden {
-  display: none;
+  color: #a485d5 !important;
 }
 
 .card-text {
@@ -115,11 +77,11 @@ h4 {
 }
 
 .text-primary {
-  color: #9770d7 !important;
+  color: #a485d5 !important;
 }
 
 .btn-custom {
-  background-color: #b293e3 !important;
+  background-color: #cab9e7 !important;
 }
 
 .icon {
@@ -128,20 +90,20 @@ h4 {
 
 .btn-custom,
 .btn-custom:focus {
-  background-color: #b293e3;
-  border-color: #b293e3;
+  background-color: #cab9e7;
+  border-color: #cab9e7;
   color: #fffafa;
   margin: 20px;
 }
 .btn-custom:hover, .btn-custom:disabled,
 .btn-custom:focus:hover,
 .btn-custom:focus:disabled {
-  background-color: #9770d7;
-  border-color: #9770d7;
+  background-color: #a485d5;
+  border-color: #a485d5;
 }
 .btn-custom:active,
 .btn-custom:focus:active {
-  background-color: #9770d7 !important;
+  background-color: #a485d5 !important;
 }
 
 .modal-custom {

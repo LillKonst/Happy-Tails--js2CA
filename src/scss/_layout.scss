@@ -17,34 +17,10 @@ body {
   }
 }
 
-//nav
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 999;
-  background-color: #cab9e7;
-  color: #000;
-
-  a {
-    color: #000;
-  }
-
-  @media (min-width: 768px) {
-    position: absolute;
-    top: 45px;
-    left: 250px;
-    width: fit-content;
-    bottom: auto;
-    box-shadow: none;
-    margin-bottom: 10px;
-    justify-content: flex-start;
-    background-color: transparent;
-  }
+#display_image {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
 }

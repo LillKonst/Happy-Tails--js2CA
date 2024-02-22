@@ -12,7 +12,7 @@
 }
 
 .logo {
-  width: 200px;
+  width: 36%;
 }
 
 .button-custom {
@@ -21,7 +21,16 @@
 
 //Trying to remove the border when icon is clicked. Currently not working
 .btn-icon {
-    .btn-icon:focus {
-        border: none;
-    }
+  .btn-icon:focus {
+    border: none;
+  }
+}
+
+.title-box {
+  height: 42.8px;
+  width: 50%;
+}
+
+.media-btn {
+  width: fit-content;
 }
