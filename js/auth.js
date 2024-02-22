@@ -5,7 +5,7 @@ export function headers() {
 
     return {
         "Content-Type": "application/json",
-        "Authorization": `Bear ${token}`
+        "Authorization": `Bearer ${token}`
     }
 }
 

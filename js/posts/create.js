@@ -1,19 +1,21 @@
-const NOROFF_API_URL = "https://v2.api.noroff.dev/docs/v2/social/posts";
+import { NOROFF_API_URL } from "../login-functions.mjs";
 
-
+import { authFetch } from "../auth.mjs";
 
 const action = "/posts";
+const method = "post";
 
 export async function createPost(postData) {
   const createPostURL = await fetch (`${NOROFF_API_URL}/social/posts`)
 
   const response = await authfetch(createPostURL, {
+    method: "POST",
     body: JSON.stringify(postData)
   })
 
-  const post = await response.json();
-
-  console.log(post);
+  return await response.json();
+}
+  /*
 
 
 
@@ -68,7 +70,7 @@ image_input.addEventListener("change", function() {
  * Creates a new post.
  * @param {Object} postData
  * @returns {Promise}
- */
+ 
 async function createPost(postData) {
   const response = await fetch(`${NOROFF_API_URL}/social/posts`, {
     method: "POST",
@@ -134,3 +136,4 @@ document
       errorFeedback.style.display = "block";
     }
   });
+*/
