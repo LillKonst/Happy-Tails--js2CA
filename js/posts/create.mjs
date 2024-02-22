@@ -2,19 +2,63 @@ import { NOROFF_API_URL } from "../login-functions.mjs";
 
 import { authFetch } from "../auth.mjs";
 
+import { headers } from "../auth.mjs";
+
 const action = "/posts";
 const method = "post";
+
+/**
+ * Creates a new post.
+ * @param {Object} postData
+ * @returns {Promise}
+ */
 
 export async function createPost(postData) {
   const createPostURL = await fetch (`${NOROFF_API_URL}/social/posts`)
 
-  const response = await authfetch(createPostURL, {
+  const response = await authFetch(createPostURL, {
     method: "POST",
+    headers: headers(),
     body: JSON.stringify(postData)
-  })
-
-  return await response.json();
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`Failed to create post: ${errorData.message}`);
+  }
+  const result = await response.json();
+  return result.data;
 }
+
+// Creating post with information from the form
+document.getElementById("createPost")
+.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  console.log("Event listener triggered");
+  // Create post values
+  const title = document.getElementById("post_title").value;
+  const body = document.getElementById("post_body").value;
+  const mediaURL = document.getElementById("post_image").value;
+  const altText = document.getElementById("altText").value;
+  //const tags = document.getElementById("tags").value;
+  const errorMessage = document.getElementById("post_error-message");
+
+  try {
+    const postData = {
+      title, 
+      body,
+      tags,
+      media: mediaURL ? { url: mediaURL, alt: altText } : undefined
+    };
+    const result = await createPost(postData);
+    console.log("Post created successfully", result);
+  }
+
+});
+
+
+
+
+
   /*
 
 
