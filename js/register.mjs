@@ -1,4 +1,4 @@
-import { login } from "./login-function.js";
+import { login } from "./login-function.mjs";
 
 const NOROFF_API_URL = "https://v2.api.noroff.dev";
 

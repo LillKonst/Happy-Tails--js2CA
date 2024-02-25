@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/styles.css">
-    <script src="/js/logout.js" defer></script>
+    <script type="module" src="/js/logout.mjs" defer></script>
     <script type="module" src="/js/posts/create.mjs" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
@@ -389,6 +389,7 @@
                                     <div>
                                         <input type="text" id="tags" placeholder="Add tags..." class="m-3">
                                     </div>
+                                    <p class="post_error-message">Could not upload</p>
                                     <button type="submit"
                                         class="btn btn-outline-primary btn-block w-100 btn-custom mx-3">Post</button>
                                 </form>

@@ -1,4 +1,4 @@
-import { login } from "./login-function.js";
+import { login } from "./login-function.mjs";
 
 //SIGN IN BUTTON
 document.getElementById("signIn").addEventListener("submit", function (event) {
