@@ -13,8 +13,13 @@ const method = "post";
  * @returns {Promise}
  */
 
-export async function createPost(postData) {
-  const createPostURL = await fetch (`${NOROFF_API_URL}/social/posts`)
+export async function createAPost(postData) {
+  const createPostURL = `${NOROFF_API_URL}/social/posts`
+
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`
+  };
 
   const response = await authFetch(createPostURL, {
     method: "POST",
@@ -38,7 +43,7 @@ document.getElementById("createPost")
   const title = document.getElementById("post_title").value;
   const body = document.getElementById("post_body").value;
   const mediaURL = document.getElementById("post_image").value;
-  const altText = document.getElementById("altText").value;
+  //const altText = document.getElementById("altText").value;
   //const tags = document.getElementById("tags").value;
   const errorMessage = document.getElementById("post_error-message");
 
@@ -47,9 +52,9 @@ document.getElementById("createPost")
       title, 
       body,
       tags,
-      media: mediaURL ? { url: mediaURL, alt: altText } : undefined
+      //media: mediaURL ? { url: mediaURL, alt: altText } : undefined
     };
-    const result = await createPost(postData);
+    const result = await createAPost(postData);
     console.log("Post created successfully", result);
   } catch (error) {
     console.error("Error creating post:", error.message);

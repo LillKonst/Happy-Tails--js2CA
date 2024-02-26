@@ -3,12 +3,7 @@ export function save(key, value) {
 }
 
 export function load(key) {
-    try {
-        const value = localStorage.getItem(key);
-        return JSON.parse(value);
-    } catch {
-        return null
-    }
+    return localStorage.getItem(key);
 }
 
 export function remove(key) {
