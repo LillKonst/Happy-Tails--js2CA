@@ -1,4 +1,4 @@
-import { NOROFF_API_URL } from "../login-functions.mjs";
+import { NOROFF_API_URL } from "../login-function.mjs";
 
 import { authFetch } from "../auth.mjs";
 
