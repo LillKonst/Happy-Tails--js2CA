@@ -39,11 +39,11 @@ h4 {
 }
 
 .btn-custom,
-.btn-custom:focus {
+.btn-custom:focus,
+.btn-primary {
   background-color: $primary;
   border-color: $primary;
   color: $secondary;
-  margin: 20px;
 
   &:hover,
   &:disabled {
