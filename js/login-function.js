@@ -29,7 +29,7 @@ export async function login(email, password) {
   const { accessToken, ...profile } = loginResponseJson.data;
   localStorage.setItem("profile", JSON.stringify(profile));
   localStorage.setItem("access-token", accessToken);
-
+ 
   const apiKeyResponse = await fetch(`${NOROFF_API_URL}/auth/create-api-key`, {
     method: "POST",
     headers: {
