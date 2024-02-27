@@ -6,16 +6,17 @@ const action = "/posts";
 const method = "post";
 
 export async function createPost(postData) {
-  const createPostURL = await fetch (`${NOROFF_API_URL}/social/posts`)
+  const createPostURL = await fetch(`${NOROFF_API_URL}/social/posts`);
 
-  const response = await authfetch(createPostURL, {
+  const response = await authFetch(createPostURL, {
     method: "POST",
-    body: JSON.stringify(postData)
-  })
+    body: JSON.stringify(postData),
+  });
 
   return await response.json();
 }
-  /*
+
+/*
 
 
 
