@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
     <script src="/js/search.js" type="module" defer></script>
+    <script src="/js/follow-unfollow.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -108,8 +109,8 @@
                         </div>
                         <div class="d-flex flex-column">
 
-                            <button class="btn btn-primary my-2 btn-custom"><i class="fa-solid fa-user-plus"></i>
-                                Follow</button>
+                            <button id="followBtn" class="btn btn-primary my-2 btn-custom"><i
+                                    class="fa-solid fa-user-plus"></i> Follow</button>
                             <form id="searchForm">
                                 <input type="text" id="searchInput" placeholder="Search...">
                             </form>
