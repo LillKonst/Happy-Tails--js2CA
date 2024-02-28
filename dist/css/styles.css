@@ -24,6 +24,29 @@ body {
   background-size: cover;
 }
 
+#explore-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media (max-width: 650px) {
+  #explore-container {
+    flex-direction: column;
+  }
+}
+
+.card-custom {
+  padding: 0;
+}
+.card-custom .card-img-top {
+  width: 100%;
+  height: fit-content;
+}
+.card-custom .top-container, .card-custom .reactions-container {
+  justify-content: space-between;
+}
+
 .profile-img-container {
   width: 200px;
   height: 200px;

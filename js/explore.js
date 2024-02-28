@@ -13,11 +13,11 @@ async function displayAllPosts() {
         const post = posts[i];
 
         const postCard = document.createElement("div");
-            postCard.classList.add("col-md-5", "my-3", "mx-1");
+            postCard.classList.add("col-md-5", "m-2");
             exploreContainer.appendChild(postCard);
 
             const cardInner = document.createElement("div");
-            cardInner.classList.add("card", "card-body", "text-center", "mx-auto");
+            cardInner.classList.add("card", "card-body", "mx-auto", "card-custom");
             postCard.appendChild(cardInner);
 
             // Check if post.media exists before accessing its properties
@@ -38,24 +38,35 @@ async function displayAllPosts() {
             cardBody.classList.add("card-body");
             cardInner.appendChild(cardBody);
 
-            const titleContainer = document.createElement("div");
-            titleContainer.classList.add("d-flex");
-            cardBody.appendChild(titleContainer);
+            const topContainer = document.createElement("div");
+            topContainer.classList.add("d-flex", "top-container");
+            cardBody.appendChild(topContainer);            
+            
+            const username = document.createElement("p");
+            username.classList.add("username");
+            username.innerHTML = post.author && post.author.name ? post.author.name : "Unknown";
+            topContainer.appendChild(username);
+            
+            const reactionsContainer = document.createElement("div");
+            reactionsContainer.classList.add("d-flex", "reactions-container");
+            topContainer.appendChild(reactionsContainer);
+
+            const likeButton = document.createElement("button");
+            likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
+            likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            reactionsContainer.appendChild(likeButton);
+
+            const commentButton = document.createElement("button");
+            commentButton.classList.add("btn", "btn-sm", "btn-outline-primary", "m-1");
+            commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
+            reactionsContainer.appendChild(commentButton);
 
             const postTitle = document.createElement("h3");
             postTitle.classList.add("card-title", "mr-auto");
-            postTitle.innerHTML = post.title || "No Title"; // Assuming title is the property that contains the post title
-            titleContainer.appendChild(postTitle);
+            postTitle.innerHTML = post.title || "No Title";
+            cardBody.appendChild(postTitle);
 
-            const likeButton = document.createElement("button");
-            likeButton.classList.add("btn", "btn-sm", "btn-primary", "mr-1");
-            likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
-            titleContainer.appendChild(likeButton);
-
-            const commentButton = document.createElement("button");
-            commentButton.classList.add("btn", "btn-sm", "btn-outline-primary");
-            commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
-            titleContainer.appendChild(commentButton);
+            
 
             const postText = document.createElement("p");
             postText.classList.add("card-text");
