@@ -1,4 +1,4 @@
-import { getAllPosts } from "../js/api.js";
+import { getAllPosts } from "../js/modules/api.js";
 
 document.getElementById("explore-container");
 
@@ -18,7 +18,6 @@ async function displayAllPosts() {
 
             const cardInner = document.createElement("div");
             cardInner.classList.add("card", "card-body", "text-center", "mx-auto");
-            cardInner.style.width = "15rem";
             postCard.appendChild(cardInner);
 
             // Check if post.media exists before accessing its properties
