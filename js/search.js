@@ -1,5 +1,3 @@
-import { authFetch } from "./auth.mjs";
-
 const NOROFF_API_URL = "https://v2.api.noroff.dev";
 
 // Function to perform search
