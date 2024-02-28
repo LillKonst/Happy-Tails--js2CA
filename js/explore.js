@@ -1,27 +1,4 @@
-/*
-//Get all posts
-
-import header from "../folder/headers.js";
-import Auth from "../index.js"; 
-
-
-export default async function getPosts() {
-    const method = "GET";
-    const headers = headers.authWithoutContent();
-    const endpoint = `/social/posts?_author=true`;
-
-    const getPosts = new Auth(method, headers, endpoint);
-    const posts = await getPosts.fetch(); 
-    return posts; 
-}
-
-*/
-
 import { getAllPosts } from "../js/api.js";
-
-//import { getPostsFromFollowing } from "../js/api.js";
-
-//import { getPostSpeciic } from "../js/api.js"; 
 
 document.getElementById("explore-container");
 
