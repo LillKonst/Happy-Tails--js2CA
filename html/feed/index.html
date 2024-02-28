@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
+    <script src="/js/follow-unfollow.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -103,7 +104,8 @@
                         </div>
                     </div>
                     <div class="follow-button">
-                        <button class="btn btn-primary my-2 btn-custom"><i class="fa-solid fa-user-plus"></i>
+                        <button id="followBtn" class="btn btn-primary my-2 btn-custom"><i
+                                class="fa-solid fa-user-plus"></i>
                             Follow</button>
 
                         <!--  <form class="d-flex" role="search">
@@ -386,8 +388,8 @@
                                             class="btn btn-custom m-2 media-btn">
                                     </div>
                                     <div>
-                                        <textarea class="form-control" placeholder="Alt text"
-                                            id="altText" style="height: 100px"></textarea>
+                                        <textarea class="form-control" placeholder="Alt text" id="altText"
+                                            style="height: 100px"></textarea>
                                     </div>
                                     <div>
                                         <textarea class="form-control" placeholder="Post something here.."
@@ -396,7 +398,8 @@
                                     <div>
                                         <input type="text" id="tagInput" placeholder="Add tags..." class="m-3">
                                     </div>
-                                    <button type="submit" class="btn btn-outline-primary btn-block w-100 btn-custom mx-3">Post</button>
+                                    <button type="submit"
+                                        class="btn btn-outline-primary btn-block w-100 btn-custom mx-3">Post</button>
 
                                 </form>
                             </div>
