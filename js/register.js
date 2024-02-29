@@ -57,7 +57,7 @@ async function register(name, email, password) {
     return false;
   }
 
-  localStorage.setItem("loggedInUsername", name);
+  localStorage.setItem("userName", name); // <-- Set the username here
   localStorage.setItem(`${email}-registered`, true);
 
   return true;
