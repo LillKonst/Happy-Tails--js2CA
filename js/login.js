@@ -17,6 +17,6 @@ document.getElementById("signIn").addEventListener("submit", function (event) {
 //IF USER IS ALREADY LOGGED IN, CAN GET RIGHT AWAY IN THE PROFILE.HTML WITHOUT LOGING IN AGAIN
 window.addEventListener("load", () => {
   if (localStorage.getItem("logged-in-email")) {
-    window.location.href = "/html/profile/index.html";
+    window.location.href = "/html/my-profile/index.html";
   }
 });

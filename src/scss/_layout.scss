@@ -25,31 +25,27 @@ body {
   background-size: cover;
 }
 
-
-#explore-container {
+#explore-container,
+.posts {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 
-@media (max-width: 650px) {
-  flex-direction: column;
-}  
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
 }
 
 .card-custom {
   padding: 0;
 
+  .card-img-top {
+    width: 100%;
+    height: fit-content;
+  }
 
-.card-img-top {
-  width: 100%;
-  height: fit-content;
-
-}
-
-.top-container {
-  justify-content: space-between;
-}
-
-
+  .top-container {
+    justify-content: space-between;
+  }
 }
