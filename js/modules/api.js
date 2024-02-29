@@ -15,6 +15,8 @@ import { apiKey } from "../modules/auth.js";
 
 export {getAllPosts};
 
+export {getPostSpecific};
+
 //Get all posts
 async function getAllPosts() {
     const response = await fetch(
@@ -40,11 +42,11 @@ async function getPostsFromFollowing() {
     const response = await fetch(
         `${NOROFF_API_URL}/social/posts/following?_author=true&_reactions=true&_comments=true`,
     {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-            "X-Noroff-API-Key": apiKey
-        },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+    },
     }
 );
     if (!response.ok) {
@@ -54,14 +56,22 @@ async function getPostsFromFollowing() {
     return result.data;
 }
 
+
+
+
 // Get post specific 
-async function getPostSpecific(postid) {
+async function getPostSpecific(postId) {
     const response = await fetch(
-        `${NOROFF_API_URL}/social/posts/${postId}?_author=true&_reactions=true&_comments=true`,
+        `${NOROFF_API_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
         {
-            headers: headers(),
-        }
-    );
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${getToken()}`,
+              "X-Noroff-API-Key": apiKey,
+          },
+          
+      }
+  );
     if (!response.ok) {
         throw new Error("Could not load post");
     }
