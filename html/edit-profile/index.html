@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
-    <script src="/js/edit-profile-media/edit-profile-photo.js" type="module" defer></script>
+    <script src="/js/my-profile.js" type="module" defer></script>
     <script src="/js/edit-profile-media/update-profile.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
@@ -32,7 +32,7 @@
                         <img class="logo" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
                         <div class="container-links d-flex">
                             <div class="links d-flex align-items-center mt-4">
-                                <a class="nav-link" aria-current="page" href="/html/profile/index.html">
+                                <a class="nav-link" aria-current="page" href="/html/my-profile/index.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-person-circle icon" viewBox="0 0 16 16">
                                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -78,20 +78,17 @@
         <section class="container-md col-lg-9">
             <div class=" row">
                 <div class="container d-flex flex-column align-items-center mb-4 mt-3">
-                    <div class="profile-pic">
-                        <label class="-label" for="file">
-                            <span class="glyphicon glyphicon-camera"></span>
-                            <span>Change Image</span>
-                        </label>
-                        <input id="file" type="file" onchange="loadFile(event)" />
-                        <img class="img-media" src="/images/kompis.JPG" id="output" width="200"
-                            alt="pitbull staffy on the grass smiling" class="img rounded-circle">
+                    <div id="profile-details" class=" d-flex  flex-column align-items-center">
+                        <div class="profile-img-container">
+                            <img id="profileImage" class="img rounded-circle">
+                        </div>
+                        <div id="userName" class="fs-1 text"></div>
+                        <p id="userBio"></p>
                     </div>
-                    <h1>@kristakz</h1>
                 </div>
             </div>
         </section>
-        <section class="container-md">
+        <section class="container col-md-6">
             <div class="mb-3">
                 <label for="bioText" class="form-label">Your Bio</label>
                 <textarea class="form-control" id="bioText" rows="5" placeholder="Write something about you!"
