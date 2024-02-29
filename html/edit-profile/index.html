@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
-    <script src="/js/edit-profile-media/edit-profile-photo.js" defer></script>
-    <script src="/js/edit-profile-media/update-profile.js" defer></script>
+    <script src="/js/edit-profile-media/edit-profile-photo.js" type="module" defer></script>
+    <script src="/js/edit-profile-media/update-profile.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -87,33 +87,18 @@
                         <img class="img-media" src="/images/kompis.JPG" id="output" width="200"
                             alt="pitbull staffy on the grass smiling" class="img rounded-circle">
                     </div>
-
                     <h1>@kristakz</h1>
-                    <a href="/html/edit-profile/index.html" class="link text-primary">Edit your
-                        profile</a>
-
+                </div>
+            </div>
         </section>
         <section class="container-md">
-            <div class="mb-3">
-                <label for="avatarUrl" class="form-label">Change your avatar here!</label>
-                <input type="url" class="form-control" id="avatarUrl" placeholder="Enter URL of your avatar"
-                    title="Your avatar URL must be a valid and accessible URL." required>
-            </div>
-
-            <div class="mb-3">
-                <label for="avatarAlt" class="form-label">Alt text for avatar <span
-                        class="text-secondary">(optional)</span></label>
-                <input type="text" class="form-control" id="avatarAlt" placeholder="Enter alt text for your avatar"
-                    title="Alt text must be less than 120 characters." maxlength="120">
-            </div>
-
             <div class="mb-3">
                 <label for="bioText" class="form-label">Your Bio</label>
                 <textarea class="form-control" id="bioText" rows="5" placeholder="Write something about you!"
                     title="Your bio must be less than 160 characters"></textarea>
             </div>
-
-            <button onclick="updateProfile()" class="btn btn-primary">Update Profile</button>
+            <button id="applyBtn" class="btn btn-primary">Apply Changes</button>
+            <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
         </section>
 
     </main>
