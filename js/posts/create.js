@@ -1,4 +1,4 @@
-import { NOROFF_API_URL } from "./login-function.js";
+import { NOROFF_API_URL } from "../login-function.js";
 
 const accessToken = localStorage.getItem(`access-token`);
 const apiKey = localStorage.getItem(`api-key`)

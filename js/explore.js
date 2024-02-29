@@ -87,6 +87,7 @@ async function displayAllPosts() {
       const timestamp = document.createElement("h4");
       timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
       cardBody.appendChild(timestamp);
+
     }
   } catch (error) {
     console.error(error);

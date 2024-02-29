@@ -19,16 +19,22 @@ export { fetchUserProfile };
 
 export { fetchPostsByUserName };
 
+export {getPostSpecific};
+
 //Get all posts
 async function getAllPosts() {
   const response = await fetch(
     `${NOROFF_API_URL}/social/posts/?_author=true_comments=true&_reactions=true`,
     {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
-        "X-Noroff-API-Key": apiKey,
-      },
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`,
+            "X-Noroff-API-Key": apiKey,
+        },
+    }
+);
+    if (!response.ok) {
+        throw new Error("Could not load posts from following");
     }
   );
   if (!response.ok) {
@@ -47,7 +53,8 @@ async function getPostsFromFollowing() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
-      },
+    },
+    body: JSON.stringify(updateData), //update data      
     }
   );
   if (!response.ok) {
@@ -76,6 +83,26 @@ async function getPostSpecific(postId) {
   return result.data;
 }
 
+
+
+
+
+// Get post specific 
+async function getPostSpecific(postId) {
+    const response = await fetch(
+        `${NOROFF_API_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
+        {
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${getToken()}`,
+              "X-Noroff-API-Key": apiKey,
+          },
+          
+      }
+  );
+    if (!response.ok) {
+        throw new Error("Could not load post");
+
 // Get profiles
 /**
  * fetch users profile information
@@ -91,6 +118,7 @@ async function fetchUserProfile(userName) {
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
       },
+
     }
   );
   if (!response.ok) {
