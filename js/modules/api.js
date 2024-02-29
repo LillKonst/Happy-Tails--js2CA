@@ -27,7 +27,6 @@ async function getAllPosts() {
             Authorization: `Bearer ${getToken()}`,
             "X-Noroff-API-Key": apiKey,
         },
-        
     }
 );
     if (!response.ok) {
@@ -47,6 +46,7 @@ async function getPostsFromFollowing() {
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
     },
+    body: JSON.stringify(updateData), //update data?
     }
 );
     if (!response.ok) {

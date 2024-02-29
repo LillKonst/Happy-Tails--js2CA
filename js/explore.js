@@ -72,8 +72,6 @@ async function displayAllPosts() {
             postTitle.innerHTML = post.title || "No Title";
             cardBody.appendChild(postTitle);
 
-            
-
             const postText = document.createElement("p");
             postText.classList.add("card-text");
             postText.innerHTML = post.body || "No Body"; // Assuming body is the property that contains the post text
