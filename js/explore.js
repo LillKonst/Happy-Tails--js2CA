@@ -44,7 +44,10 @@ async function displayAllPosts() {
             
             const username = document.createElement("p");
             username.classList.add("username");
-            username.innerHTML = post.author && post.author.name ? post.author.name : "Unknown";
+            username.innerHTML = `${
+            post.author && post.author.name ? post.author.name : "Unknown"
+            }`
+           
             topContainer.appendChild(username);
             
             const reactionsContainer = document.createElement("div");
