@@ -1,4 +1,4 @@
-//-- storeToken 
+//-- storeToken
 export { storeToken };
 //-- getToken is for every page for API authentication requests
 export { getToken };
@@ -6,11 +6,10 @@ export { getToken };
 export { clearToken };
 //Redirect function - If user is not logged in
 
-//apiKey 
+//apiKey
 
 export const apiKey = "e02ddd5e-3f4a-4e42-8255-82c75a8d4327";
 localStorage.setItem("apiKey", apiKey);
-console.log(apiKey);
 
 //export const accessToken = localStorage.getItem("access-token");
 
@@ -22,7 +21,7 @@ function storeToken(token) {
 
 function getToken() {
   return localStorage.getItem("access-token");
-}console.log(getToken());
+}
 
 function clearToken() {
   localStorage.removeItem("access-token");

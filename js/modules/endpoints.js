@@ -1,3 +1,5 @@
+// endpoints for profile requirements
+
 const profileFilter = "_following=true&_followers=true&_posts=true";
 
 export default {

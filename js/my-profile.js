@@ -1,79 +1,123 @@
-export default function profileList(profiles, user, container, number = 5) {
-  let numbersArray = [];
-  while (numbersArray.length < number) {
-    let randomNum = Math.floor(Math.random() * profiles.length);
-    let profile = profiles[randomNum];
-    if (!numbersArray.includes(randomNum)) {
-      if (user.name !== profile.name) {
-        if (
-          !profile.followers.some((follower) => follower.name === user.name)
-        ) {
-          if (
-            profile.avatar.url !==
-              "https://images.unsplash.com/photo-1529429617124-95b109e86bb8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" &&
-            profile.avatar.url !== "https://via.placeholder.com/150"
-          )
-            numbersArray.push(randomNum);
-        }
-      }
-    }
+import { fetchUserProfile, fetchPostsByUserName } from "../js/modules/api.js";
+
+// Function to generate HTML structure for a post card
+function createPostCard(post, userName) {
+  const postCard = document.createElement("div");
+  postCard.classList.add("col-md", "my-3", "mx-1");
+
+  const cardInner = document.createElement("div");
+  cardInner.classList.add("card", "card-body", "text-center", "mx-auto");
+  postCard.appendChild(cardInner);
+
+  if (post.media && post.media.url) {
+    const image = document.createElement("img");
+    image.setAttribute("src", post.media.url);
+    image.setAttribute("alt", post.media.alt);
+    image.classList.add("card-img-top");
+    cardInner.appendChild(image);
+  } else {
+    const noMediaStyle = document.createElement("div");
+    noMediaStyle.classList.add("no-media");
+    cardInner.appendChild(noMediaStyle);
   }
 
-  numbersArray.forEach((num) => {
-    const profile = profiles[num];
-    container.appendChild(singleProfile(profile));
-  });
+  const cardBody = document.createElement("div");
+  cardBody.classList.add("card-body");
+  cardInner.appendChild(cardBody);
 
-  console.log(container);
+  // Display the username
+  const userNameElement = document.createElement("h1");
+  userNameElement.classList.add("card-text");
+  userNameElement.textContent = ` ${userName}`;
+  cardBody.appendChild(userNameElement);
+
+  const postTitle = document.createElement("h3");
+  postTitle.classList.add("card-title");
+  postTitle.textContent = post.title || "No Title";
+  cardBody.appendChild(postTitle);
+
+  const postText = document.createElement("p");
+  postText.classList.add("card-text");
+  postText.textContent = post.body || "No Body";
+  cardBody.appendChild(postText);
+
+  const timestamp = document.createElement("h4");
+  timestamp.textContent = post.created || "No Timestamp";
+  cardBody.appendChild(timestamp);
+
+  // Add like button
+  const likeButton = document.createElement("button");
+  likeButton.classList.add("btn", "btn-sm", "btn-primary", "mr-1");
+  likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+  cardBody.appendChild(likeButton);
+
+  // Add comment button
+  const commentButton = document.createElement("button");
+  commentButton.classList.add("btn", "btn-sm", "btn-outline-primary");
+  commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
+  cardBody.appendChild(commentButton);
+
+  return postCard;
 }
 
-function singleProfile(profile) {
-  const profileContainer = document.createElement("div");
-  profileContainer.setAttribute(
-    "class",
-    "flex items-center justify-between border-b px-8 2xl:px-10 hover:bg-gray-100 gap-4"
-  );
-  const innerDiv = document.createElement("div");
-  innerDiv.setAttribute(
-    "class",
-    "flex justify-between items-center lg:gap-6 2xl:gap-12 py-5"
-  );
+// Function to display user's posts
+async function displayUserPosts(userPosts, userName) {
+  try {
+    const postsContainer = document.getElementById("userPosts");
+    postsContainer.innerHTML = ""; // Clear previous posts
 
-  const img = document.createElement("img");
-  img.setAttribute(
-    "class",
-    "rounded-full w-12 h-12 2xl:w-14 2xl:h-14 object-cover"
-  );
-  img.setAttribute("src", profile.avatar.url);
-  img.setAttribute("alt", "");
-
-  const span = document.createElement("span");
-
-  const h4 = document.createElement("h4");
-  h4.setAttribute("class", "font-medium");
-  h4.textContent = profile.name;
-
-  const anchorTag = document.createElement("a");
-  anchorTag.setAttribute(
-    "class",
-    "muted text-sm 2xl:text-base font-medium text-secondary"
-  );
-  anchorTag.textContent = "View profile";
-
-  anchorTag.href = `/profile/?name=${profile.name}`;
-
-  span.append(h4, anchorTag);
-  innerDiv.append(img, span);
-
-  const button = document.createElement("button");
-  button.setAttribute(
-    "class",
-    "flex items-center gap-3 p-2 px-5 2xl:px-6 rounded border border-primary hover:bg-light hover:border-light text-sm 2xl:text-base"
-  );
-  button.textContent = "Follow";
-
-  profileContainer.appendChild(innerDiv);
-  profileContainer.appendChild(button);
-
-  return profileContainer;
+    userPosts.forEach((post) => {
+      const postCard = createPostCard(post, userName);
+      postsContainer.appendChild(postCard);
+    });
+  } catch (error) {
+    console.error("Error displaying user posts:", error);
+  }
 }
+
+async function displayUserProfile() {
+  try {
+    // Retrieve the user's profile
+    const loggedInUser = JSON.parse(localStorage.getItem("profile"));
+    const userName = loggedInUser.name;
+    const userProfile = await fetchUserProfile(userName);
+
+    // Display user's username
+    const userNameElement = document.getElementById("userName");
+    userNameElement.textContent = userName;
+
+    // Display user's avatar if available
+    const profileImage = document.getElementById("profileImage");
+    if (userProfile.avatar && userProfile.avatar.url) {
+      profileImage.src = userProfile.avatar.url;
+      profileImage.alt = userProfile.avatar.alt;
+    } else {
+      // Set a default image if avatar is not available
+      profileImage.src = "/images/kompis.JPG";
+      profileImage.alt = "Default Avatar";
+    }
+
+    // Display user's bio
+    const userBio = document.getElementById("userBio");
+    userBio.textContent = userProfile.bio;
+
+    // Display user's followers, following, and posts counts
+    const followersCount = userProfile._count.followers;
+    const followingCount = userProfile._count.following;
+    const postsCount = userProfile._count.posts;
+    document.getElementById("followersCount").textContent = followersCount;
+    document.getElementById("followingCount").textContent = followingCount;
+    document.getElementById("postsCount").textContent = postsCount;
+
+    // Retrieve and display user's posts
+    const userPosts = await fetchPostsByUserName(userName);
+    displayUserPosts(userPosts, userName);
+  } catch (error) {
+    console.error("Error fetching and displaying user profile:", error);
+  }
+}
+
+// Call the function to display user profile after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  displayUserProfile();
+});
