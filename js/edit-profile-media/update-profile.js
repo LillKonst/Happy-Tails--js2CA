@@ -1,88 +1,61 @@
-import { NOROFF_API_URL } from "../modules/api.js";
-import { getToken, apiKey } from "../modules/auth.js";
+// update-profile.js
+import { updateBio, updateProfileImage } from "../modules/api.js";
 
-function getApiKey() {
-  return apiKey;
+// Function to create bio textarea
+function createBioTextArea() {
+  const bioTextAreaContainer = document.getElementById("bioTextAreaContainer");
+
+  const bioLabel = document.createElement("label");
+  bioLabel.setAttribute("for", "bioText");
+  bioLabel.textContent = "Your Bio";
+
+  const bioTextarea = document.createElement("textarea");
+  bioTextarea.classList.add("form-control");
+  bioTextarea.setAttribute("id", "bioText");
+  bioTextarea.setAttribute("rows", "5");
+  bioTextarea.setAttribute("placeholder", "Write something about you!");
+  bioTextarea.setAttribute(
+    "title",
+    "Your bio must be less than 160 characters"
+  );
+
+  bioTextAreaContainer.appendChild(bioLabel);
+  bioTextAreaContainer.appendChild(bioTextarea);
 }
 
-// Function to retrieve profile information
-function getProfile(name) {
-  const token = getToken();
-  const apiKey = getApiKey();
+// Call function to create bio textarea
+createBioTextArea();
 
-  fetch(`${NOROFF_API_URL}/social/profiles/${name}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "X-Noroff-API-Key": apiKey,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Profile Data:", data);
-      // Update the profile information on the page
-      displayProfile(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      // Handle error
-    });
-}
+// Event listener for Apply Changes button
+document
+  .getElementById("applyBtn")
+  .addEventListener("click", async function () {
+    const userName = "";
+    const bioText = document.getElementById("userBio").textContent;
+    const profileImgUrl = document.getElementById("profileImageInput").value;
 
-// Fixing error handling in fetch
-function handleResponse(response) {
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  return response.json();
-}
+    let bioUpdated = false;
+    let profileImageUpdated = false;
 
-// Function to update profile information
-function updateProfile(name, profileData) {
-  const token = getToken();
-  const apiKey = getApiKey();
+    if (bioText.trim() !== "") {
+      await updateBio(userName, bioText);
+      bioUpdated = true;
+    }
 
-  fetch(`${NOROFF_API_URL}/social/profiles/${name}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "X-Noroff-API-Key": apiKey,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(profileData),
-  })
-    .then(handleResponse) // Handle response status
-    .then((data) => {
-      console.log("Profile Updated:", data);
-      // Optionally, you can display a success message or update the profile data on the page
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      // Handle error
-    });
-}
+    if (profileImgUrl.trim() !== "") {
+      await updateProfileImage(userName, profileImgUrl);
+      profileImageUpdated = true;
+    }
 
-// Example function to display profile information on the page
-function displayProfile(profileData) {
-  // Update the HTML elements with the profile data
-  document.getElementById("name").innerText = profileData.name;
-  document.getElementById("userEmail").innerText = profileData.email;
-  document.getElementById("userBio").innerText = profileData.bio;
-}
+    // Check if both bio and profile image are updated successfully before redirecting
+    if (bioUpdated || profileImageUpdated) {
+      window.location.href = "/html/my-profile/index.html";
+    }
+  });
 
-// Event listener for cancel button
+// Event listener for Cancel button (optional)
 document.getElementById("cancelBtn").addEventListener("click", function () {
-  window.location.href = "/html/profile/index.html";
-});
-
-document.getElementById("applyBtn").addEventListener("click", function () {
-  // Pass the profile ID and profile data to the updateProfile function
-  var profileId = "name"; // Replace with the actual profile ID
-  var profileData = {}; // Replace with the actual profile data
-  updateProfile(profileId, profileData);
+  // Logic to cancel changes and reset form fields if needed
+  document.getElementById("bioText").value = "";
+  document.getElementById("profileImageInput").value = "";
 });
