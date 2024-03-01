@@ -1,10 +1,12 @@
-import { getPostsFromFollowing } from "../js/modules/api.js";
+import {
+  getPostsFromFollowing,
+  getPostsFromSearch,
+} from "../js/modules/api.js";
 
 document.getElementById("explore-container");
 
-async function displayPostsFromFollowing(newestFirst) {
+async function displayPosts(posts, profiles) {
   try {
-    const posts = await getPostsFromFollowing(newestFirst);
     const exploreContainer = document.getElementById("explore-container");
     exploreContainer.innerHTML = "";
 
@@ -94,15 +96,35 @@ async function displayPostsFromFollowing(newestFirst) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  displayPostsFromFollowing(true);
+  getPostsFromFollowing(true).then((posts) => {
+    displayPosts(posts);
+  });
 });
 
 document.getElementById("newest").addEventListener("click", function (event) {
   event.preventDefault();
-  displayPostsFromFollowing(true);
+  getPostsFromFollowing(true).then((posts) => {
+    displayPosts(posts);
+  });
 });
 
 document.getElementById("oldest").addEventListener("click", function (event) {
   event.preventDefault();
-  displayPostsFromFollowing(false);
+  getPostsFromFollowing(false).then((posts) => {
+    displayPosts(posts);
+  });
 });
+
+document
+  .getElementById("searchInput")
+  .addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      getPostsFromSearch(event.target.value).then((posts) => {
+        displayPosts(posts);
+        // getProfilesFromSearch(event.target.value).then((profiles) => {
+        //   displayPosts(posts, profiles);
+        // });
+      });
+    }
+  });
