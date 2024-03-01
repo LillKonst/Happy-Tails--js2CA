@@ -11,11 +11,32 @@ export { fetchPostsByUserName };
 export { getPostSpecific };
 export { updateBio };
 export { updateProfileImage };
+export { getPostsFromFollowing };
 
 // Get all posts
 async function getAllPosts() {
   const response = await fetch(
     `${NOROFF_API_URL}/social/posts/?_author=true&_comments=true&_reactions=true`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Could not load posts");
+  }
+  const result = await response.json();
+  return result.data;
+}
+
+// Get posts only from following people
+async function getPostsFromFollowing(newestFirst = true) {
+  const sortOrder = newestFirst ? "desc" : "asc";
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/posts/following/?_author=true&_comments=true&_reactions=true&sortOrder=${sortOrder}&sort=created`,
     {
       headers: {
         "Content-Type": "application/json",

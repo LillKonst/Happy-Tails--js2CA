@@ -1,10 +1,10 @@
-import { getAllPosts } from "../js/modules/api.js";
+import { getPostsFromFollowing } from "../js/modules/api.js";
 
 document.getElementById("explore-container");
 
-async function displayAllPosts() {
+async function displayPostsFromFollowing(newestFirst) {
   try {
-    const posts = await getAllPosts();
+    const posts = await getPostsFromFollowing(newestFirst);
     const exploreContainer = document.getElementById("explore-container");
     exploreContainer.innerHTML = "";
 
@@ -87,7 +87,6 @@ async function displayAllPosts() {
       const timestamp = document.createElement("h4");
       timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
       cardBody.appendChild(timestamp);
-
     }
   } catch (error) {
     console.error(error);
@@ -95,5 +94,15 @@ async function displayAllPosts() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  displayAllPosts();
+  displayPostsFromFollowing(true);
+});
+
+document.getElementById("newest").addEventListener("click", function (event) {
+  event.preventDefault();
+  displayPostsFromFollowing(true);
+});
+
+document.getElementById("oldest").addEventListener("click", function (event) {
+  event.preventDefault();
+  displayPostsFromFollowing(false);
 });
