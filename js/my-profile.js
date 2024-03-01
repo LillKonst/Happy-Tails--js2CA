@@ -1,4 +1,5 @@
 import { fetchUserProfile, fetchPostsByUserName } from "../js/modules/api.js";
+export { displayUserProfile };
 
 // Function to generate HTML structure for a post card
 function createPostCard(post, userName) {
@@ -6,7 +7,13 @@ function createPostCard(post, userName) {
   postCard.classList.add("col-md-5", "m-2");
 
   const cardInner = document.createElement("div");
-  cardInner.classList.add("card", "card-body", "text-center", "mx-auto");
+  cardInner.classList.add(
+    "card",
+    "card-body",
+    "text-center",
+    "mx-auto",
+    "shadow-sm"
+  );
   postCard.appendChild(cardInner);
 
   if (post.media && post.media.url) {
@@ -30,6 +37,16 @@ function createPostCard(post, userName) {
   userNameElement.classList.add("card-text");
   userNameElement.textContent = ` ${userName}`;
   cardBody.appendChild(userNameElement);
+
+  // Add edit icon
+  const editIcon = document.createElement("i");
+  editIcon.classList.add("fa-regular", "fa-pen-to-square", "ms-2");
+  userNameElement.appendChild(editIcon);
+
+  // Add delete icon
+  const deleteIcon = document.createElement("i");
+  deleteIcon.classList.add("fa-solid", "fa-trash-can", "ms-2");
+  userNameElement.appendChild(deleteIcon);
 
   const postTitle = document.createElement("h3");
   postTitle.classList.add("card-title");

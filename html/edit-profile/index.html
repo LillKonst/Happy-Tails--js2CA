@@ -17,9 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
-    <script src="/js/my-profile.js" type="module" defer></script>
     <script src="/js/edit-profile-media/update-profile.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
+    <script src="/js/my-profile.js" type="module" defer></script>
 </head>
 
 <body>
@@ -76,7 +76,7 @@
     </header>
     <main>
         <section class="container-md col-lg-9">
-            <div class=" row">
+            <div class="row">
                 <div class="container d-flex flex-column align-items-center mb-4 mt-3">
                     <div id="profile-details" class=" d-flex  flex-column align-items-center">
                         <div class="profile-img-container">
@@ -84,21 +84,30 @@
                         </div>
                         <div id="userName" class="fs-1 text"></div>
                         <p id="userBio"></p>
+                        <div class="d-flex">
+                            <p class="pe-3 text-center">Followers <br><span id="followersCount"></span></p>
+                            <p class="pe-3 text-center">Following <br><span id="followingCount"></span></p>
+                            <p class="pe-3 text-center">Posts <br><span id="postsCount"></span></p>
+                        </div>
+                        <a href="/html/edit-profile/index.html" class="link text-primary">Edit your profile</a>
                     </div>
                 </div>
             </div>
         </section>
         <section class="container col-md-6">
+            <!-- Add an input field for the profile image URL with the correct ID -->
             <div class="mb-3">
-                <label for="bioText" class="form-label">Your Bio</label>
-                <textarea class="form-control" id="bioText" rows="5" placeholder="Write something about you!"
-                    title="Your bio must be less than 160 characters"></textarea>
+                <label for="profileImageInput" class="form-label">Profile Image URL</label>
+                <input type="text" class="form-control" id="profileImageInput">
             </div>
+            <div class="mb-3" id="bioTextAreaContainer"></div>
+            <!-- Buttons -->
             <button id="applyBtn" class="btn btn-primary">Apply Changes</button>
             <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
         </section>
-
     </main>
+
+
     <footer>
         <div class="container-fluid">
             <div class="row text-center d-flex align-items-center py-3">

@@ -9,6 +9,8 @@ export { getAllPosts };
 export { fetchUserProfile };
 export { fetchPostsByUserName };
 export { getPostSpecific };
+export { updateBio };
+export { updateProfileImage };
 
 // Get all posts
 async function getAllPosts() {
@@ -84,4 +86,67 @@ async function fetchPostsByUserName(userName) {
   }
   const result = await response.json();
   return result.data;
+}
+
+// Function to update user's bio
+async function updateBio(userName, bioText) {
+  try {
+    const response = await fetch(
+      `${NOROFF_API_URL}/social/profiles/${userName}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+        body: JSON.stringify({
+          bio: bioText,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update bio");
+    }
+
+    // Bio updated successfully
+    console.log("Bio updated successfully");
+  } catch (error) {
+    console.error("Error updating bio:", error.message);
+    // Handle error (e.g., display an error message to the user)
+  }
+}
+
+// Function to update user's profile image
+async function updateProfileImage(userName, profileImgUrl) {
+  try {
+    const response = await fetch(
+      `${NOROFF_API_URL}/social/profiles/${userName}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+        body: JSON.stringify({
+          avatar: {
+            url: profileImgUrl,
+            alt: "Profile Image",
+          },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update profile image");
+    }
+
+    // Profile image updated successfully
+    console.log("Profile image updated successfully");
+  } catch (error) {
+    console.error("Error updating profile image:", error.message);
+    // Handle error (e.g., display an error message to the user)
+  }
 }
