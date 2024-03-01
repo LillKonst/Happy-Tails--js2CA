@@ -3,7 +3,7 @@ import { fetchUserProfile, fetchPostsByUserName } from "../js/modules/api.js";
 // Function to generate HTML structure for a post card
 function createPostCard(post, userName) {
   const postCard = document.createElement("div");
-  postCard.classList.add("col-md", "my-3", "mx-1");
+  postCard.classList.add("col-md-5", "m-2");
 
   const cardInner = document.createElement("div");
   cardInner.classList.add("card", "card-body", "text-center", "mx-auto");
