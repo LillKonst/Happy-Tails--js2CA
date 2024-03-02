@@ -62,8 +62,10 @@ async function getPostsFromSearch(query) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
+    },
+      
       },
-    }
+    
   );
   if (!response.ok) {
     throw new Error("Could not load posts");
@@ -72,8 +74,9 @@ async function getPostsFromSearch(query) {
   return result.data;
 }
 
-// Get post specific
-async function getPostSpecific(postId) {
+// Get posts only from following people
+async function getPostsFromFollowing(newestFirst = true) {
+  const sortOrder = newestFirst ? "desc" : "asc";
   const response = await fetch(
     `${NOROFF_API_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
     {
@@ -85,7 +88,7 @@ async function getPostSpecific(postId) {
     }
   );
   if (!response.ok) {
-    throw new Error("Could not load post");
+    throw new Error("Could not load posts");
   }
   const result = await response.json();
   return result.data;
