@@ -9,7 +9,6 @@ async function displayPosts(posts, profiles) {
   try {
     const exploreContainer = document.getElementById("explore-container");
     exploreContainer.innerHTML = "";
-    
 
     for (let i = 0; i < posts.length; i++) {
       const post = posts[i];
@@ -18,7 +17,7 @@ async function displayPosts(posts, profiles) {
       postCard.classList.add("col-md-5", "m-2");
       postCard.addEventListener("click", () => {
         window.location.href = `/html/profile/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
-    });
+      });
       exploreContainer.appendChild(postCard);
 
       const cardInner = document.createElement("div");

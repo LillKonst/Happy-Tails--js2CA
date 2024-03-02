@@ -62,10 +62,8 @@ async function getPostsFromSearch(query) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
-    },
-      
       },
-    
+    }
   );
   if (!response.ok) {
     throw new Error("Could not load posts");
