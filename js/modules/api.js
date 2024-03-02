@@ -65,7 +65,7 @@ async function getPostsFromSearch(query) {
     },
       
       },
-    }
+    
   );
   if (!response.ok) {
     throw new Error("Could not load posts");
