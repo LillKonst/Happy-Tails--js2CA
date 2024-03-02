@@ -25,7 +25,10 @@ body {
   background-size: cover;
 }
 
-#explore-container, #userPosts {
+
+#explore-container,
+#userPosts {
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

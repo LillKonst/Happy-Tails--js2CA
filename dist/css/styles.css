@@ -24,14 +24,20 @@ body {
   background-size: cover;
 }
 
-#explore-container, #userPosts {
+
+#explore-container,
+#userPosts {
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 @media (max-width: 650px) {
-  #explore-container, #userPosts {
+
+  #explore-container,
+  #userPosts {
+
     flex-direction: column;
   }
 }
