@@ -1,10 +1,12 @@
-import { getAllPosts } from "../js/modules/api.js";
+import {
+  getPostsFromFollowing,
+  getPostsFromSearch,
+} from "../js/modules/api.js";
 
 document.getElementById("explore-container");
 
-async function displayAllPosts() {
+async function displayPosts(posts, profiles) {
   try {
-    const posts = await getAllPosts();
     const exploreContainer = document.getElementById("explore-container");
     exploreContainer.innerHTML = "";
     
@@ -91,7 +93,6 @@ async function displayAllPosts() {
       const timestamp = document.createElement("h4");
       timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
       cardBody.appendChild(timestamp);
-
     }
   } catch (error) {
     console.error(error);
@@ -99,5 +100,35 @@ async function displayAllPosts() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  displayAllPosts();
+  getPostsFromFollowing(true).then((posts) => {
+    displayPosts(posts);
+  });
 });
+
+document.getElementById("newest").addEventListener("click", function (event) {
+  event.preventDefault();
+  getPostsFromFollowing(true).then((posts) => {
+    displayPosts(posts);
+  });
+});
+
+document.getElementById("oldest").addEventListener("click", function (event) {
+  event.preventDefault();
+  getPostsFromFollowing(false).then((posts) => {
+    displayPosts(posts);
+  });
+});
+
+document
+  .getElementById("searchInput")
+  .addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      getPostsFromSearch(event.target.value).then((posts) => {
+        displayPosts(posts);
+        // getProfilesFromSearch(event.target.value).then((profiles) => {
+        //   displayPosts(posts, profiles);
+        // });
+      });
+    }
+  });
