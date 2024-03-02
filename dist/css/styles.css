@@ -25,7 +25,7 @@ body {
 }
 
 #explore-container,
-.posts {
+#userPosts {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -33,7 +33,7 @@ body {
 }
 @media (max-width: 650px) {
   #explore-container,
-  .posts {
+  #userPosts {
     flex-direction: column;
   }
 }
