@@ -24,14 +24,14 @@ body {
   background-size: cover;
 }
 
-#explore-container {
+#explore-container, #userPosts {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 @media (max-width: 650px) {
-  #explore-container {
+  #explore-container, #userPosts {
     flex-direction: column;
   }
 }
@@ -43,7 +43,7 @@ body {
   width: 100%;
   height: fit-content;
 }
-.card-custom .top-container, .card-custom .reactions-container {
+.card-custom .top-container {
   justify-content: space-between;
 }
 
