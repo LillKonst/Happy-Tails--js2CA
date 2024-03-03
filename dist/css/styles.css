@@ -49,6 +49,27 @@ body {
   justify-content: space-between;
 }
 
+#post-container {
+  width: 70%;
+  height: fit-content;
+}
+#post-container .display-body .username-display {
+  font-size: 1.5em;
+}
+#post-container .display-body .post-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+#post-container .display-body .post-text {
+  font-size: 1em;
+}
+#post-container .display-body h4 {
+  font-size: 0.8em;
+}
+#post-container #display-comments {
+  height: fit-content;
+}
+
 .profile-img-container {
   width: 200px;
   height: 200px;
@@ -167,8 +188,7 @@ h4 {
   border-color: #cab9e7;
   color: #fffafa;
 }
-.btn-custom:hover,
-.btn-custom:disabled,
+.btn-custom:hover, .btn-custom:disabled,
 .btn-custom:focus:hover,
 .btn-custom:focus:disabled,
 .btn-primary:hover,
