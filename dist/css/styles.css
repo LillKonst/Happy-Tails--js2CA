@@ -16,9 +16,10 @@ body {
   }
 }
 
-#display_image {
-  width: 200px;
-  height: 200px;
+#image-display {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
   border: 1px solid black;
   background-position: center;
   background-size: cover;
@@ -141,7 +142,6 @@ span {
 
 .title-box {
   height: 42.8px;
-  width: 50%;
 }
 
 .media-btn {

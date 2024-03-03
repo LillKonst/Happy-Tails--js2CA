@@ -1,5 +1,6 @@
 import { NOROFF_API_URL } from "../login-function.js";
 import { getPostSpecific } from "../modules/api.js";
+import { displayImage } from "./edit.js";
 
 function getPostIdFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -101,12 +102,14 @@ async function displayPost(post) {
     commentButton.classList.add("btn", "btn-sm", "btn-outline-primary", "m-1");
     commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
     reactionsContainer.appendChild(commentButton);
-/*
+
     const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-btn btn", "btn-sm", "btn-primary", "m-1");
+    editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
     editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
+    editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
     reactionsContainer.appendChild(editBtn);
-    */
+    
+    
 
     const postTitle = document.createElement("h3");
     postTitle.classList.add("post-title", "mr-auto");
@@ -125,10 +128,6 @@ async function displayPost(post) {
     const displayComments = document.getElementById("display-comments");
     displayComments.innerHTML = "No comments yet"; // if no comments yet. Add code to display comments.
     commentSection.appendChild(displayComments);
- 
-    // Calling function to determinate if the current user is the post author and displays comments
-    const postAuthor = postData.author.name === currentUser;
-    displayComments(postData.comments, postAuthor, postId);
 
   } catch (error) {
     //showError(error.message);
@@ -136,34 +135,46 @@ async function displayPost(post) {
   
 }
 
-/*
+ // Calling function to determinate if the current user is the post author and displays comments
+ const postAuthor = postData.author.name === currentUser;
+ displayComments(postData.comments, postAuthor, postId);
+
 
 function postoptions(postData) {
-  const currentUser = post.author.name === currentUser;
+  
+  const editBtn = document.querySelector(".edit-btn");  // Assuming edit-btn is a class
+  const deleteBtn = document.querySelector(".delete-btn");  // Assuming delete-btn is a class
 
-  const editBtn = document.querySelector("edit-btn");
-  const deleteBtn = document.querySelector("delete-btn");
-
-  if (currentUser) {
+  if (postAuthor) {
     editBtn.classList.remove("d-none");
     deleteBtn.classList.remove("d-none");
 
-    editBtn. addEventListener("click", () => openEditModal(postData));
-    document
-    .getElementById("saveChanges")
-    .addEventListener("click", () => saveChanges(postData.id));
-    deleteBtn.addEventListener("click", () => deletePost(postData.id)
-    );
+    editBtn.addEventListener("click", () => openEditModal(postData));
+    // Assuming "saveChanges" is a button inside the modal for saving changes
+    document.getElementById("saveChanges").addEventListener("click", () => saveChanges(postData.id));
+    deleteBtn.addEventListener("click", () => deletePost(postData.id));
   } else {
     editBtn.classList.add("d-none");
     deleteBtn.classList.add("d-none");
   }
 }
 
-function editPostModal(postData) {
-  document.querySelector("#editPostTitle").value = postData.title;
-  document.querySelector("#editPostBody").value = postData.body;
-  document.querySelector("#editPostTags").value = postData.tags? postData.tags.join(", "): "";
+document.addEventListener("DOMContentLoaded", () => {
+  // Assuming you have a way to retrieve the current post data
+  const currentPostData = getCurrentPostData();  // Replace with actual implementation
+  postoptions(currentPostData);
+});
 
+// Example function to retrieve current post data (replace with actual implementation)
+function getCurrentPostData() {
+  // Replace this with your actual implementation to get the current post data
+  // You might need to fetch it from the API or use some other method
+  return {
+    author: {
+      name: "currentUser"
+    }
+    // Add other properties as needed
+  };
+}
 
-}*/
+displayImage();
