@@ -134,47 +134,8 @@ async function displayPost(post) {
   }
   
 }
-
+/*
  // Calling function to determinate if the current user is the post author and displays comments
- const postAuthor = postData.author.name === currentUser;
+ export const postAuthor = postData.author.name === currentUser;
  displayComments(postData.comments, postAuthor, postId);
-
-
-function postoptions(postData) {
-  
-  const editBtn = document.querySelector(".edit-btn");  // Assuming edit-btn is a class
-  const deleteBtn = document.querySelector(".delete-btn");  // Assuming delete-btn is a class
-
-  if (postAuthor) {
-    editBtn.classList.remove("d-none");
-    deleteBtn.classList.remove("d-none");
-
-    editBtn.addEventListener("click", () => openEditModal(postData));
-    // Assuming "saveChanges" is a button inside the modal for saving changes
-    document.getElementById("saveChanges").addEventListener("click", () => saveChanges(postData.id));
-    deleteBtn.addEventListener("click", () => deletePost(postData.id));
-  } else {
-    editBtn.classList.add("d-none");
-    deleteBtn.classList.add("d-none");
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Assuming you have a way to retrieve the current post data
-  const currentPostData = getCurrentPostData();  // Replace with actual implementation
-  postoptions(currentPostData);
-});
-
-// Example function to retrieve current post data (replace with actual implementation)
-function getCurrentPostData() {
-  // Replace this with your actual implementation to get the current post data
-  // You might need to fetch it from the API or use some other method
-  return {
-    author: {
-      name: "currentUser"
-    }
-    // Add other properties as needed
-  };
-}
-
-displayImage();
+*/
