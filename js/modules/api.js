@@ -13,6 +13,7 @@ export { updateBio };
 export { updateProfileImage };
 export { getPostsFromFollowing };
 export { getPostsFromSearch };
+export { likePost };
 
 // Get posts only from following people
 async function getPostsFromFollowing(newestFirst = true) {
@@ -191,4 +192,33 @@ async function updateProfileImage(userName, profileImgUrl) {
     console.error("Error updating profile image:", error.message);
     // Handle error (e.g., display an error message to the user)
   }
+}
+
+
+// Function to react to post 
+/** 
+ * Reacto to a post
+ * @param {number|string} postId
+ * @param {string} symbol
+ */
+
+async function likePost(postId, symbol) {
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/posts/${postId}/react/${encodeURIComponent(
+      symbol
+    )}`,
+    { 
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    }
+  );
+  if (!response.ok) {
+    const errorData = await response.json(); 
+    throw new Error (`Could not like post: ${errorData.message}`);
+  }
+  return await response.json();
 }

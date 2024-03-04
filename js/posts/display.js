@@ -109,7 +109,6 @@ async function displayPost(post) {
     editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
     reactionsContainer.appendChild(editBtn);
     
-    
 
     const postTitle = document.createElement("h3");
     postTitle.classList.add("post-title", "mr-auto");
@@ -134,8 +133,7 @@ async function displayPost(post) {
   }
   
 }
-/*
+
  // Calling function to determinate if the current user is the post author and displays comments
  export const postAuthor = postData.author.name === currentUser;
  displayComments(postData.comments, postAuthor, postId);
-*/
