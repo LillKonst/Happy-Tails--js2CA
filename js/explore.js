@@ -15,7 +15,7 @@ async function displayAllPosts(posts) {
       const postCard = document.createElement("div");
       postCard.classList.add("col-md-5", "m-2");
       postCard.addEventListener("click", () => {
-        window.location.href = `/html/profile/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
+        window.location.href = `/html/post/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
       });
       exploreContainer.appendChild(postCard);
 

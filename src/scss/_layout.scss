@@ -17,9 +17,10 @@ body {
   }
 }
 
-#display_image {
-  width: 200px;
-  height: 200px;
+#image-display {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
   border: 1px solid black;
   background-position: center;
   background-size: cover;
@@ -54,5 +55,36 @@ body {
 
   .top-container {
     justify-content: space-between;
+  }
+}
+
+
+#post-container {
+  width: 70%;
+  height: fit-content;
+
+  .display-body {
+
+    .username-display {
+      font-size: 1.5em;
+    }
+
+
+    .post-title {
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    .post-text {
+      font-size: 1em;
+    }
+
+    h4 {
+      font-size: 0.8em;
+    }
+  }
+
+  #display-comments {
+    height: fit-content;
   }
 }
