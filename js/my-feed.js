@@ -1,13 +1,16 @@
-import { getAllPosts, getPostsFromSearch } from "../js/modules/api.js";
-import { displayPosts } from "../js/my-feed.js";
+import {
+  getPostsFromFollowing,
+  getPostsFromSearch,
+} from "../js/modules/api.js";
 
-document.getElementById("explore-container");
+export { displayPosts };
 
-async function displayAllPosts(posts) {
+document.getElementById("feed-container");
+
+async function displayPosts(posts, profiles) {
   try {
-    const posts = await getAllPosts();
-    const exploreContainer = document.getElementById("explore-container");
-    exploreContainer.innerHTML = "";
+    const feedContainer = document.getElementById("feed-container");
+    feedContainer.innerHTML = "";
 
     for (let i = 0; i < posts.length; i++) {
       const post = posts[i];
@@ -15,9 +18,9 @@ async function displayAllPosts(posts) {
       const postCard = document.createElement("div");
       postCard.classList.add("col-md-5", "m-2");
       postCard.addEventListener("click", () => {
-        window.location.href = `/html/post/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
+        window.location.href = `/html/profile/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
       });
-      exploreContainer.appendChild(postCard);
+      feedContainer.appendChild(postCard);
 
       const cardInner = document.createElement("div");
       cardInner.classList.add(
@@ -58,6 +61,12 @@ async function displayAllPosts(posts) {
       }`;
 
       topContainer.appendChild(username);
+      /* 
+      // Display the username - new code that works for username
+      const userNameElement = document.createElement("h1");
+      userNameElement.classList.add("card-text");
+      userNameElement.textContent = ` ${userName}`;
+      cardBody.appendChild(userNameElement); */
 
       const reactionsContainer = document.createElement("div");
       reactionsContainer.classList.add("d-flex", "reactions-container");
@@ -97,23 +106,25 @@ async function displayAllPosts(posts) {
   }
 }
 
+// Event listener to display & filter only posts from users that i follow.
+
 document.addEventListener("DOMContentLoaded", () => {
-  displayAllPosts(true).then((posts) => {
-    displayAllPosts(posts);
+  getPostsFromFollowing(true).then((posts) => {
+    displayPosts(posts);
   });
 });
 
 document.getElementById("newest").addEventListener("click", function (event) {
   event.preventDefault();
-  displayAllPosts(true).then((posts) => {
-    displayAllPosts(posts);
+  getPostsFromFollowing(true).then((posts) => {
+    displayPosts(posts);
   });
 });
 
 document.getElementById("oldest").addEventListener("click", function (event) {
   event.preventDefault();
-  displayAllPosts(false).then((posts) => {
-    displayAllPosts(posts);
+  getPostsFromFollowing(false).then((posts) => {
+    displayPosts(posts);
   });
 });
 
@@ -123,7 +134,7 @@ document
     if (event.key === "Enter") {
       event.preventDefault();
       getPostsFromSearch(event.target.value).then((posts) => {
-        displayAllPosts(posts);
+        displayPosts(posts);
         // getProfilesFromSearch(event.target.value).then((profiles) => {
         //   displayPosts(posts, profiles);
         // });
