@@ -14,10 +14,11 @@ export { updateProfileImage };
 export { getPostsFromFollowing };
 export { getPostsFromSearch };
 
-// Get all posts
-async function getAllPosts() {
+// Get posts only from following people
+async function getPostsFromFollowing(newestFirst = true) {
+  const sortOrder = newestFirst ? "desc" : "asc";
   const response = await fetch(
-    `${NOROFF_API_URL}/social/posts/?_author=true&_comments=true&_reactions=true`,
+    `${NOROFF_API_URL}/social/posts/following/?_author=true&_comments=true&_reactions=true&sortOrder=${sortOrder}&sort=created`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -33,11 +34,11 @@ async function getAllPosts() {
   return result.data;
 }
 
-// Get posts only from following people
-async function getPostsFromFollowing(newestFirst = true) {
+// Get all posts
+async function getAllPosts(newestFirst = true) {
   const sortOrder = newestFirst ? "desc" : "asc";
   const response = await fetch(
-    `${NOROFF_API_URL}/social/posts/following/?_author=true&_comments=true&_reactions=true&sortOrder=${sortOrder}&sort=created`,
+    `${NOROFF_API_URL}/social/posts/?_author=true&_comments=true&_reactions=true&sortOrder=${sortOrder}&sort=created`,
     {
       headers: {
         "Content-Type": "application/json",
