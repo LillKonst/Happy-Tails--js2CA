@@ -1,6 +1,7 @@
 import { NOROFF_API_URL } from "../login-function.js";
 import { getPostSpecific } from "../modules/api.js";
 import { displayImage } from "./edit.js";
+import { attachReactionListener } from "./reactions.js";
 
 function getPostIdFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -29,7 +30,7 @@ async function postData() {
     const postData = await getPostSpecific(postId);
     displayPost(postData);
     //attachCommentListener(postId);
-    //attachReactionListener(postId);
+    attachReactionListener(postId);
     //setupPostOptions(postData);
   } catch (error) {
     //console.error("Error fetching post details:", error);
@@ -94,7 +95,7 @@ async function displayPost(post) {
     topContainer.appendChild(reactionsContainer);
 
     const likeButton = document.createElement("button");
-    likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
+    likeButton.classList.add("like-btn", "btn", "btn-sm", "btn-primary", "m-1");
     likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
     reactionsContainer.appendChild(likeButton);
 

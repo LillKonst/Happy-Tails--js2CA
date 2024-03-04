@@ -210,7 +210,7 @@ async function likePost(postId, symbol) {
     { 
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
+        
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
       },
