@@ -1,10 +1,15 @@
-/*
-function postoptions(postData) {
+
+import { userName } from "./display.js";
+
+export { postOptions };
+
+function postOptions(postData) {
+    const postByCurrentUser = postData.author.name === userName;
   
   const editBtn = document.querySelector(".edit-btn");  // Assuming edit-btn is a class
   const deleteBtn = document.querySelector(".delete-btn");  // Assuming delete-btn is a class
 
-  if (postAuthor) {
+  if (postByCurrentUser) {
     editBtn.classList.remove("d-none");
     deleteBtn.classList.remove("d-none");
 
@@ -16,12 +21,41 @@ function postoptions(postData) {
     editBtn.classList.add("d-none");
     deleteBtn.classList.add("d-none");
   }
-}
-
+} 
+//postoptions ();
+/*
+function openEditModal(postData) {
+            const title = document.getElementById("edit_post_title").value;
+            const body = document.getElementById("edit_post_body").value;
+            const tagsInput = document.getElementById("edit_tagInput").value;
+            const tags = tagsInput ? tagsInput.split(',') : []; 
+            const imageInput = document.getElementById("edit_image_input").value; 
+    
+           //store the values from the inputs
+            const editpostData = {
+                title: title,
+                body: body,
+                tags: tags,
+                media: {
+                    url: imageInput,
+                }
+            };
+            //calls the editPost to edit
+            try {
+                const data = await editPost(editpostData);
+                console.log(data); 
+                alert("Post edited successfully!");
+            
+            } catch (error) {
+                console.error(error);
+                //Create error message here
+            }
+        }
+*/
 document.addEventListener("DOMContentLoaded", () => {
   // Assuming you have a way to retrieve the current post data
   const currentPostData = getCurrentPostData();  // Replace with actual implementation
-  postoptions(currentPostData);
+  postOptions(currentPostData);
 });
 
 // Example function to retrieve current post data (replace with actual implementation)
@@ -36,7 +70,7 @@ function getCurrentPostData() {
   };
 }
 
-displayImage();*/
+// displayImage();
 
 
 

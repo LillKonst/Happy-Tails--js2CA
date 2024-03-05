@@ -1,7 +1,12 @@
 import { NOROFF_API_URL } from "../login-function.js";
 import { getPostSpecific } from "../modules/api.js";
-import { displayImage } from "./edit.js";
-import { attachReactionListener } from "./reactions.js";
+//import { displayImage } from "./edit.js";
+import { attachReactionListener } from "./reactions.js"; 
+import { displayComments } from "./comments.js";
+import { attachCommentListener } from "./comments.js";
+import { postOptions } from "./edit.js";
+
+export { userName };
 
 function getPostIdFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -14,6 +19,8 @@ function getPostTitleFromQuery() {
     return urlParams.get("title");
 }
 */
+
+const userName = localStorage.getItem(`username`);
 
 async function postData() {
   const postId = getPostIdFromQuery();
@@ -29,15 +36,15 @@ async function postData() {
   try {
     const postData = await getPostSpecific(postId);
     displayPost(postData);
-    //attachCommentListener(postId);
+    attachCommentListener(postId);
     attachReactionListener(postId);
-    //setupPostOptions(postData);
+    postOptions(postData);
   } catch (error) {
     //console.error("Error fetching post details:", error);
     //errorContainer.textContent =
     //  "There seems to be an issue loading the post details at this moment. This may affect your ability to comment on or react to the post. Please try reloading the page to see if this resolves the issue.";
   }
-}
+} 
 
 // LoadPostData in DOM
 document.addEventListener("DOMContentLoaded", postData);
@@ -125,9 +132,11 @@ async function displayPost(post) {
     timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
     displaybody.appendChild(timestamp);
 
-    const displayComments = document.getElementById("display-comments");
-    displayComments.innerHTML = "No comments yet"; // if no comments yet. Add code to display comments.
-    commentSection.appendChild(displayComments);
+    const commentsData = postData.comments || [];
+    
+    const comments = document.getElementById("display-comments");
+    comments.innerHTML = displayComments(commentsData);
+    commentSection.appendChild(comments);
 
   } catch (error) {
     //showError(error.message);
@@ -135,6 +144,9 @@ async function displayPost(post) {
   
 }
 
+
+/*
  // Calling function to determinate if the current user is the post author and displays comments
  export const postAuthor = postData.author.name === currentUser;
  displayComments(postData.comments, postAuthor, postId);
+ */

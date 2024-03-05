@@ -14,6 +14,7 @@ export { updateProfileImage };
 export { getPostsFromFollowing };
 export { getPostsFromSearch };
 export { likePost };
+export { commentPost };
 
 // Get posts only from following people
 async function getPostsFromFollowing(newestFirst = true) {
@@ -221,4 +222,38 @@ async function likePost(postId, symbol) {
     throw new Error (`Could not like post: ${errorData.message}`);
   }
   return await response.json();
+}
+
+////////////////////// Add Comment
+
+/**
+ * @param {number|string} postId
+ * @param {string} body
+ * @param {number|string|null} replyToId
+ * @returns {Promise<Object>}
+ */
+
+async function commentPost(postId, body, replyToId = null) {
+  const payload = {body};
+  if (replyToId) payload.replyToId = replyToId;
+
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/posts/${postId}/comment`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Could not post comment: ${errorData.message}`);
+    }
+
+    return await response.json();
 }
