@@ -21,9 +21,10 @@ body {
   }
 }
 
-#display_image {
-  width: 200px;
-  height: 200px;
+#image-display {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
   border: 1px solid black;
   background-position: center;
   background-size: cover;
@@ -70,6 +71,27 @@ body {
 }
 .card-custom .top-container {
   justify-content: space-between;
+}
+
+#post-container {
+  width: 70%;
+  height: fit-content;
+}
+#post-container .display-body .username-display {
+  font-size: 1.5em;
+}
+#post-container .display-body .post-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+#post-container .display-body .post-text {
+  font-size: 1em;
+}
+#post-container .display-body h4 {
+  font-size: 0.8em;
+}
+#post-container #display-comments {
+  height: fit-content;
 }
 
 .feed-btns {
@@ -152,7 +174,6 @@ span {
 
 .title-box {
   height: 42.8px;
-  width: 50%;
 }
 
 .media-btn {
@@ -199,7 +220,8 @@ h4 {
   border-color: #cab9e7;
   color: #fffafa;
 }
-.btn-custom:hover, .btn-custom:disabled,
+.btn-custom:hover,
+.btn-custom:disabled,
 .btn-custom:focus:hover,
 .btn-custom:focus:disabled,
 .btn-primary:hover,

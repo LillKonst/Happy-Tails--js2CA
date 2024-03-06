@@ -5,6 +5,9 @@ export { displayUserProfile };
 function createPostCard(post, userName) {
   const postCard = document.createElement("div");
   postCard.classList.add("col-md-5", "m-2");
+  postCard.addEventListener("click", () => {
+    window.location.href = `/html/post/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
+  });
 
   const cardInner = document.createElement("div");
   cardInner.classList.add(
