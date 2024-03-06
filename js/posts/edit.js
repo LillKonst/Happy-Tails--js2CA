@@ -4,22 +4,19 @@ import { userName } from "./display.js";
 export { postOptions };
 
 function postOptions(postData) {
+    console.log("Post Options Called. User:", userName, "Post Author:", postData.author.name);
     const postByCurrentUser = postData.author.name === userName;
   
-  const editBtn = document.querySelector(".edit-btn");  // Assuming edit-btn is a class
-  const deleteBtn = document.querySelector(".delete-btn");  // Assuming delete-btn is a class
+  const editBtn = document.querySelector(".edit-btn");
+
 
   if (postByCurrentUser) {
     editBtn.classList.remove("d-none");
-    deleteBtn.classList.remove("d-none");
-
     editBtn.addEventListener("click", () => openEditModal(postData));
-    // Assuming "saveChanges" is a button inside the modal for saving changes
-    document.getElementById("saveChanges").addEventListener("click", () => saveChanges(postData.id));
-    deleteBtn.addEventListener("click", () => deletePost(postData.id));
+    document.getElementById("save-changes").addEventListener("click", () => saveChanges(postData.id));
+  
   } else {
     editBtn.classList.add("d-none");
-    deleteBtn.classList.add("d-none");
   }
 } 
 //postoptions ();

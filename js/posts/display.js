@@ -13,7 +13,7 @@ function getPostIdFromQuery() {
   return urlParams.get("id");
 }
 
-const userName = localStorage.getItem(`username`);
+const userName = localStorage.getItem(`userName`);
 
 async function postData() {
   const postId = getPostIdFromQuery();
@@ -125,7 +125,7 @@ async function displayPost(post) {
     editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
     reactionsContainer.appendChild(editBtn);
 
-    
+    /*
   // Check if the current user is the post author
   const currentUserIsAuthor = post.author.name === userName;
 
@@ -139,7 +139,7 @@ async function displayPost(post) {
     editBtn.classList.add("d-none");
     // Additional actions if needed
   }
-    
+    */
 
     const postTitle = document.createElement("h3");
     postTitle.classList.add("post-title", "mr-auto");
