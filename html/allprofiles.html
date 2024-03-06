@@ -16,10 +16,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/dist/css/styles.css">
+    <!--  <link rel="stylesheet" href="/dist/css/styles.css"> -->
+    <link rel="stylesheet" href="/dist/css/allprofiles.css">
     <script src="/js/logout.js" defer></script>
-    <script src="/js/my-feed.js" type="module" defer></script>
-    <script src="/js/my-profile.js" type="module" defer></script>
+    <script src="/js/allProfiles.js" type="module" defer></script>
+
+
+
 
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
@@ -28,10 +31,6 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container d-flex align-items-end">
-                <!--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span> -->
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
@@ -54,6 +53,7 @@
                                     </svg>
                                 </a>
                                 <a class="nav-link" href="/html/explore/index.html">
+
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-globe" viewBox="0 0 16 16">
                                         <path
@@ -89,74 +89,24 @@
         </nav>
     </header>
     <main class="d-flex">
+        <div class="search-wrapper">
+            <label for="search">Search Users:</label>
+            <input type="search" id="searchInput" placeholder="Enter username...">
+            <div id="searchedUsername"></div> <!-- Add this div to display the searched username -->
+        </div>
 
-        <section class="container-md me-2 col-3 position-relative d-none d-lg-block profile-section">
-            <div class="row">
-                <div class="container d-flex flex-column align-items-center mt-3">
-                    <div id="profile-details" class=" d-flex  flex-column align-items-center">
-                        <div class="profile-img-container">
-                            <img id="profileImage" class="img rounded-circle">
-                        </div>
-                        <div id="userName" class="fs-1 text"></div>
-                        <p id="userBio"></p>
-                        <div class="d-flex">
-                            <p class="pe-3 text-center">Followers <br><span id="followersCount"></span></p>
-                            <p class="pe-3 text-center">Following <br><span id="followingCount"></span></p>
-                            <p class="pe-3 text-center">Posts <br><span id="postsCount"></span></p>
-                        </div>
-                        <a href="/html/edit-profile/index.html" class="link text-primary">Edit your
-                            profile</a>
-                    </div>
+        <!-- Define the user card template -->
+        <template id="userCardTemplate">
+            <div class="user-card">
+                <h3 data-name></h3>
+                <p data-email></p>
+            </div>
+        </template>
 
-                    <!-- <div class="posts col-12" id="userPosts"></div> -->
+        <!-- Add the userProfile div here -->
+        <div id="userProfile"></div>
 
-        </section>
-        <section class="col-lg-9 d-flex flex-column align-items-center">
-            <div class="col-12">
-                <div class="row">
-                    <div class="d-flex justify-content-around align-items-center feed-btns">
-                        <h2 class="text-start">My Feed</h2>
-                        <div class="feed-search-btns">
-                            <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Sort by:
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li id="newest"><a class="dropdown-item">Newest</a></li>
-                                    <li id="oldest"><a class="dropdown-item">Oldest</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="feed-container">
-                    <div class="row">
-                        <!-- <div class="col-md-5 my-3 mx-1">
-                            <div class="card" style="width: 15rem;">
-                                <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top" alt="Happy dog">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h3 class="card-title">@Lill-Konst</h3>
-                                        <button class="btn btn-sm btn-primary"><i class="fa-solid fa-heart"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary"><i
-                                                class="fa-regular fa-comment"></i></button>
-        
-                                    </div>
-                                    <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                        She's always ready for cuddles and has mastered the art of the puppy
-                                        eyes.
-                                        #ProudPetParent #FluffyLove</p>
-                                    <h4>02/01/24 12:45pm</h4>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-                    </div>
-                </div>
-        </section>
+
         <section>
             <div class="modal" tabindex="-1" id="createPost">
                 <div class="modal-dialog modal-dialog-centered">
