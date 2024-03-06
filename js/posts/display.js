@@ -51,7 +51,7 @@ async function displayPost(post) {
 
   try {
     const titleElement = document.getElementById("title");
-    const postDisplay = document.getElementById("post-display")
+    const postDisplay = document.getElementById("post-display");
     const commentSection = document.getElementById("comment-section");
 
     titleElement.textContent = post.title || "No Title";
@@ -87,6 +87,13 @@ async function displayPost(post) {
     username.innerHTML = `${
       post.author && post.author.name ? post.author.name : "Unknown"
     }`;
+
+    username.addEventListener("click", function () {
+      // Redirect user to the profile page
+      const userProfileUrl = `/html/profile/index.html?username=${post.author.name}`;
+      window.location.href = userProfileUrl;
+    });
+
     topContainer.appendChild(username);
 
     const reactionsContainer = document.createElement("div");
@@ -106,10 +113,10 @@ async function displayPost(post) {
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
     editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
-    editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
+    editBtn.addEventListener("click", () => {
+      $("#editPost").modal("show");
+    });
     reactionsContainer.appendChild(editBtn);
-    
-    
 
     const postTitle = document.createElement("h3");
     postTitle.classList.add("post-title", "mr-auto");
@@ -128,11 +135,9 @@ async function displayPost(post) {
     const displayComments = document.getElementById("display-comments");
     displayComments.innerHTML = "No comments yet"; // if no comments yet. Add code to display comments.
     commentSection.appendChild(displayComments);
-
   } catch (error) {
     //showError(error.message);
   }
-  
 }
 /*
  // Calling function to determinate if the current user is the post author and displays comments
