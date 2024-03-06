@@ -21,6 +21,8 @@
     <script src="/js/my-profile.js" type="module" defer></script>
     <script src="/js/explore.js" type="module" defer></script>
 
+
+
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -109,21 +111,23 @@
                 </div>
             </div>
         </section>
-        <section class="container-md m-2 col-lg-9 d-flex flex-column align-items-center">
-            <div class="col-12 ms-4">
+        <section class="col-lg-9 d-flex flex-column align-items-center">
+            <div class="col-12">
                 <div class="row">
-                    <div class="d-flex justify-content-around align-items-center">
-                        <h2 class="text-start ms-3">Explore</h2>
-                        <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Sort by:
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li id="newest"><a class="dropdown-item">Newest</a></li>
-                                <li id="oldest"><a class="dropdown-item">Oldest</a></li>
-                            </ul>
+                    <div class="d-flex justify-content-around align-items-center feed-btns">
+                        <h2 class="text-start">Explore</h2>
+                        <div class="feed-search-btns">
+                            <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sort by:
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li id="newest"><a class="dropdown-item">Newest</a></li>
+                                    <li id="oldest"><a class="dropdown-item">Oldest</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,7 +156,27 @@
                     </div>-->
                     </div>
                 </div>
+
         </section>
+        <div class="modal" id="searchInputModal" tabindex="-1" aria-labelledby="searchInputModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title fs-5 fw-bold" id="searchInputModal">
+                            Search Profiles
+                        </p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="tab-content" id="searchTabsContent">
+                        <div class="tab-pane fade show active mt-3" id="profiles" role="tabpanel"
+                            aria-labelledby="profiles-tab">
+                            <!-- Profiles results go here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         <section>
             <div class="modal" tabindex="-1" id="createPost">
                 <div class="modal-dialog modal-dialog-centered">

@@ -111,21 +111,23 @@
                     <!-- <div class="posts col-12" id="userPosts"></div> -->
 
         </section>
-        <section class="container-md m-2 col-lg-9 d-flex flex-column align-items-center">
-            <div class="col-12 ms-4">
+        <section class="col-lg-9 d-flex flex-column align-items-center">
+            <div class="col-12">
                 <div class="row">
-                    <div class="d-flex justify-content-around align-items-center">
-                        <h2 class="text-start ms-3">My Feed</h2>
-                        <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Sort by:
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li id="newest"><a class="dropdown-item">Newest</a></li>
-                                <li id="oldest"><a class="dropdown-item">Oldest</a></li>
-                            </ul>
+                    <div class="d-flex justify-content-around align-items-center feed-btns">
+                        <h2 class="text-start">My Feed</h2>
+                        <div class="feed-search-btns">
+                            <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sort by:
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li id="newest"><a class="dropdown-item">Newest</a></li>
+                                    <li id="oldest"><a class="dropdown-item">Oldest</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

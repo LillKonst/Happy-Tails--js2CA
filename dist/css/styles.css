@@ -3,6 +3,11 @@ body {
   margin: 0px 60px 0px 60px;
   font-family: Poppins, sans-serif;
 }
+@media (max-width: 992px) {
+  body {
+    margin: 20px;
+  }
+}
 
 .profile-section {
   border-right: 0.1em solid rgba(0, 0, 0, 0.2);
@@ -32,7 +37,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   #explore-container,
   #feed-container,
   .posts {
@@ -46,15 +51,34 @@ body {
   align-items: center;
 }
 
+.feed-search-btns {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  justify-content: center;
+  row-gap: 10px;
+}
+
 .card-custom {
   padding: 0;
+  max-height: 550px;
 }
 .card-custom .card-img-top {
   width: 100%;
-  height: fit-content;
+  object-fit: cover;
+  max-height: 385px;
 }
 .card-custom .top-container {
   justify-content: space-between;
+}
+
+.feed-btns {
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.modal {
+  visibility: visible;
 }
 
 .profile-img-container {

@@ -17,9 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
-    <script src="/js/search.js" type="module" defer></script>
+    <script src="/js/profile.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 </head>
 
@@ -27,11 +26,7 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container d-flex align-items-end">
-                <!--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span> -->
-                </button>
+
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <img class="logo" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
@@ -52,8 +47,14 @@
                                             d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
                                     </svg>
                                 </a>
+                                <a class="nav-link" href="/html/explore/index.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                        class="bi bi-globe" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z" />
+                                    </svg>
+                                </a>
                             </div>
-
 
                             <div class="links d-flex align-items-center mt-4">
                                 <button type="button" class="btn btn-icon" data-bs-toggle="modal"
@@ -81,278 +82,42 @@
         </nav>
     </header>
     <main class="d-flex">
-        <section class="container-md m-2 col-lg-9 position-relative profile-section">
-            <div class="container">
-
-                <div class="row">
-                    <div class="container d-flex flex-column align-items-center mb-4 mt-3">
+        <section class="container-md col-lg-9">
+            <div class=" row">
+                <div class="container d-flex flex-column align-items-center mb-4 mt-3">
+                    <div id="profile-details" class=" d-flex  flex-column align-items-center">
                         <div class="profile-img-container">
-                            <img src="/images/kompis.JPG" alt="pitbull staffy on the grass smiling"
-                                class="img rounded-circle">
+                            <img id="profileImage" class="img rounded-circle">
                         </div>
-
-                        <h1>@kristakz</h1>
-                        <a href="/html/edit-profile/index.html" class="link text-primary">Edit your
-                            profile</a>
-
-                        <div class="row">
-                            <div class="d-flex justify-content-around text-center m-3">
-                                <p class="m-2">posts
-                                    <br>5
-                                </p>
-                                <p class="m-2">followers
-                                    <br> 59
-                                </p>
-                                <p class="m-2">following <br> 39</p>
-                            </div>
+                        <div id="userName" class="fs-1 text"></div>
+                        <p id="userBio"></p>
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <p class="pe-3 text-center">Followers <br><span id="followersCount"></span></p>
+                            <p class="pe-3 text-center">Following <br><span id="followingCount"></span></p>
+                            <p class="pe-3 text-center">Posts <br><span id="postsCount"></span></p>
                         </div>
-                        <div class="d-flex flex-column">
-
-                            <button id="followBtn" class="btn btn-primary my-2 btn-custom"><i
-                                    class="fa-solid fa-user-plus"></i> Follow</button>
-                            <form id="searchForm">
-                                <input type="text" id="searchInput" placeholder="Search...">
-                            </form>
-                            <div id="searchResults"></div>
-
-
-                            <!--      <form action="/" class="search-btn">
-                                <input type="text" class="btn btn-outline-primary" id="searchInput"
-                                    placeholder="Search">
-                                <div id="searchResults"></div>
-                            </form> -->
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5 my-3 mx-1">
-                            <div class="card" style="width: 20rem;">
-                                <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top"
-                                    alt="Happy dog">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h3 class="card-title">@Lill-Konst</h3>
-                                        <button class="btn btn-sm btn-primary"><i
-                                                class="fa-solid fa-heart"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary"><i
-                                                class="fa-regular fa-comment"></i></button>
-
-                                    </div>
-                                    <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                        She's always ready for cuddles and has mastered the art of the puppy
-                                        eyes.
-                                        #ProudPetParent #FluffyLove</p>
-                                    <h4 class="text-primary">02/01/24 12:45pm</h4>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5 my-3 mx-1">
-                            <div class="card" style="width: 20rem;">
-                                <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top"
-                                    alt="Happy dog">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h3 class="card-title">@Lill-Konst</h3>
-                                        <button class="btn btn-sm btn-primary"><i
-                                                class="fa-solid fa-heart"></i></button>
-                                        <button class="btn btn-sm btn-outline-secondary"><i
-                                                class="fa-regular fa-comment"></i></button>
-
-                                    </div>
-                                    <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                        She's always ready for cuddles and has mastered the art of the puppy
-                                        eyes.
-                                        #ProudPetParent #FluffyLove</p>
-                                    <h4>02/01/24 12:45pm</h4>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5 my-3 mx-1">
-                            <div class="card" style="width: 20rem;">
-                                <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top"
-                                    alt="Happy dog">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h3 class="card-title">@Lill-Konst</h3>
-                                        <button class="btn btn-sm btn-primary"><i
-                                                class="fa-solid fa-heart"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary"><i
-                                                class="fa-regular fa-comment"></i></button>
-
-                                    </div>
-                                    <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                        She's always ready for cuddles and has mastered the art of the puppy
-                                        eyes.
-                                        #ProudPetParent #FluffyLove</p>
-                                    <h4>02/01/24 12:45pm</h4>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5 my-3 mx-1">
-                            <div class="card" style="width: 20rem;">
-                                <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top"
-                                    alt="Happy dog">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h3 class="card-title">@Lill-Konst</h3>
-                                        <button class="btn btn-sm btn-primary"><i
-                                                class="fa-solid fa-heart"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary"><i
-                                                class="fa-regular fa-comment"></i></button>
-
-                                    </div>
-                                    <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                        She's always ready for cuddles and has mastered the art of the puppy
-                                        eyes.
-                                        #ProudPetParent #FluffyLove</p>
-                                    <h4>02/01/24 12:45pm</h4>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5 my-3 mx-1">
-                            <div class="card" style="width: 20rem;">
-                                <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top"
-                                    alt="Happy dog">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <h3 class="card-title">@Lill-Konst</h3>
-                                        <button class="btn btn-sm btn-primary"><i
-                                                class="fa-solid fa-heart"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary"><i
-                                                class="fa-regular fa-comment"></i></button>
-
-                                    </div>
-                                    <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                        She's always ready for cuddles and has mastered the art of the puppy
-                                        eyes.
-                                        #ProudPetParent #FluffyLove</p>
-                                    <h4>02/01/24 12:45pm</h4>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-        </section>
-        <section class="side-posts container-md m-2 col-lg-3 d-flex flex-column align-items-center ">
-            <div class="row">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2 class="text-start ms-3">Explore</h2>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Sort by:
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Newest</a></li>
-                            <li><a class="dropdown-item" href="#">For You</a></li>
-                            <li><a class="dropdown-item" href="#">Popular</a></li>
-                        </ul>
+                        <button type="button" class="btn btn-primary mt-4 px-5" id="followOrUnfollow"></button>
                     </div>
                 </div>
-            </div>
-            <!--  <div class="col text-start secondary p-3 rounded">
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Post something here.." id="floatingTextarea2"
-                        style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Post something here!</label>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <p class="text me-2">Add photo</p>
-                    <p class="text me-2">Add Video</p>
-                    <p class="text me-2">Add GIF</p>
-                </div>
-
-                <button class="btn btn-outline-primary btn-block">Post</button>
-
-            </div>-->
-            <div class="explore-container"></div>
-            <div class="row">
-               <!-- <div class="col-md-5 my-3 mx-1">
-                    <div class="card" style="width: 15rem;">
-                        <img src="/images/jimmy-conover-J_XuXX9m0KM-unsplash.jpg" class="card-img-top" alt="Happy dog">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <h3 class="card-title">@Lill-Konst</h3>
-                                <button class="btn btn-sm btn-primary"><i class="fa-solid fa-heart"></i></button>
-                                <button class="btn btn-sm btn-outline-primary"><i
-                                        class="fa-regular fa-comment"></i></button>
-
-                            </div>
-                            <p class="card-text">🐾 Meet Fluffy, my adorable ball of fur! 🐶❤️
-                                She's always ready for cuddles and has mastered the art of the puppy
-                                eyes.
-                                #ProudPetParent #FluffyLove</p>
-                            <h4>02/01/24 12:45pm</h4>
-
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-           </div>
-        </section>
-
-        <section>
-            <div class="modal" tabindex="-1" id="createPost">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content position-relative modal-custom">
-                        <button type="button" class="btn-close position-absolute top-0 end-0 m-1"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                        <div class="col-11 text-start secondary p-3 rounded">
-                            <div class="form-floating">
-                                <form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <textarea class="form-control title-box" placeholder="Your Title"
-                                            id="post_title"></textarea>
-                                        <input type="file" id="image_input" accept="image/png, image/jpg"
-                                            class="btn btn-custom m-2 media-btn">
-                                    </div>
-                                    <div>
-                                        <textarea class="form-control" placeholder="Post something here.."
-                                            id="post_body" style="height: 100px"></textarea>
-                                    </div>
-                                    <div>
-                                        <input type="text" id="tagInput" placeholder="Add tags..." class="m-3">
-                                    </div>
-                                    <button
-                                        class="btn btn-outline-primary btn-block w-100 btn-custom mx-3">Post</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="posts col-12" id="userPosts"></div>
             </div>
         </section>
     </main>
+
     <footer>
-        <footer>
-            <div class="container-fluid">
-                <div class="row text-center d-flex align-items-center py-3">
-                    <div class="col">
-                        <p>Terms of Service</p>
-                    </div>
-                    <div class="col">
-                        <img class="logo w-35" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
-                    </div>
-                    <div class="col">
-                        <p>Copyright ® 2024</p>
-                    </div>
+        <div class="container-fluid">
+            <div class="row text-center d-flex align-items-center py-3">
+                <div class="col">
+                    <p>Terms of Service</p>
                 </div>
-        </footer>
+                <div class="col">
+                    <img class="logo w-35" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
+                </div>
+                <div class="col">
+                    <p>Copyright ® 2024</p>
+                </div>
+            </div>
+    </footer>
 </body>
 
 </html>
