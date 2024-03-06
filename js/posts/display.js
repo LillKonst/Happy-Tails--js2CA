@@ -13,13 +13,6 @@ function getPostIdFromQuery() {
   return urlParams.get("id");
 }
 
-/*
-function getPostTitleFromQuery() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("title");
-}
-*/
-
 const userName = localStorage.getItem(`username`);
 
 async function postData() {
@@ -40,9 +33,9 @@ async function postData() {
     attachReactionListener(postId);
     postOptions(postData);
   } catch (error) {
-    //console.error("Error fetching post details:", error);
-    //errorContainer.textContent =
-    //  "There seems to be an issue loading the post details at this moment. This may affect your ability to comment on or react to the post. Please try reloading the page to see if this resolves the issue.";
+    console.error("Error fetching post details:", error);
+    errorContainer.textContent =
+      "There seems to be an issue loading the post details at this moment. This may affect your ability to comment on or react to the post. Please try reloading the page to see if this resolves the issue.";
   }
 } 
 
@@ -106,16 +99,46 @@ async function displayPost(post) {
     likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
     reactionsContainer.appendChild(likeButton);
 
+
+    // Check if the userName has liked the post and change heart on btn if userName has liked the post
+     const hasLiked = postData.reactions.some((reaction) =>
+     reaction.reactors.includes(userName)    
+    ); console.log("test");
+    console.log(hasLiked);
+
+    if (hasLiked) {
+      likeButton.classList.add("btn-custom-liked");  
+    } else {
+     likeButton.classList.remove("btn-custom-liked");
+    }
+
+
+/*
     const commentButton = document.createElement("button");
     commentButton.classList.add("btn", "btn-sm", "btn-outline-primary", "m-1");
     commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
     reactionsContainer.appendChild(commentButton);
-
+*/
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
     editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
     editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
     reactionsContainer.appendChild(editBtn);
+
+    
+  // Check if the current user is the post author
+  const currentUserIsAuthor = post.author.name === userName;
+
+  // Add condition to show/hide edit and delete buttons
+  if (currentUserIsAuthor) {
+    editBtn.classList.remove("d-none");
+
+    // Similarly, add conditions and event listener for delete button
+  } else {
+    // If the current user is not the author, hide edit and delete buttons
+    editBtn.classList.add("d-none");
+    // Additional actions if needed
+  }
     
 
     const postTitle = document.createElement("h3");
@@ -139,14 +162,7 @@ async function displayPost(post) {
     commentSection.appendChild(comments);
 
   } catch (error) {
-    //showError(error.message);
+    (error.message);
   }
   
 }
-
-
-/*
- // Calling function to determinate if the current user is the post author and displays comments
- export const postAuthor = postData.author.name === currentUser;
- displayComments(postData.comments, postAuthor, postId);
- */
