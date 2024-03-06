@@ -54,7 +54,7 @@ async function displayPost(post) {
     const titleElement = document.getElementById("title");
     const postDisplay = document.getElementById("post-display")
     const commentSection = document.getElementById("comment-section");
-
+    console.log("Selected Elements:", titleElement, postDisplay, commentSection);
     titleElement.textContent = post.title || "No Title";
 
     const cardInner = document.createElement("div");
@@ -75,13 +75,13 @@ async function displayPost(post) {
       cardInner.appendChild(noMediaStyle);
     }
 
-    const displaybody = document.createElement("div");
-    displaybody.classList.add("display-body");
-    cardInner.appendChild(displaybody);
+    const displayBody = document.createElement("div");
+    displayBody.classList.add("display-body");
+    cardInner.appendChild(displayBody);
 
     const topContainer = document.createElement("div");
     topContainer.classList.add("d-flex", "top-container");
-    displaybody.appendChild(topContainer);
+    displayBody.appendChild(topContainer);
 
     const username = document.createElement("p");
     username.classList.add("username-display");
@@ -92,26 +92,25 @@ async function displayPost(post) {
 
     const reactionsContainer = document.createElement("div");
     reactionsContainer.classList.add("d-flex", "reactions-container");
+    console.log(reactionsContainer);
     topContainer.appendChild(reactionsContainer);
 
     const likeButton = document.createElement("button");
     likeButton.classList.add("like-btn", "btn", "btn-sm", "btn-primary", "m-1");
     likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
-    reactionsContainer.appendChild(likeButton);
-
 
     // Check if the userName has liked the post and change heart on btn if userName has liked the post
-     const hasLiked = postData.reactions.some((reaction) =>
+    /* const hasLiked = postData.reactions.some((reaction) =>
      reaction.reactors.includes(userName)    
-    ); console.log("test");
-    console.log(hasLiked);
+     ); console.log("test");
+     console.log(hasLiked);
 
-    if (hasLiked) {
-      likeButton.classList.add("btn-custom-liked");  
-    } else {
-     likeButton.classList.remove("btn-custom-liked");
-    }
-
+        if (hasLiked) {
+          likeButton.classList.add("btn-custom-liked");  
+        } else {
+          likeButton.classList.remove("btn-custom-liked");
+        } */
+  reactionsContainer.appendChild(likeButton);
 
 /*
     const commentButton = document.createElement("button");
@@ -119,10 +118,12 @@ async function displayPost(post) {
     commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
     reactionsContainer.appendChild(commentButton);
 */
+
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
     editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
     editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
+    console.log("Creating edit button"); 
     reactionsContainer.appendChild(editBtn);
 
     /*
@@ -144,16 +145,17 @@ async function displayPost(post) {
     const postTitle = document.createElement("h3");
     postTitle.classList.add("post-title", "mr-auto");
     postTitle.innerHTML = post.title || "No Title";
-    displaybody.appendChild(postTitle);
+    displayBody.appendChild(postTitle);
 
     const postText = document.createElement("p");
     postText.classList.add("post-text");
-    postText.innerHTML = post.body || "No Body"; // Assuming body is the property that contains the post text
-    displaybody.appendChild(postText);
+    postText.innerHTML = post.body || "No Body"; 
+    displayBody.appendChild(postText);
 
     const timestamp = document.createElement("h4");
-    timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
-    displaybody.appendChild(timestamp);
+    timestamp.innerHTML = post.created || "No Timestamp";
+    displayBody.appendChild(timestamp);
+ 
 
     const commentsData = postData.comments || [];
     

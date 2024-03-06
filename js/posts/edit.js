@@ -1,14 +1,13 @@
-
 import { userName } from "./display.js";
+import { updatePost } from "../modules/api.js";
 
 export { postOptions };
 
 function postOptions(postData) {
-    console.log("Post Options Called. User:", userName, "Post Author:", postData.author.name);
-    const postByCurrentUser = postData.author.name === userName;
-  
+    console.log("Post Options Called. User:", userName, "Post Author:", postData.author.name); 
+  const postByCurrentUser = postData.author.name === userName;
+  console.log(postByCurrentUser);
   const editBtn = document.querySelector(".edit-btn");
-
 
   if (postByCurrentUser) {
     editBtn.classList.remove("d-none");
@@ -16,12 +15,12 @@ function postOptions(postData) {
     document.getElementById("save-changes").addEventListener("click", () => saveChanges(postData.id));
   
   } else {
-    editBtn.classList.add("d-none");
+   // editBtn.classList.add("d-none");
   }
 } 
-//postoptions ();
-/*
-function openEditModal(postData) {
+
+
+function openEditModal(postId) {
             const title = document.getElementById("edit_post_title").value;
             const body = document.getElementById("edit_post_body").value;
             const tagsInput = document.getElementById("edit_tagInput").value;
@@ -29,7 +28,7 @@ function openEditModal(postData) {
             const imageInput = document.getElementById("edit_image_input").value; 
     
            //store the values from the inputs
-            const editpostData = {
+            const newData = {
                 title: title,
                 body: body,
                 tags: tags,
@@ -38,17 +37,20 @@ function openEditModal(postData) {
                 }
             };
             //calls the editPost to edit
-            try {
-                const data = await editPost(editpostData);
-                console.log(data); 
-                alert("Post edited successfully!");
-            
-            } catch (error) {
+            updatePost(postId, newData)
+            .then((response) => {
+              window.location.reload();
+            })
+            .catch((error) => {
                 console.error(error);
-                //Create error message here
-            }
+                console.error("Failed to update post:", error);
+                const updateError = document.getElementById("editErrorFeedback");
+                updateError.textContent =
+                "Failed to update post. ";
+                clearElementAfterDuration(editErrorFeedback, 10000);
+            });
         }
-*/
+/*
 document.addEventListener("DOMContentLoaded", () => {
   // Assuming you have a way to retrieve the current post data
   const currentPostData = getCurrentPostData();  // Replace with actual implementation
@@ -67,9 +69,7 @@ function getCurrentPostData() {
   };
 }
 
-// displayImage();
-
-
+ displayImage();
 
 
 
@@ -84,7 +84,7 @@ export function displayImage() {
 }
 
 //edit post
-
+/*
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("editPostForm").addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -103,8 +103,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             body: body,
             tags: tags,
             media: {
-                url: imageInput,
-                alt: altText
+                url: imageInput
             }
         };
         //calls the editPost to create
@@ -119,3 +118,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+*/

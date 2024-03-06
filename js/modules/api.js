@@ -15,6 +15,7 @@ export { getPostsFromFollowing };
 export { getPostsFromSearch };
 export { likePost };
 export { commentPost };
+export { updatePost };
 
 // Get posts only from following people
 async function getPostsFromFollowing(newestFirst = true) {
@@ -256,4 +257,25 @@ async function commentPost(postId, body, replyToId = null) {
     }
 
     return await response.json();
+}
+
+// edit post
+
+
+async function updatePost(urlParams) {
+  const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
+    method: "PUT",
+    headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+    },
+    body: JSON.stringify(urlParams)
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error("Failed to edit post: ${errorData.message}");
+  }
+  const result = await response.json();
+  return result.data;
 }
