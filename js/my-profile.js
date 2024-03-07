@@ -62,7 +62,13 @@ function createPostCard(post, userName) {
   cardBody.appendChild(postText);
 
   const timestamp = document.createElement("h4");
-  timestamp.textContent = post.created || "No Timestamp";
+  const createdDate = new Date(post.created);
+  const formattedDate = createdDate.toLocaleDateString();
+  const formattedTime = createdDate.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
   cardBody.appendChild(timestamp);
 
   // Add like button

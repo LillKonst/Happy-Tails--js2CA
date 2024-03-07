@@ -87,6 +87,7 @@ async function displayPost(post) {
     username.innerHTML = `${
       post.author && post.author.name ? post.author.name : "Unknown"
     }`;
+    username.style.cursor = "pointer";
 
     username.addEventListener("click", function () {
       // Redirect user to the profile page
@@ -129,7 +130,13 @@ async function displayPost(post) {
     displaybody.appendChild(postText);
 
     const timestamp = document.createElement("h4");
-    timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
+    const createdDate = new Date(post.created);
+    const formattedDate = createdDate.toLocaleDateString();
+    const formattedTime = createdDate.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
     displaybody.appendChild(timestamp);
 
     const displayComments = document.getElementById("display-comments");
