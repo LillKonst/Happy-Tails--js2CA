@@ -235,6 +235,11 @@ h4 {
   background-color: #a485d5 !important;
 }
 
+.btn-custom-liked {
+  background-color: #fffafa;
+  color: #cab9e7;
+}
+
 .modal-custom {
   background-color: #fffafa;
 }

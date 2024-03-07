@@ -1,24 +1,34 @@
 // Import necessary modules and variables
 import { getToken, apiKey } from "../modules/auth.js";
+import { getPostIdFromQuery } from "../posts/display.js";
 
 // Define constants
 export const NOROFF_API_URL = "https://v2.api.noroff.dev";
 
+
+// Exported functions
+export { getAllPosts };
+export { fetchUserProfile };
+export { fetchPostsByUserName };
+export { getPostSpecific };
+// export { updateBio };
+export { updateProfileImage };
+export { getPostsFromFollowing };
+export { getPostsFromSearch };
+export { likePost };
+export { commentPost };
+export { updatePost };
+export {deletePost};
+
 export {
-  getAllPosts,
-  fetchUserProfile,
-  fetchPostsByUserName,
-  getPostSpecific,
-  //  updateBio,
-  updateProfileImage,
-  getPostsFromFollowing,
-  getPostsFromSearch,
   getAllProfiles,
   getProfilesFromSearch,
   searchProfilesByUsername,
   followUser,
   unfollowUser,
 };
+
+const postId = getPostIdFromQuery(); 
 
 // Get posts only from following people
 async function getPostsFromFollowing(newestFirst = true) {
@@ -188,7 +198,7 @@ async function getPostsFromSearch(query) {
 }
 
 // Get post specific
-async function getPostSpecific(postId) {
+async function getPostSpecific() {
   const response = await fetch(
     `${NOROFF_API_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
     {
@@ -301,5 +311,104 @@ async function updateProfileImage(userName, profileImgUrl) {
     console.log("Profile image updated successfully");
   } catch (error) {
     console.error("Error updating profile image:", error.message);
+  }
+}
+
+
+// Function to react to post 
+/** 
+ * Reacto to a post
+ * @param {number|string} postId
+ * @param {string} symbol
+ */
+
+async function likePost(postId, symbol) {
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/posts/${postId}/react/${encodeURIComponent(
+      symbol
+    )}`,
+    { 
+      method: "PUT",
+      headers: {
+        
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    }
+  );
+  if (!response.ok) {
+    const errorData = await response.json(); 
+    throw new Error (`Could not like post: ${errorData.message}`);
+  }
+  return await response.json();
+}
+
+////////////////////// Add Comment
+
+/**
+ * @param {number|string} postId
+ * @param {string} body
+ * @param {number|string|null} replyToId
+ * @returns {Promise<Object>}
+ */
+
+async function commentPost(postId, body, replyToId = null) {
+  const payload = {body};
+  if (replyToId) payload.replyToId = replyToId;
+
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/posts/${postId}/comment`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Could not post comment: ${errorData.message}`);
+    }
+
+    return await response.json();
+}
+
+// edit post
+async function updatePost(postId) {
+  const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
+    method: "PUT",
+    headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+    },
+    body: JSON.stringify(newData)
+  });
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error("Failed to edit post: ${errorData.message}");
+  }
+  const result = await response.json();
+  return result.data;
+}
+
+// delete post 
+async function deletePost(postId) {
+  const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+      body: JSON.stringify(payload),
+    });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the post");
   }
 }
