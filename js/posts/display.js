@@ -113,7 +113,6 @@ async function displayPost(post) {
     const hasLiked = post.reactions.some((reaction) =>
      reaction.reactors.includes(userName)    
      ); console.log("test");
-     console.log(hasLiked);
 
         if (hasLiked) {
           likeButton.classList.add("btn-custom-liked");  
@@ -174,7 +173,7 @@ async function displayPost(post) {
       minute: "2-digit",
     });
     timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
-    displaybody.appendChild(timestamp);
+    displayBody.appendChild(timestamp);
     
     const commentsData = post.comments || [];
     displayComments(commentsData);
