@@ -5,12 +5,13 @@ import { getPostIdFromQuery } from "../posts/display.js";
 // Define constants
 export const NOROFF_API_URL = "https://v2.api.noroff.dev";
 
+
 // Exported functions
 export { getAllPosts };
 export { fetchUserProfile };
 export { fetchPostsByUserName };
 export { getPostSpecific };
-export { updateBio };
+// export { updateBio };
 export { updateProfileImage };
 export { getPostsFromFollowing };
 export { getPostsFromSearch };
@@ -18,6 +19,14 @@ export { likePost };
 export { commentPost };
 export { updatePost };
 export {deletePost};
+
+export {
+  getAllProfiles,
+  getProfilesFromSearch,
+  searchProfilesByUsername,
+  followUser,
+  unfollowUser,
+};
 
 const postId = getPostIdFromQuery(); 
 
@@ -56,6 +65,114 @@ async function getAllPosts(newestFirst = true) {
   );
   if (!response.ok) {
     throw new Error("Could not load posts");
+  }
+  const result = await response.json();
+  return result.data;
+}
+
+// Get all profiles
+async function getAllProfiles() {
+  const response = await fetch(`${NOROFF_API_URL}/social/profiles`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+      "X-Noroff-API-Key": apiKey,
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Could not load posts");
+  }
+  const result = await response.json();
+  return result.data;
+}
+// Follow API
+async function followUser(userName) {
+  try {
+    const response = await fetch(
+      `${NOROFF_API_URL}/social/profiles/${userName}/follow`,
+      {
+        method: "PUT", // Use PUT method for following
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Could not follow user: ${errorMessage}`);
+    }
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error("Error following user:", error);
+  }
+}
+
+// Unfollow API
+async function unfollowUser(userName) {
+  try {
+    const response = await fetch(
+      `${NOROFF_API_URL}/social/profiles/${userName}/unfollow`,
+      {
+        method: "PUT", // Use PUT method for unfollowing
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+      }
+    );
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Could not unfollow user: ${errorMessage}`);
+    }
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error("Error unfollowing user:", error);
+    throw error; // re-throw the error to propagate it to the caller
+  }
+}
+
+// Function to fetch profiles by username search query
+async function searchProfilesByUsername(query) {
+  try {
+    const response = await fetch(
+      `${NOROFF_API_URL}/social/profiles/search?q=${query}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+          "X-Noroff-API-Key": apiKey,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch profiles");
+    }
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// Search profiles
+async function getProfilesFromSearch(query) {
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/profiles/search?q=${query}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Could not load profiles");
   }
   const result = await response.json();
   return result.data;
@@ -137,7 +254,7 @@ async function fetchPostsByUserName(userName) {
   return result.data;
 }
 
-// Function to update user's bio
+/* // Function to update user's bio
 async function updateBio(userName, bioText) {
   try {
     const response = await fetch(
@@ -163,11 +280,9 @@ async function updateBio(userName, bioText) {
     console.log("Bio updated successfully");
   } catch (error) {
     console.error("Error updating bio:", error.message);
-    // Handle error (e.g., display an error message to the user)
   }
-}
+} */
 
-// Function to update user's profile image
 async function updateProfileImage(userName, profileImgUrl) {
   try {
     const response = await fetch(
@@ -196,7 +311,6 @@ async function updateProfileImage(userName, profileImgUrl) {
     console.log("Profile image updated successfully");
   } catch (error) {
     console.error("Error updating profile image:", error.message);
-    // Handle error (e.g., display an error message to the user)
   }
 }
 

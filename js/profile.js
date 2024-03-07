@@ -1,13 +1,15 @@
-import { fetchUserProfile, fetchPostsByUserName } from "../js/modules/api.js";
+import {
+  fetchUserProfile,
+  fetchPostsByUserName,
+  followUser,
+  unfollowUser,
+} from "../js/modules/api.js";
 export { displayUserProfile };
 
 // Function to generate HTML structure for a post card
 function createPostCard(post, userName) {
   const postCard = document.createElement("div");
   postCard.classList.add("col-md-5", "m-2");
-  postCard.addEventListener("click", () => {
-    window.location.href = `/html/post/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
-  });
 
   const cardInner = document.createElement("div");
   cardInner.classList.add(
@@ -103,12 +105,23 @@ async function displayUserPosts(userPosts, userName) {
 
 async function displayUserProfile() {
   try {
-    // Retrieve the user's profile
-    const loggedInUser = JSON.parse(localStorage.getItem("profile"));
-    const userName = loggedInUser.name;
+    // Retrieve the username from the URL or local storage, depending on your application flow
+    let userName;
+    // Replace this logic based on how you get the username for the profile page
+    if (window.location.pathname === "/my-profile.html") {
+      const loggedInUser = JSON.parse(localStorage.getItem("profile"));
+      userName = loggedInUser.name;
+    } else {
+      // If it's not the user's own profile, extract the username from the URL or other means
+      // You might need to parse the URL or obtain the username from another source
+      // For demonstration purposes, let's assume you're passing the username in the URL as a query parameter
+      const params = new URLSearchParams(window.location.search);
+      userName = params.get("username");
+    }
+
     const userProfile = await fetchUserProfile(userName);
 
-    // Display user's username
+    // Display user's profile details
     const userNameElement = document.getElementById("userName");
     userNameElement.textContent = userName;
 
@@ -123,17 +136,54 @@ async function displayUserProfile() {
       profileImage.alt = "Default Avatar";
     }
 
-    // Display user's bio
+    // Display user's bio, followers, following, and posts counts
     const userBio = document.getElementById("userBio");
     userBio.textContent = userProfile.bio;
 
-    // Display user's followers, following, and posts counts
     const followersCount = userProfile._count.followers;
     const followingCount = userProfile._count.following;
     const postsCount = userProfile._count.posts;
     document.getElementById("followersCount").textContent = followersCount;
     document.getElementById("followingCount").textContent = followingCount;
     document.getElementById("postsCount").textContent = postsCount;
+
+    // Check if the current user is already following the displayed user
+    const loggedInUser = JSON.parse(localStorage.getItem("profile"));
+    const isFollowing =
+      loggedInUser &&
+      loggedInUser.following &&
+      loggedInUser.following.includes(userName);
+
+    // Display follow/unfollow button based on the follow status
+    const followButton = document.getElementById("followOrUnfollow");
+    if (isFollowing) {
+      followButton.textContent = "Unfollow";
+      followButton.addEventListener("click", async () => {
+        await unfollowUser(userName);
+        followButton.textContent = "Follow";
+      });
+    } else {
+      followButton.textContent = "Follow";
+      followButton.addEventListener("click", async () => {
+        await followUser(userName);
+        followButton.textContent = "Unfollow";
+      });
+    }
+
+    //-- Updates the follow/unfollow button based on current user's follow status --//
+    function updateFollowButton(profile) {
+      try {
+        const currentUser = JSON.parse(localStorage.getItem("profile")).name;
+        const followButton = document.getElementById("followOrUnfollow");
+
+        const isFollowing = profile.followers.some(
+          (follower) => follower.name === currentUser
+        );
+        followButton.textContent = isFollowing ? "Unfollow" : "Follow";
+      } catch (error) {
+        console.error("Error updating follow button:", error);
+      }
+    }
 
     // Retrieve and display user's posts
     const userPosts = await fetchPostsByUserName(userName);
@@ -143,7 +193,6 @@ async function displayUserProfile() {
   }
 }
 
-// Call the function to display user profile after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   displayUserProfile();
 });

@@ -53,9 +53,11 @@ async function displayPost(post) {
 
   try {
     const titleElement = document.getElementById("title");
+
     const postDisplay = document.getElementById("post-display")
     const commentSection = document.getElementById("display-comments");
     console.log("Selected Elements:", titleElement, postDisplay, commentSection);
+  
     titleElement.textContent = post.title || "No Title";
 
     const cardInner = document.createElement("div");
@@ -89,6 +91,14 @@ async function displayPost(post) {
     username.innerHTML = `${
       post.author && post.author.name ? post.author.name : "Unknown"
     }`;
+    username.style.cursor = "pointer";
+
+    username.addEventListener("click", function () {
+      // Redirect user to the profile page
+      const userProfileUrl = `/html/profile/index.html?username=${post.author.name}`;
+      window.location.href = userProfileUrl;
+    });
+
     topContainer.appendChild(username);
 
     const reactionsContainer = document.createElement("div");
@@ -122,8 +132,10 @@ async function displayPost(post) {
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
     editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
+
     editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
     console.log("Creating edit button"); 
+
     reactionsContainer.appendChild(editBtn);
 
     const postTitle = document.createElement("h3");
@@ -137,12 +149,10 @@ async function displayPost(post) {
     displayBody.appendChild(postText);
 
     const timestamp = document.createElement("h4");
-    timestamp.innerHTML = post.created || "No Timestamp";
-    displayBody.appendChild(timestamp);
- 
 
-    const commentsData = post.comments || [];
-    displayComments(commentsData);
+    //timestamp.innerHTML = post.created || "No Timestamp";
+    //displayBody.appendChild(timestamp);
+ 
 /*
     const comment = document.createElement("div");
     comment.classList.add("comment");
@@ -156,8 +166,26 @@ async function displayPost(post) {
     bodyComment.innerHTML = commentData.body;
     comment.appendChild(bodyComment);
 */
+
+    const createdDate = new Date(post.created);
+    const formattedDate = createdDate.toLocaleDateString();
+    const formattedTime = createdDate.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
+    displaybody.appendChild(timestamp);
+    
+    const commentsData = post.comments || [];
+    displayComments(commentsData);
+
+    //const displayComments = document.getElementById("display-comments");
+    //displayComments.innerHTML = "No comments yet"; // if no comments yet. Add code to display comments.
+    //commentSection.appendChild(displayComments);
+
   } catch (error) {
     (error.message);
   }
   
 }
+

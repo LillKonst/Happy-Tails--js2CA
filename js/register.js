@@ -15,7 +15,7 @@ document
       if (registered) {
         login(email, password).then((loggedIn) => {
           if (loggedIn) {
-            window.location.href = "/html/profile/index.html";
+            window.location.href = "/html/my-profile/index.html";
           } else {
             alert("Invalid email or password. Please try again.");
           }

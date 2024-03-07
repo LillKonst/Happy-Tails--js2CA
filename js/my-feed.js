@@ -5,6 +5,8 @@ import {
 
 export { displayPosts };
 
+export const MAX_TEXT_LENGTH = 50; // Maximum number of characters to display
+
 document.getElementById("feed-container");
 
 async function displayPosts(posts, profiles) {
@@ -40,10 +42,12 @@ async function displayPosts(posts, profiles) {
         image.classList.add("card-img-top");
         cardInner.appendChild(image);
       } else {
-        // Display the post without an image
-        const noMediaStyle = document.createElement("div");
-        noMediaStyle.classList.add("no-media");
-        cardInner.appendChild(noMediaStyle);
+        // Display a default image
+        const defaultImage = document.createElement("img");
+        defaultImage.setAttribute("src", "/images/default-image.jpg"); // Replace "default-image.jpg" with your default image file
+        defaultImage.setAttribute("alt", "Default Image");
+        defaultImage.classList.add("card-img-top");
+        cardInner.appendChild(defaultImage);
       }
 
       const cardBody = document.createElement("div");
@@ -89,16 +93,31 @@ async function displayPosts(posts, profiles) {
 
       const postTitle = document.createElement("h3");
       postTitle.classList.add("card-title", "mr-auto");
-      postTitle.innerHTML = post.title || "No Title";
+      const truncatedTitle =
+        post.title.length > MAX_TEXT_LENGTH
+          ? post.title.substring(0, MAX_TEXT_LENGTH) + "..."
+          : post.title;
+      postTitle.innerHTML = truncatedTitle || "No Title";
       cardBody.appendChild(postTitle);
 
       const postText = document.createElement("p");
       postText.classList.add("card-text");
-      postText.innerHTML = post.body || "No Body"; // Assuming body is the property that contains the post text
+      const truncatedText =
+        post.body.length > MAX_TEXT_LENGTH
+          ? post.body.substring(0, MAX_TEXT_LENGTH) + "..."
+          : post.body;
+      postText.innerHTML = truncatedText || "No Body"; // Assuming body is the property that contains the post text
       cardBody.appendChild(postText);
 
       const timestamp = document.createElement("h4");
-      timestamp.innerHTML = post.created || "No Timestamp"; // Assuming created is the property that contains the timestamp
+      const createdDate = new Date(post.created);
+      const formattedDate = createdDate.toLocaleDateString();
+      const formattedTime = createdDate.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      timestamp.innerHTML =
+        `${formattedDate} ${formattedTime}` || "No Timestamp";
       cardBody.appendChild(timestamp);
     }
   } catch (error) {
