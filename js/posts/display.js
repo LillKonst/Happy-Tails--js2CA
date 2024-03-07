@@ -148,24 +148,6 @@ async function displayPost(post) {
     displayBody.appendChild(postText);
 
     const timestamp = document.createElement("h4");
-
-    //timestamp.innerHTML = post.created || "No Timestamp";
-    //displayBody.appendChild(timestamp);
- 
-/*
-    const comment = document.createElement("div");
-    comment.classList.add("comment");
-    commentSection.appendChild(comment);
-
-    const authorComment = createElement("h2");
-    authorComment.innerHTML = commentsData.owner;
-    comment.appendChild(authorComment);
-
-    const bodyComment = createElement("p");
-    bodyComment.innerHTML = commentData.body;
-    comment.appendChild(bodyComment);
-*/
-
     const createdDate = new Date(post.created);
     const formattedDate = createdDate.toLocaleDateString();
     const formattedTime = createdDate.toLocaleTimeString([], {
