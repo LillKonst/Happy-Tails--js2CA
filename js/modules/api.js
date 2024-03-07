@@ -1,5 +1,6 @@
 // Import necessary modules and variables
 import { getToken, apiKey } from "../modules/auth.js";
+import { getPostIdFromQuery } from "../posts/display.js";
 
 // Define constants
 export const NOROFF_API_URL = "https://v2.api.noroff.dev";
@@ -16,6 +17,9 @@ export { getPostsFromSearch };
 export { likePost };
 export { commentPost };
 export { updatePost };
+export {deletePost};
+
+const postId = getPostIdFromQuery(); 
 
 // Get posts only from following people
 async function getPostsFromFollowing(newestFirst = true) {
@@ -77,7 +81,7 @@ async function getPostsFromSearch(query) {
 }
 
 // Get post specific
-async function getPostSpecific(postId) {
+async function getPostSpecific() {
   const response = await fetch(
     `${NOROFF_API_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
     {
@@ -260,9 +264,7 @@ async function commentPost(postId, body, replyToId = null) {
 }
 
 // edit post
-
-
-async function updatePost(urlParams) {
+async function updatePost(postId) {
   const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "PUT",
     headers: {
@@ -270,7 +272,7 @@ async function updatePost(urlParams) {
           Authorization: `Bearer ${getToken()}`,
           "X-Noroff-API-Key": apiKey,
     },
-    body: JSON.stringify(urlParams)
+    body: JSON.stringify(newData)
   });
   if (!response.ok) {
     const errorData = await response.json();
@@ -278,4 +280,21 @@ async function updatePost(urlParams) {
   }
   const result = await response.json();
   return result.data;
+}
+
+// delete post 
+async function deletePost(postId) {
+  const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+      body: JSON.stringify(payload),
+    });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete the post");
+  }
 }

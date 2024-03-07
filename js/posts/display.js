@@ -7,6 +7,7 @@ import { attachCommentListener } from "./comments.js";
 import { postOptions } from "./edit.js";
 
 export { userName };
+export { getPostIdFromQuery };
 
 function getPostIdFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -53,7 +54,7 @@ async function displayPost(post) {
   try {
     const titleElement = document.getElementById("title");
     const postDisplay = document.getElementById("post-display")
-    const commentSection = document.getElementById("comment-section");
+    const commentSection = document.getElementById("display-comments");
     console.log("Selected Elements:", titleElement, postDisplay, commentSection);
     titleElement.textContent = post.title || "No Title";
 
@@ -98,9 +99,8 @@ async function displayPost(post) {
     const likeButton = document.createElement("button");
     likeButton.classList.add("like-btn", "btn", "btn-sm", "btn-primary", "m-1");
     likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
-
-    // Check if the userName has liked the post and change heart on btn if userName has liked the post
-    /* const hasLiked = postData.reactions.some((reaction) =>
+    // Change colors of heart if liked by user
+    const hasLiked = post.reactions.some((reaction) =>
      reaction.reactors.includes(userName)    
      ); console.log("test");
      console.log(hasLiked);
@@ -109,7 +109,7 @@ async function displayPost(post) {
           likeButton.classList.add("btn-custom-liked");  
         } else {
           likeButton.classList.remove("btn-custom-liked");
-        } */
+        } 
   reactionsContainer.appendChild(likeButton);
 
 /*
@@ -126,22 +126,6 @@ async function displayPost(post) {
     console.log("Creating edit button"); 
     reactionsContainer.appendChild(editBtn);
 
-    /*
-  // Check if the current user is the post author
-  const currentUserIsAuthor = post.author.name === userName;
-
-  // Add condition to show/hide edit and delete buttons
-  if (currentUserIsAuthor) {
-    editBtn.classList.remove("d-none");
-
-    // Similarly, add conditions and event listener for delete button
-  } else {
-    // If the current user is not the author, hide edit and delete buttons
-    editBtn.classList.add("d-none");
-    // Additional actions if needed
-  }
-    */
-
     const postTitle = document.createElement("h3");
     postTitle.classList.add("post-title", "mr-auto");
     postTitle.innerHTML = post.title || "No Title";
@@ -157,12 +141,21 @@ async function displayPost(post) {
     displayBody.appendChild(timestamp);
  
 
-    const commentsData = postData.comments || [];
-    
-    const comments = document.getElementById("display-comments");
-    comments.innerHTML = displayComments(commentsData);
-    commentSection.appendChild(comments);
+    const commentsData = post.comments || [];
+    displayComments(commentsData);
+/*
+    const comment = document.createElement("div");
+    comment.classList.add("comment");
+    commentSection.appendChild(comment);
 
+    const authorComment = createElement("h2");
+    authorComment.innerHTML = commentsData.owner;
+    comment.appendChild(authorComment);
+
+    const bodyComment = createElement("p");
+    bodyComment.innerHTML = commentData.body;
+    comment.appendChild(bodyComment);
+*/
   } catch (error) {
     (error.message);
   }

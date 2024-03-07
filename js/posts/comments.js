@@ -1,108 +1,45 @@
 import { commentPost } from "../modules/api.js";
+import { getPostIdFromQuery } from "./display.js";
+import { userName } from "./display.js";
 
 export { displayComments };
 export { attachCommentListener };
 
-/// display comments
-/*
-function displayComments(comments, PostAuthor, postId) {
-    const commentsContainer = document.getElementById("display-comments");
-    commentsContainer.innerHTML = "";
-
-    if (comments && comments.length > 0) {
-        comments.forEach((comment) => {
-            //if users post
-            const deleteComment = PostAuthor || currentUser === comment.author.name;
-            const deleteCommentBtn = deleteComment
-            ?`<i class="classes...." data comment-id="${comment.id}"></i>`
-            : "";
-     })
-
-
-    try {
-            const theComment = document.createElement("div");
-            displaybody.classList.add("comment-container");
-            commentsContainer.appendChild(theComment);    
-
-            const topContainer = document.createElement("div");
-            topContainer.classList.add("d-flex", "top-container");
-            theComment.appendChild(topContainer);
-
-            const username = document.createElement("p");
-            username.classList.add("username-display");
-            username.innerHTML = `${
-            comments.author && comments.author.name ? comments.author.name : "Unknown"
-            }`;
-            topContainer.appendChild(username);
-
-            topContainer.appendChild(deleteCommentBtn);
-
-            const commentText = document.createElement("p");
-            commentText.classList.add("comment-text");
-            commentText.innerHTML = comments.body || "No Body"; // Assuming body is the property that contains the post text
-            theComment.appendChild(commentText);
-
-            commentsContainer.insertAdjacentHTML("afterbegin", theComment);
-
-        } catch (error) {
-            //
-        }
-
-    }  
+async function postData() {
+    const postId = getPostIdFromQuery();
+    const errorContainer = document.querySelector(".postData-error");
+  
+    if (!postId) {
+      console.error("Post ID not found.");
+      errorContainer.textContent =
+        "We are unable to find the requested post. Please check the URL or go back to the homepage to continue browsing.";
+      return;
     }
-*/
-/*
-//new display comments
-
-function displayComments(comments, PostAuthor) {
-    const commentsContainer = document.getElementById("display-comments");
-    commentsContainer.innerHTML = "";
   
-    if (comments && comments.length > 0) {
-      comments.forEach((comment) => {
-        // If user's post
-        const deleteComment = PostAuthor || currentUser === comment.author.name;
-        const deleteCommentBtn = deleteComment
-          ? `<i class="classes...." data-comment-id="${comment.id}"></i>`
-          : "";
-  
-        try {
-          const theComment = document.createElement("div");
-          theComment.classList.add("comment-container");
-  
-          const topContainer = document.createElement("div");
-          topContainer.classList.add("d-flex", "top-container");
-          theComment.appendChild(topContainer);
-  
-          const username = document.createElement("p");
-          username.classList.add("username-display");
-          username.innerHTML = `${
-            comment.author && comment.author.name
-              ? comment.author.name
-              : "Unknown"
-          }`;
-          topContainer.appendChild(username);
-  
-          topContainer.innerHTML += deleteCommentBtn;
-  
-          const commentText = document.createElement("p");
-          commentText.classList.add("comment-text");
-          commentText.innerHTML =
-            comment.body || "No Body"; // Assuming body is the property that contains the comment text
-          theComment.appendChild(commentText);
-  
-          commentsContainer.appendChild(theComment);
-        } catch (error) {
-          console.error("Error displaying comment:", error);
-        }
-      });
+    try {
+      const postData = await getPostSpecific(postId);
+      displayPost(postData);
+      
+      // Extract comments from postData
+      const commentsData = postData.comments || [];
+      
+      // Display comments
+      displayComments(commentsData, postData.author.name === userName);
+      
+      attachCommentListener(postId);
+      postOptions(postData);
+    } catch (error) {
+      // Handle error
     }
   }
-  */
+  
+postData()
+
+
 // debugging 
 
 function displayComments(comments, PostAuthor) {
-    const commentsContainer = document.getElementById("display-comments");
+    const commentsContainer = document.getElementById("comment-section").querySelector("#display-comments");
     commentsContainer.innerHTML = "";
   
     console.log("Comments:", comments); // Log comments to check its content
@@ -113,7 +50,7 @@ function displayComments(comments, PostAuthor) {
   
         // If user's post
         const deleteComment =
-          PostAuthor || currentUser === comment.author.name;
+          PostAuthor || userName === comment.author.name;
         const deleteCommentBtn = deleteComment
           ? `<i class="classes...." data-comment-id="${comment.id}"></i>`
           : "";

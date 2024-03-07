@@ -1,21 +1,22 @@
 import { userName } from "./display.js";
-import { updatePost } from "../modules/api.js";
+import { deletePost, updatePost } from "../modules/api.js";
 
 export { postOptions };
 
-function postOptions(postData) {
-    console.log("Post Options Called. User:", userName, "Post Author:", postData.author.name); 
-  const postByCurrentUser = postData.author.name === userName;
+function postOptions(postId) {
+    console.log("Post Options Called. User:", userName, "Post Author:", postId.author.name); 
+  const postByCurrentUser = postId.author.name === userName;
   console.log(postByCurrentUser);
   const editBtn = document.querySelector(".edit-btn");
 
   if (postByCurrentUser) {
     editBtn.classList.remove("d-none");
-    editBtn.addEventListener("click", () => openEditModal(postData));
-    document.getElementById("save-changes").addEventListener("click", () => saveChanges(postData.id));
+    editBtn.addEventListener("click", () => openEditModal(postId));
+    document.getElementById("save-changes").addEventListener("click", () => saveChanges(postId.id, newData));
+   // document.getElementById("delete-post").addEventListener("click", () => deletePost(postId.id, newData));
   
   } else {
-   // editBtn.classList.add("d-none");
+   editBtn.classList.add("d-none");
   }
 } 
 
