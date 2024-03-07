@@ -9,7 +9,7 @@ export {
   fetchUserProfile,
   fetchPostsByUserName,
   getPostSpecific,
-  updateBio,
+  //  updateBio,
   updateProfileImage,
   getPostsFromFollowing,
   getPostsFromSearch,
@@ -244,7 +244,7 @@ async function fetchPostsByUserName(userName) {
   return result.data;
 }
 
-// Function to update user's bio
+/* // Function to update user's bio
 async function updateBio(userName, bioText) {
   try {
     const response = await fetch(
@@ -271,9 +271,8 @@ async function updateBio(userName, bioText) {
   } catch (error) {
     console.error("Error updating bio:", error.message);
   }
-}
+} */
 
-// Function to update user's profile image
 async function updateProfileImage(userName, profileImgUrl) {
   try {
     const response = await fetch(
