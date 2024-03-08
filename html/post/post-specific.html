@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/dist/css/styles.css">
     <script src="/js/logout.js" defer></script>
     <script type="module" src="/js/posts/display.js" defer></script>
+    <script type="module" src="/js/posts/comments.js" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -91,10 +92,10 @@
                 <h1 class="m-2">Comments</h1>
                 <div id="display-comments" class="order-1 m-2"></div>
                 <form id="create-comment-form" class="order-2 m-3 d-flex align-items-center">
-                    <textarea class="form-control create-comment" placeholder="Write a comment"
-                        style="height: 100px"></textarea>
-                    <button type="submit"
-                        class="btn btn-outline-primary btn-block w-20 h-25 btn-custom mx-3">Publish</button>
+
+                    <textarea id="user-comment" class="form-control create-comment" placeholder="Write a comment" style="height: 100px"></textarea>
+                    <button type="submit" id="send-comment" class="btn btn-outline-primary btn-block w-20 h-25 btn-custom mx-3">Publish</button>
+
                 </form>
             </div>
         </div>
@@ -125,7 +126,9 @@
                                     <div>
                                         <input type="text" id="edit_tagInput" placeholder="Add tags..." class="m-3">
                                     </div>
-                                    <button type="submit"
+
+                                    <button type="submit"  id="save-changes"
+
                                         class="edit-btn btn btn-outline-primary btn-block w-100 btn-custom m-2">Update</button>
                                     <button type="submit"
                                         class="delete-btn btn btn-outline-primary btn-block w-100 btn-custom m-2">Delete</button>

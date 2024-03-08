@@ -1,27 +1,61 @@
-/*
-function postoptions(postData) {
-  
-  const editBtn = document.querySelector(".edit-btn");  // Assuming edit-btn is a class
-  const deleteBtn = document.querySelector(".delete-btn");  // Assuming delete-btn is a class
+import { userName } from "./display.js";
+import { deletePost, updatePost } from "../modules/api.js";
 
-  if (postAuthor) {
+export { postOptions };
+
+function postOptions(postId) {
+    console.log("Post Options Called. User:", userName, "Post Author:", postId.author.name); 
+  const postByCurrentUser = postId.author.name === userName;
+  console.log(postByCurrentUser);
+  const editBtn = document.querySelector(".edit-btn");
+
+  if (postByCurrentUser) {
     editBtn.classList.remove("d-none");
-    deleteBtn.classList.remove("d-none");
-
-    editBtn.addEventListener("click", () => openEditModal(postData));
-    // Assuming "saveChanges" is a button inside the modal for saving changes
-    document.getElementById("saveChanges").addEventListener("click", () => saveChanges(postData.id));
-    deleteBtn.addEventListener("click", () => deletePost(postData.id));
+    editBtn.addEventListener("click", () => openEditModal(postId));
+    document.getElementById("save-changes").addEventListener("click", () => saveChanges(postId.id, newData));
+   // document.getElementById("delete-post").addEventListener("click", () => deletePost(postId.id, newData));
+  
   } else {
-    editBtn.classList.add("d-none");
-    deleteBtn.classList.add("d-none");
+   editBtn.classList.add("d-none");
   }
-}
+} 
 
+
+function openEditModal(postId) {
+            const title = document.getElementById("edit_post_title").value;
+            const body = document.getElementById("edit_post_body").value;
+            const tagsInput = document.getElementById("edit_tagInput").value;
+            const tags = tagsInput ? tagsInput.split(',') : []; 
+            const imageInput = document.getElementById("edit_image_input").value; 
+    
+           //store the values from the inputs
+            const newData = {
+                title: title,
+                body: body,
+                tags: tags,
+                media: {
+                    url: imageInput,
+                }
+            };
+            //calls the editPost to edit
+            updatePost(postId, newData)
+            .then((response) => {
+              window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error);
+                console.error("Failed to update post:", error);
+                const updateError = document.getElementById("editErrorFeedback");
+                updateError.textContent =
+                "Failed to update post. ";
+                clearElementAfterDuration(editErrorFeedback, 10000);
+            });
+        }
+/*
 document.addEventListener("DOMContentLoaded", () => {
   // Assuming you have a way to retrieve the current post data
   const currentPostData = getCurrentPostData();  // Replace with actual implementation
-  postoptions(currentPostData);
+  postOptions(currentPostData);
 });
 
 // Example function to retrieve current post data (replace with actual implementation)
@@ -36,24 +70,22 @@ function getCurrentPostData() {
   };
 }
 
-displayImage();*/
-
-
+ displayImage();
 
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 export function displayImage() {
-    const imageUrl = document.getElementById("image_input").value;
-    const imageDisplay = document.getElementById("image-display");
+    const imageUrl = document.getElementById("edit_image_input").value;
+    const imageDisplay = document.getElementById("edit_image-display");
 
     // Set the background image of the div
     imageDisplay.style.backgroundImage = `url('${imageUrl}')`;
 }
 
 //edit post
-
+/*
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("editPostForm").addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -72,8 +104,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             body: body,
             tags: tags,
             media: {
-                url: imageInput,
-                alt: altText
+                url: imageInput
             }
         };
         //calls the editPost to create
@@ -88,3 +119,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+*/
