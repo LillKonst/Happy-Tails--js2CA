@@ -23,6 +23,7 @@
     <script src="/js/logout.js" defer></script>
     <script type="module" src="/js/posts/display.js" defer></script>
     <script type="module" src="/js/posts/comments.js" defer></script>
+    <script type="module" src="/js/posts/create.js" defer></script>
     <script src="https://kit.fontawesome.com/8404d11a1b.js" crossorigin="anonymous"></script>
 </head>
 
@@ -87,7 +88,8 @@
     </header>
     <main>
         <div id="post-container" class="d-flex, flex-column">
-            <div id="post-display" class="m-2"></div>
+          
+            <div id="post-display" class="m-2 postData-error"></div>
             <div id="comment-section" class="m-2 card">
                 <h1 class="m-2">Comments</h1>
                 <div id="display-comments" class="order-1 m-2"></div>
@@ -127,11 +129,47 @@
                                         <input type="text" id="edit_tagInput" placeholder="Add tags..." class="m-3">
                                     </div>
 
-                                    <button type="submit"  id="save-changes"
+                                    <button type="button"  id="save-changes"
 
                                         class="edit-btn btn btn-outline-primary btn-block w-100 btn-custom m-2">Update</button>
-                                    <button type="submit"
+                                    <button type="button" id="delete-post"
                                         class="delete-btn btn btn-outline-primary btn-block w-100 btn-custom m-2">Delete</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="modal" tabindex="-1" id="createPost">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content position-relative modal-custom">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-1"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="col-11 text-start secondary p-3 rounded">
+                            <div class="form-floating">
+                                <form id="createPostForm">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <textarea class="form-control title-box" placeholder="Your Title"
+                                            id="post_title"></textarea>
+                                        <input type="text" id="image_input" accept="image/png, image/jpg"
+                                            class="btn btn-custom m-2 media-btn" placeholder="paste URL here">
+                                    </div>
+                                    <div>
+                                        <textarea class="form-control" placeholder="Alt text" id="altText"
+                                            style="height: 100px"></textarea>
+                                    </div>
+                                    <div>
+                                        <textarea class="form-control" placeholder="Post something here.."
+                                            id="post_body" style="height: 100px"></textarea>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="tagInput" placeholder="Add tags..." class="m-3">
+                                    </div>
+                                    <button type="submit"
+                                        class="btn btn-outline-primary btn-block w-100 btn-custom mx-3">Post</button>
 
                                 </form>
                             </div>

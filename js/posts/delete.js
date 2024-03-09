@@ -1,7 +1,10 @@
 import { deletePost } from "../modules/api.js";
 
+export { whenDeletePost};
+
 function whenDeletePost (postId) {
-    if (confirm("This post can not be restored. Are you sure you want to delete it?")) {
+    const confirmation = confirm("This post can not be restored. Are you sure you want to delete it?");
+    if (confirmation) {
         deletePost(postId)
         .then(() => {
             window.location.href = "/html/my-profile/index.html";

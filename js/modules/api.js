@@ -378,7 +378,8 @@ async function commentPost(postId, body, replyToId = null) {
 }
 
 // edit post
-async function updatePost(postId) {
+async function updatePost(postId, newData) {
+  console.log (postId);
   const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "PUT",
     headers: {
@@ -398,14 +399,13 @@ async function updatePost(postId) {
 
 // delete post 
 async function deletePost(postId) {
-  const response = await fetch(`${API_BASE_URL}/social/posts/${postId}`, {
+  const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
-      },
-      body: JSON.stringify(payload),
+      }
     });
 
   if (!response.ok) {

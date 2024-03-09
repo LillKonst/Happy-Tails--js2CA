@@ -36,7 +36,7 @@ async function postData() {
   } catch (error) {
     console.error("Error fetching post details:", error);
     errorContainer.textContent =
-      "There seems to be an issue loading the post details at this moment. This may affect your ability to comment on or react to the post. Please try reloading the page to see if this resolves the issue.";
+      "There seems to be an issue loading the post details.";
   }
 } 
 
