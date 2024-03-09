@@ -389,18 +389,11 @@ async function deletePost(postId) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-<<<<<<< HEAD
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
       }
     });
-=======
-      Authorization: `Bearer ${getToken()}`,
-      "X-Noroff-API-Key": apiKey,
-    },
-    body: JSON.stringify(payload),
-  });
->>>>>>> f50f7fbe297223bdde440694ceaddce76548fc9b
+
 
   if (!response.ok) {
     throw new Error("Failed to delete the post");
