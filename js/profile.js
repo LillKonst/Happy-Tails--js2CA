@@ -9,7 +9,7 @@ export { displayUserProfile };
 // Function to generate HTML structure for a post card
 function createPostCard(post, userName) {
   const postCard = document.createElement("div");
-  postCard.classList.add("col-md-5", "m-2");
+  postCard.classList.add("col-md-5", "col-sm-6", "m-2");
 
   const cardInner = document.createElement("div");
   cardInner.classList.add(
@@ -105,20 +105,17 @@ async function displayUserPosts(userPosts, userName) {
 
 async function displayUserProfile() {
   try {
-    // Retrieve the username from the URL or local storage, depending on your application flow
+    // Retrieve the username from the URL or local storage
     let userName;
-    // Replace this logic based on how you get the username for the profile page
     if (window.location.pathname === "/my-profile.html") {
       const loggedInUser = JSON.parse(localStorage.getItem("profile"));
       userName = loggedInUser.name;
     } else {
-      // If it's not the user's own profile, extract the username from the URL or other means
-      // You might need to parse the URL or obtain the username from another source
-      // For demonstration purposes, let's assume you're passing the username in the URL as a query parameter
       const params = new URLSearchParams(window.location.search);
       userName = params.get("username");
     }
 
+    // Fetch user profile data
     const userProfile = await fetchUserProfile(userName);
 
     // Display user's profile details
@@ -131,7 +128,6 @@ async function displayUserProfile() {
       profileImage.src = userProfile.avatar.url;
       profileImage.alt = userProfile.avatar.alt;
     } else {
-      // Set a default image if avatar is not available
       profileImage.src = "/images/kompis.JPG";
       profileImage.alt = "Default Avatar";
     }
@@ -168,21 +164,6 @@ async function displayUserProfile() {
         await followUser(userName);
         followButton.textContent = "Unfollow";
       });
-    }
-
-    //-- Updates the follow/unfollow button based on current user's follow status --//
-    function updateFollowButton(profile) {
-      try {
-        const currentUser = JSON.parse(localStorage.getItem("profile")).name;
-        const followButton = document.getElementById("followOrUnfollow");
-
-        const isFollowing = profile.followers.some(
-          (follower) => follower.name === currentUser
-        );
-        followButton.textContent = isFollowing ? "Unfollow" : "Follow";
-      } catch (error) {
-        console.error("Error updating follow button:", error);
-      }
     }
 
     // Retrieve and display user's posts

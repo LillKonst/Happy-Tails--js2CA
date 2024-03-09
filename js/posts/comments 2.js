@@ -57,24 +57,14 @@ function displayComments(comments, PostAuthor) {
 
       try {
         const theComment = document.createElement("div");
-        theComment.classList.add(
-          "comment-container",
-          "d-flex",
-          "gap-3",
-          "mx-3",
-          "shadow-sm",
-          "p-2",
-          "m-4",
-          "bg-body",
-          "rounded"
-        );
+        theComment.classList.add("comment-container");
 
         const topContainer = document.createElement("div");
         topContainer.classList.add("d-flex", "top-container");
         theComment.appendChild(topContainer);
 
         const username = document.createElement("p");
-        username.classList.add("username-display", "text-primary");
+        username.classList.add("username-display");
         username.innerHTML = `${
           comment.author && comment.author.name
             ? comment.author.name

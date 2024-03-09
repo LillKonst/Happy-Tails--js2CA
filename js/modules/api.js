@@ -5,7 +5,6 @@ import { getPostIdFromQuery } from "../posts/display.js";
 // Define constants
 export const NOROFF_API_URL = "https://v2.api.noroff.dev";
 
-
 // Exported functions
 export { getAllPosts };
 export { fetchUserProfile };
@@ -18,7 +17,7 @@ export { getPostsFromSearch };
 export { likePost };
 export { commentPost };
 export { updatePost };
-export {deletePost};
+export { deletePost };
 
 export {
   getAllProfiles,
@@ -28,7 +27,7 @@ export {
   unfollowUser,
 };
 
-const postId = getPostIdFromQuery(); 
+const postId = getPostIdFromQuery();
 
 // Get posts only from following people
 async function getPostsFromFollowing(newestFirst = true) {
@@ -87,51 +86,40 @@ async function getAllProfiles() {
 }
 // Follow API
 async function followUser(userName) {
-  try {
-    const response = await fetch(
-      `${NOROFF_API_URL}/social/profiles/${userName}/follow`,
-      {
-        method: "PUT", // Use PUT method for following
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
-          "X-Noroff-API-Key": apiKey,
-        },
-      }
-    );
-    if (!response.ok) {
-      throw new Error(`Could not follow user: ${errorMessage}`);
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/profiles/${userName}/follow`,
+    {
+      method: "PUT", // Specify the request method as PUT
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
     }
-    const result = await response.json();
-    return result.data;
-  } catch (error) {
-    console.error("Error following user:", error);
+  );
+  if (!response.ok) {
+    throw new Error(`Could not follow user`);
   }
+  const result = await response.json();
+  return result.data;
 }
 
 // Unfollow API
 async function unfollowUser(userName) {
-  try {
-    const response = await fetch(
-      `${NOROFF_API_URL}/social/profiles/${userName}/unfollow`,
-      {
-        method: "PUT", // Use PUT method for unfollowing
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
-          "X-Noroff-API-Key": apiKey,
-        },
-      }
-    );
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`Could not unfollow user: ${errorMessage}`);
+  const response = await fetch(
+    `${NOROFF_API_URL}/social/profiles/${userName}/unfollow`,
+    {
+      method: "PUT", // Specify the request method as PUT
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
     }
-    const result = await response.json();
-    return result.data;
-  } catch (error) {
-    console.error("Error unfollowing user:", error);
-    throw error; // re-throw the error to propagate it to the caller
+  );
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(`Could not unfollow user`);
   }
 }
 
@@ -314,9 +302,8 @@ async function updateProfileImage(userName, profileImgUrl) {
   }
 }
 
-
-// Function to react to post 
-/** 
+// Function to react to post
+/**
  * Reacto to a post
  * @param {number|string} postId
  * @param {string} symbol
@@ -327,18 +314,17 @@ async function likePost(postId, symbol) {
     `${NOROFF_API_URL}/social/posts/${postId}/react/${encodeURIComponent(
       symbol
     )}`,
-    { 
+    {
       method: "PUT",
       headers: {
-        
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
       },
     }
   );
   if (!response.ok) {
-    const errorData = await response.json(); 
-    throw new Error (`Could not like post: ${errorData.message}`);
+    const errorData = await response.json();
+    throw new Error(`Could not like post: ${errorData.message}`);
   }
   return await response.json();
 }
@@ -353,7 +339,7 @@ async function likePost(postId, symbol) {
  */
 
 async function commentPost(postId, body, replyToId = null) {
-  const payload = {body};
+  const payload = { body };
   if (replyToId) payload.replyToId = replyToId;
 
   const response = await fetch(
@@ -362,19 +348,19 @@ async function commentPost(postId, body, replyToId = null) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
-          "X-Noroff-API-Key": apiKey,
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Could not post comment: ${errorData.message}`);
+        Authorization: `Bearer ${getToken()}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+      body: JSON.stringify(payload),
     }
+  );
 
-    return await response.json();
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`Could not post comment: ${errorData.message}`);
+  }
+
+  return await response.json();
 }
 
 // edit post
@@ -383,11 +369,11 @@ async function updatePost(postId, newData) {
   const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "PUT",
     headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
-          "X-Noroff-API-Key": apiKey,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+      "X-Noroff-API-Key": apiKey,
     },
-    body: JSON.stringify(newData)
+    body: JSON.stringify(newData),
   });
   if (!response.ok) {
     const errorData = await response.json();
@@ -397,16 +383,24 @@ async function updatePost(postId, newData) {
   return result.data;
 }
 
-// delete post 
+// delete post
 async function deletePost(postId) {
   const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+<<<<<<< HEAD
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
       }
     });
+=======
+      Authorization: `Bearer ${getToken()}`,
+      "X-Noroff-API-Key": apiKey,
+    },
+    body: JSON.stringify(payload),
+  });
+>>>>>>> f50f7fbe297223bdde440694ceaddce76548fc9b
 
   if (!response.ok) {
     throw new Error("Failed to delete the post");
