@@ -2,8 +2,8 @@
 
 // Colors - change to correct colors
 $primary: #cab9e7;
-$secondary: #fffafa;
-$tertiary: #a485d5;
+$secondary: #a384d3;
+$tertiary: #8660c3;
 
 h1 {
   font-size: 2em;
@@ -26,8 +26,13 @@ h4 {
   background-color: #cab9e7;
 }
 
-.text-primary {
+.text-primary,
+.btn-outline-primary {
   color: $tertiary !important ;
+  border-color: $tertiary;
+  --bs-btn-active-bg: $primary;
+  --bs-btn-hover-bg: #cab9e7;
+  --bs-btn-hover-border-color: $tertiary;
 }
 
 .btn-custom {
@@ -41,7 +46,7 @@ h4 {
 .btn-custom,
 .btn-custom:focus,
 .btn-primary {
-  background-color: $primary;
+  background-color: $secondary;
   border-color: $primary;
   color: $secondary;
 
@@ -62,5 +67,13 @@ h4 {
 }
 
 .modal-custom {
-  background-color: $secondary;
+  background-color: #ece9ea;
+}
+
+.text-secondary {
+  color: $secondary;
+}
+
+.text-tetriary {
+  color: $tertiary;
 }
