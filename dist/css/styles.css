@@ -65,6 +65,9 @@ body {
   padding: 0;
   height: 550px;
 }
+.card-custom:hover {
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+}
 .card-custom .card-img-top {
   width: 100%;
   object-fit: cover;
@@ -195,8 +198,17 @@ h1 {
   font-size: 2em;
 }
 
-h3 {
+.h1-edit {
+  font-size: 18px;
+}
+
+h2 {
   font-size: 20px;
+}
+
+h3 {
+  font-size: 12px;
+  color: #8660c3 !important;
 }
 
 h4 {
@@ -343,7 +355,11 @@ h4 {
   }
 }
 .hidden {
-  display: none;
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=styles.css.map */

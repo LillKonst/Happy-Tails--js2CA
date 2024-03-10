@@ -26,35 +26,34 @@
         <div class="card align-items-center p-5 secondary">
             <form id="register">
                 <h1>HappyTails</h1>
+
+                <!-- Name input -->
                 <div class="form-outline mb-4">
-                    <input type="text" aria-label="First name" placeholder="Your Name" class="form-control" required
-                        pattern="^[\w]+$" title="Name must not contain punctuation symbols apart from underscore (_).">
+                    <label class="form-label hidden" for="name">Your Name:</label>
+                    <input type="text" id="name" aria-label="First name" placeholder="Your Name" class="form-control"
+                        required pattern="^[\w]+$"
+                        title="Name must not contain punctuation symbols apart from underscore (_).">
                 </div>
+
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <label class="form-label hidden" for="form-email">Email address</label>
+                    <label class="form-label hidden" for="form-email">Email address:</label>
                     <input type="email" id="form-email" class="form-control" placeholder="Email address" required
                         pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
                         title="Only @(stud.)noroff.no domains are allowed to register." />
                 </div>
 
-
                 <!-- Password input -->
                 <div class="form-outline mb-4">
+                    <label class="form-label hidden" for="Password">Password:</label>
                     <input type="password" class="form-control" id="Password" placeholder="Password" pattern=".{8,}"
                         required title="Password must be at least 8 characters">
                 </div>
 
-                <!-- Checkbox -->
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" value="" id="form2" unchecked />
-                    <label class="form-check-label" for="form2"> Remember me </label>
-                </div>
-
                 <!-- Sign-in button -->
                 <button class="btn btn-primary d-block" type="submit">Register & Sign In</button>
-
             </form>
+
         </div>
     </div>
 

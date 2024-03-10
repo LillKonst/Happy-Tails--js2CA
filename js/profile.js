@@ -17,14 +17,9 @@ function createPostCard(post, userName) {
   });
 
   const cardInner = document.createElement("div");
-  cardInner.classList.add(
-    "card",
-    "card-body",
-    "mx-auto",
-    "card-custom",
-    "shadow-sm"
-  );
+  cardInner.classList.add("card", "card-body", "mx-auto", "card-custom");
   postCard.appendChild(cardInner);
+  cardInner.style.cursor = "pointer";
 
   if (post.media && post.media.url) {
     const image = document.createElement("img");
@@ -50,7 +45,7 @@ function createPostCard(post, userName) {
   cardBody.appendChild(topContainer);
 
   // Display the username
-  const userNameElement = document.createElement("h1");
+  const userNameElement = document.createElement("p");
   userNameElement.classList.add("username");
   userNameElement.textContent = ` ${userName}`;
   topContainer.appendChild(userNameElement);
@@ -59,30 +54,26 @@ function createPostCard(post, userName) {
   reactionsContainer.classList.add("d-flex", "reactions-container");
   topContainer.appendChild(reactionsContainer);
 
-      const likeButton = document.createElement("button");
-      likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
-      likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
-      reactionsContainer.appendChild(likeButton);
+  const likeButton = document.createElement("button");
+  likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
+  likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+  likeButton.setAttribute("aria-label", "Like");
+  reactionsContainer.appendChild(likeButton);
 
-      const commentButton = document.createElement("button");
-      commentButton.classList.add(
-        "btn",
-        "btn-sm",
-        "btn-outline-primary",
-        "m-1"
-      );
-      commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
-      reactionsContainer.appendChild(commentButton);
+  const commentButton = document.createElement("button");
+  commentButton.classList.add("btn", "btn-sm", "btn-outline-primary", "m-1");
+  commentButton.innerHTML = '<i class="far fa-comment"></i>';
+  commentButton.setAttribute("aria-label", "Comment");
+  reactionsContainer.appendChild(commentButton);
 
-      const postTitle = document.createElement("h3");
-      postTitle.classList.add("card-title", "mr-auto");
-      const truncatedTitle =
-        post.title.length > MAX_TEXT_LENGTH
-          ? post.title.substring(0, MAX_TEXT_LENGTH) + "..."
-          : post.title;
-      postTitle.innerHTML = truncatedTitle || "No Title";
-      cardBody.appendChild(postTitle);
-
+  const postTitle = document.createElement("h2");
+  postTitle.classList.add("card-title", "mr-auto");
+  const truncatedTitle =
+    post.title.length > MAX_TEXT_LENGTH
+      ? post.title.substring(0, MAX_TEXT_LENGTH) + "..."
+      : post.title;
+  postTitle.innerHTML = truncatedTitle || "No Title";
+  cardBody.appendChild(postTitle);
 
   const postText = document.createElement("p");
   postText.classList.add("card-text");
@@ -93,7 +84,7 @@ function createPostCard(post, userName) {
   postText.innerHTML = truncatedText || "No Body"; // Assuming body is the property that contains the post text
   cardBody.appendChild(postText);
 
-  const timestamp = document.createElement("h4");
+  const timestamp = document.createElement("h3");
   const createdDate = new Date(post.created);
   const formattedDate = createdDate.toLocaleDateString();
   const formattedTime = createdDate.toLocaleTimeString([], {

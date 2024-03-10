@@ -29,17 +29,14 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container d-flex align-items-end">
-                <!--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span> -->
-                </button>
+
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <img class="logo" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
                         <div class="container-links d-flex">
                             <div class="links d-flex align-items-center mt-4">
-                                <a class="nav-link" aria-current="page" href="/html/my-profile/index.html">
+                                <a class="nav-link" aria-current="page" href="/html/my-profile/index.html"
+                                    aria-label="My Profile">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-person-circle icon" viewBox="0 0 16 16">
                                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -47,14 +44,14 @@
                                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                                     </svg>
                                 </a>
-                                <a class="nav-link" href="/html/feed/index.html">
+                                <a class="nav-link" href="/html/feed/index.html" aria-label="My Feed">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-house icon" viewBox="0 0 16 16">
                                         <path
                                             d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
                                     </svg>
                                 </a>
-                                <a class="nav-link" href="/html/explore/index.html">
+                                <a class="nav-link" href="/html/explore/index.html" aria-label="Explore">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-globe" viewBox="0 0 16 16">
                                         <path
@@ -63,17 +60,16 @@
                                 </a>
                             </div>
 
-
                             <div class="links d-flex align-items-center mt-4">
                                 <button type="button" class="btn btn-icon" data-bs-toggle="modal"
-                                    data-bs-target="#createPost">
+                                    data-bs-target="#createPost" aria-label="Create Post">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-plus-lg icon" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
                                     </svg>
                                 </button>
-                                <a id="logout" class="nav-link" href="">
+                                <a id="logout" class="nav-link" href="" aria-label="Logout">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-box-arrow-right icon" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -96,9 +92,10 @@
                 <div class="container d-flex flex-column align-items-center mt-3">
                     <div id="profile-details" class=" d-flex  flex-column align-items-center">
                         <div class="profile-img-container">
-                            <img id="profileImage" class="img rounded-circle">
+                            <a href="/html/my-profile/index.html">
+                                <img id="profileImage" class="img rounded-circle"></a>
                         </div>
-                        <div id="userName" class="fs-1 text"></div>
+                        <div id="userName" class="fs-1"></div>
                         <p id="userBio"></p>
                         <div class="d-flex">
                             <p class="pe-3 text-center">Followers <br><span id="followersCount"></span></p>
@@ -108,19 +105,20 @@
                         <a href="/html/edit-profile/index.html" class="link text-primary">Edit your
                             profile</a>
                     </div>
-
-                    <!-- <div class="posts col-12" id="userPosts"></div> -->
-
+                </div>
+            </div>
         </section>
         <section class="col-lg-9 d-flex flex-column align-items-center">
             <div class="col-12">
                 <div class="row">
                     <div class="d-flex justify-content-around align-items-center feed-btns">
-                        <h2 class="text-start">My Feed</h2>
+                        <h1 class="text-start">Feed</h1>
                         <div class="feed-search-btns">
-                            <input type="text" class="btn btn-outline-secondary" id="searchInput" placeholder="Search">
+                            <label for="searchInput" class="hidden">Search:</label>
+                            <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search"
+                                aria-label="search">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle text-white btn-custom" type="button"
+                                <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Sort by:
                                 </button>
@@ -167,17 +165,25 @@
                         <div class="col-11 text-start secondary p-3 rounded">
                             <div class="form-floating">
                                 <form id="createPostForm">
-                                     <input type="text" id="image_input" accept="image/png, image/jpg"
-                                            class="form-control m-2" placeholder="paste URL here">
-                                      <textarea class="form-control title-box m-2" placeholder="Your Title"
-                                            id="post_title"></textarea>           
-                                    <div>
-                                        <textarea class="form-control m-2" placeholder="Post something here.."
-                                            id="post_body" style="height: 100px"></textarea>
+                                    <div class="form-group">
+                                        <label for="image_input" class="hidden">Image URL:</label>
+                                        <input type="text" id="image_input" accept="image/png, image/jpg"
+                                            class="form-control m-2" placeholder="Paste URL here">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="post_title" class="hidden">Title:</label>
+                                        <textarea class="form-control title-box m-2" id="post_title"
+                                            placeholder="Your Title"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="post_body" class="hidden">Post Body:</label>
+                                        <textarea class="form-control m-2" id="post_body"
+                                            placeholder="Post something here.." style="height: 100px"></textarea>
                                     </div>
                                     <button type="submit"
                                         class="btn btn-outline-primary btn-block w-100 btn-custom m-2">Post</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>

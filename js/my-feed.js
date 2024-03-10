@@ -5,11 +5,11 @@ import {
 
 export { displayPosts };
 
-export const MAX_TEXT_LENGTH = 50; // Maximum number of characters to display
+export const MAX_TEXT_LENGTH = 20; // Maximum number of characters to display
 
 document.getElementById("feed-container");
 
-async function displayPosts(posts, profiles) {
+async function displayPosts(posts) {
   try {
     const feedContainer = document.getElementById("feed-container");
     feedContainer.innerHTML = "";
@@ -25,14 +25,9 @@ async function displayPosts(posts, profiles) {
       feedContainer.appendChild(postCard);
 
       const cardInner = document.createElement("div");
-      cardInner.classList.add(
-        "card",
-        "card-body",
-        "mx-auto",
-        "card-custom",
-        "shadow-sm"
-      );
+      cardInner.classList.add("card", "card-body", "mx-auto", "card-custom");
       postCard.appendChild(cardInner);
+      cardInner.style.cursor = "pointer";
 
       // Check if post.media exists before accessing its properties
       if (post.media && post.media.url) {
@@ -63,14 +58,9 @@ async function displayPosts(posts, profiles) {
       username.innerHTML = `${
         post.author && post.author.name ? post.author.name : "Unknown"
       }`;
+      username.style.cursor = "pointer";
 
       topContainer.appendChild(username);
-      /* 
-      // Display the username - new code that works for username
-      const userNameElement = document.createElement("h1");
-      userNameElement.classList.add("card-text");
-      userNameElement.textContent = ` ${userName}`;
-      cardBody.appendChild(userNameElement); */
 
       const reactionsContainer = document.createElement("div");
       reactionsContainer.classList.add("d-flex", "reactions-container");
@@ -78,7 +68,8 @@ async function displayPosts(posts, profiles) {
 
       const likeButton = document.createElement("button");
       likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
-      likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+      likeButton.setAttribute("aria-label", "Like");
       reactionsContainer.appendChild(likeButton);
 
       const commentButton = document.createElement("button");
@@ -88,10 +79,11 @@ async function displayPosts(posts, profiles) {
         "btn-outline-primary",
         "m-1"
       );
-      commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
+      commentButton.innerHTML = '<i class="far fa-comment"></i>';
+      commentButton.setAttribute("aria-label", "Comment");
       reactionsContainer.appendChild(commentButton);
 
-      const postTitle = document.createElement("h3");
+      const postTitle = document.createElement("h2");
       postTitle.classList.add("card-title", "mr-auto");
       const truncatedTitle =
         post.title.length > MAX_TEXT_LENGTH
@@ -109,7 +101,7 @@ async function displayPosts(posts, profiles) {
       postText.innerHTML = truncatedText || "No Body"; // Assuming body is the property that contains the post text
       cardBody.appendChild(postText);
 
-      const timestamp = document.createElement("h4");
+      const timestamp = document.createElement("h3");
       const createdDate = new Date(post.created);
       const formattedDate = createdDate.toLocaleDateString();
       const formattedTime = createdDate.toLocaleTimeString([], {
@@ -154,9 +146,6 @@ document
       event.preventDefault();
       getPostsFromSearch(event.target.value).then((posts) => {
         displayPosts(posts);
-        // getProfilesFromSearch(event.target.value).then((profiles) => {
-        //   displayPosts(posts, profiles);
-        // });
       });
     }
   });
