@@ -321,6 +321,11 @@ h4 {
   color: #fff;
 }
 
+.edit-btn {
+  background-color: #fff;
+  color: #8660c3;
+}
+
 .delete-btn {
   background-color: #ece9ea;
   border-color: #cab9e7;

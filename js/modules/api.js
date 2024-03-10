@@ -242,35 +242,6 @@ async function fetchPostsByUserName(userName) {
   return result.data;
 }
 
-/* // Function to update user's bio
-async function updateBio(userName, bioText) {
-  try {
-    const response = await fetch(
-      `${NOROFF_API_URL}/social/profiles/${userName}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getToken()}`,
-          "X-Noroff-API-Key": apiKey,
-        },
-        body: JSON.stringify({
-          bio: bioText,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to update bio");
-    }
-
-    // Bio updated successfully
-    console.log("Bio updated successfully");
-  } catch (error) {
-    console.error("Error updating bio:", error.message);
-  }
-} */
-
 async function updateProfileImage(userName, profileImgUrl) {
   try {
     const response = await fetch(
