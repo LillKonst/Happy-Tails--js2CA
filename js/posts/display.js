@@ -1,7 +1,7 @@
 import { NOROFF_API_URL } from "../login-function.js";
 import { getPostSpecific } from "../modules/api.js";
 //import { displayImage } from "./edit.js";
-import { attachReactionListener } from "./reactions.js"; 
+import { attachReactionListener } from "./reactions.js";
 import { displayComments } from "./comments.js";
 import { attachCommentListener } from "./comments.js";
 import { postOptions } from "./edit.js";
@@ -21,7 +21,7 @@ async function postData() {
   const errorContainer = document.querySelector(".postData-error");
 
   if (!postId) {
-  //  console.error("Post ID not found.");
+    //  console.error("Post ID not found.");
     errorContainer.textContent =
       "We are unable to find the requested post. Please check the URL or go back to the homepage to continue browsing.";
     return;
@@ -38,7 +38,7 @@ async function postData() {
     errorContainer.textContent =
       "There seems to be an issue loading the post details.";
   }
-} 
+}
 
 // LoadPostData in DOM
 document.addEventListener("DOMContentLoaded", postData);
@@ -54,10 +54,15 @@ async function displayPost(post) {
   try {
     const titleElement = document.getElementById("title");
 
-    const postDisplay = document.getElementById("post-display")
+    const postDisplay = document.getElementById("post-display");
     const commentSection = document.getElementById("display-comments");
-    console.log("Selected Elements:", titleElement, postDisplay, commentSection);
-  
+    console.log(
+      "Selected Elements:",
+      titleElement,
+      postDisplay,
+      commentSection
+    );
+
     titleElement.textContent = post.title || "No Title";
 
     const cardInner = document.createElement("div");
@@ -86,8 +91,8 @@ async function displayPost(post) {
     topContainer.classList.add("d-flex", "top-container");
     displayBody.appendChild(topContainer);
 
-    const username = document.createElement("p");
-    username.classList.add("username-display");
+    const username = document.createElement("h1");
+    username.classList.add("username-display", "username");
     username.innerHTML = `${
       post.author && post.author.name ? post.author.name : "Unknown"
     }`;
@@ -108,20 +113,23 @@ async function displayPost(post) {
 
     const likeButton = document.createElement("button");
     likeButton.classList.add("like-btn", "btn", "btn-sm", "btn-primary", "m-1");
-    likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+    likeButton.setAttribute("aria-label", "Like");
+
     // Change colors of heart if liked by user
     const hasLiked = post.reactions.some((reaction) =>
-     reaction.reactors.includes(userName)    
-     ); console.log("test");
+      reaction.reactors.includes(userName)
+    );
+    console.log("test");
 
-        if (hasLiked) {
-          likeButton.classList.add("btn-custom-liked");  
-        } else {
-          likeButton.classList.remove("btn-custom-liked");
-        } 
-  reactionsContainer.appendChild(likeButton);
+    if (hasLiked) {
+      likeButton.classList.add("btn-custom-liked");
+    } else {
+      likeButton.classList.remove("btn-custom-liked");
+    }
+    reactionsContainer.appendChild(likeButton);
 
-/*
+    /*
     const commentButton = document.createElement("button");
     commentButton.classList.add("btn", "btn-sm", "btn-outline-primary", "m-1");
     commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
@@ -131,23 +139,26 @@ async function displayPost(post) {
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
     editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
+    editBtn.setAttribute("aria-label", "Edit");
 
-    editBtn.addEventListener("click", () => { $('#editPost').modal('show');});
-    console.log("Creating edit button"); 
+    editBtn.addEventListener("click", () => {
+      $("#editPost").modal("show");
+    });
+    console.log("Creating edit button");
 
     reactionsContainer.appendChild(editBtn);
 
-    const postTitle = document.createElement("h3");
+    const postTitle = document.createElement("h2");
     postTitle.classList.add("post-title", "mr-auto");
     postTitle.innerHTML = post.title || "No Title";
     displayBody.appendChild(postTitle);
 
     const postText = document.createElement("p");
     postText.classList.add("post-text");
-    postText.innerHTML = post.body || "No Body"; 
+    postText.innerHTML = post.body || "No Body";
     displayBody.appendChild(postText);
 
-    const timestamp = document.createElement("h4");
+    const timestamp = document.createElement("h3");
     const createdDate = new Date(post.created);
     const formattedDate = createdDate.toLocaleDateString();
     const formattedTime = createdDate.toLocaleTimeString([], {
@@ -156,17 +167,14 @@ async function displayPost(post) {
     });
     timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
     displayBody.appendChild(timestamp);
-    
+
     const commentsData = post.comments || [];
     displayComments(commentsData);
 
     //const displayComments = document.getElementById("display-comments");
     //displayComments.innerHTML = "No comments yet"; // if no comments yet. Add code to display comments.
     //commentSection.appendChild(displayComments);
-
   } catch (error) {
-    (error.message);
+    error.message;
   }
-  
 }
-

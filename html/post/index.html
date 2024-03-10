@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="See in detail what your friend has posted and react or comment!">
 
-  <title id="title">HappyTails | Post Specific</title>
+    <title id="title">HappyTails | Post Specific</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -35,7 +35,8 @@
                         <img class="logo" src="/images/LogoHappyTails.svg" alt="HappyTails Logo">
                         <div class="container-links d-flex">
                             <div class="links d-flex align-items-center mt-4">
-                                <a class="nav-link" aria-current="page" href="/html/my-profile/index.html">
+                                <a class="nav-link" aria-current="page" href="/html/my-profile/index.html"
+                                    aria-label="My Profile">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-person-circle icon" viewBox="0 0 16 16">
                                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
@@ -43,14 +44,14 @@
                                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                                     </svg>
                                 </a>
-                                <a class="nav-link" href="/html/feed/index.html">
+                                <a class="nav-link" href="/html/feed/index.html" aria-label="My Feed">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-house icon" viewBox="0 0 16 16">
                                         <path
                                             d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
                                     </svg>
                                 </a>
-                                <a class="nav-link" href="/html/explore/index.html">
+                                <a class="nav-link" href="/html/explore/index.html" aria-label="Explore">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-globe" viewBox="0 0 16 16">
                                         <path
@@ -61,14 +62,14 @@
 
                             <div class="links d-flex align-items-center mt-4">
                                 <button type="button" class="btn btn-icon" data-bs-toggle="modal"
-                                    data-bs-target="#createPost">
+                                    data-bs-target="#createPost" aria-label="Create Post">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-plus-lg icon" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
                                     </svg>
                                 </button>
-                                <a id="logout" class="nav-link" href="">
+                                <a id="logout" class="nav-link" href="" aria-label="Logout">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         class="bi bi-box-arrow-right icon" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -88,14 +89,16 @@
         <div id="post-container" class="d-flex, flex-column">
             <div id="post-display" class="m-2 postData-error"></div>
             <div id="comment-section" class="m-2 card">
-                <h1 class="m-2">Comments</h1>
+                <h2 class="m-2">Comments</h2>
                 <div id="display-comments" class="order-1 m-2"></div>
                 <form id="create-comment-form" class="order-2 m-3 d-flex align-items-center">
-
-                    <textarea id="user-comment" class="form-control create-comment" placeholder="Write a comment" style="height: 100px"></textarea>
-                    <button type="submit" id="send-comment" class="btn btn-outline-primary btn-block w-20 h-25 btn-custom mx-3">Publish</button>
-
+                    <label for="user-comment" class="hidden">Comment:</label>
+                    <textarea id="user-comment" class="form-control create-comment" placeholder="Write a comment"
+                        style="height: 100px"></textarea>
+                    <button type="submit" id="send-comment"
+                        class="btn btn-outline-primary btn-block w-20 h-25 btn-custom mx-3">Publish</button>
                 </form>
+
             </div>
         </div>
 
@@ -108,20 +111,28 @@
                         <div class="col-11 text-start secondary p-3 rounded">
                             <div class="form-floating">
                                 <form id="editPostForm">
-                                    <input type="text" id="edit_image_input" accept="image/png, image/jpg"
-                                        class="form-control m-2" placeholder="Image URL">
-                                    <textarea class="form-control title-box m-2" placeholder="Your Title"
-                                        id="edit_post_title"></textarea>
-                                    <div>
-                                        <textarea class="form-control m-2" placeholder="Post something here.."
-                                            id="edit_post_body" style="height: 100px"></textarea>
+                                    <div class="form-group">
+                                        <label for="edit_image_input" class="hidden">Image URL:</label>
+                                        <input type="text" id="edit_image_input" accept="image/png, image/jpg"
+                                            class="form-control m-2" placeholder="Image URL">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit_post_title" class="hidden">Title:</label>
+                                        <textarea class="form-control title-box m-2" id="edit_post_title"
+                                            placeholder="Your Title"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit_post_body" class="hidden">Post Body:</label>
+                                        <textarea class="form-control m-2" id="edit_post_body"
+                                            placeholder="Post something here.." style="height: 100px"></textarea>
                                     </div>
 
-                                    <button type="button"  id="save-changes"
+                                    <button type="button" id="save-changes"
                                         class="edit-btn btn btn-outline-primary btn-block w-100 btn-custom m-2">Update</button>
                                     <button type="button" id="delete-post"
                                         class="delete-btn btn btn-outline-primary btn-block w-100 m-2">Delete</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>
@@ -137,18 +148,25 @@
                         <div class="col-11 text-start secondary p-3 rounded">
                             <div class="form-floating">
                                 <form id="createPostForm">
-                                     <input type="text" id="image_input" accept="image/png, image/jpg"
-                                            class="form-control m-2" placeholder="paste URL here">
-                                      <textarea class="form-control title-box m-2" placeholder="Your Title"
-                                            id="post_title"></textarea>           
-                                    <div>
-                                        <textarea class="form-control m-2" placeholder="Post something here.."
-                                            id="post_body" style="height: 100px"></textarea>
+                                    <div class="form-group">
+                                        <label for="image_input" class="hidden">Image URL:</label>
+                                        <input type="text" id="image_input" accept="image/png, image/jpg"
+                                            class="form-control m-2" placeholder="Paste URL here">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="post_title" class="hidden">Title:</label>
+                                        <textarea class="form-control title-box m-2" id="post_title"
+                                            placeholder="Your Title"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="post_body" class="hidden">Post Body:</label>
+                                        <textarea class="form-control m-2" id="post_body"
+                                            placeholder="Post something here.." style="height: 100px"></textarea>
                                     </div>
                                     <button type="submit"
                                         class="btn btn-outline-primary btn-block w-100 btn-custom m-2">Post</button>
-
                                 </form>
+
                             </div>
                         </div>
                     </div>
