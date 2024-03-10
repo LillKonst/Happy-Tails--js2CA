@@ -1,6 +1,7 @@
 # Happy-Tails--js2CA
 
-![image](https://github.com/LillKonst/Happy-Tails--js2CA/assets/126065743/9cad9546-23f1-4ca7-9d73-4710c1f8cb6a)
+![image](https://github.com/LillKonst/Happy-Tails--js2CA/assets/126065743/6fa6d61a-c121-4fd6-b3a5-0c73fbe2550a)
+
 
 ## NOTE: We had issues with the follow/unfollow function. We have tried our best to fix the error, but it is a 500 error and looks like it has to do with the server. We got a tip that this is something we need a teacher to fix. Sadly we didnt realise this until the last weekend before the deadline. Krista have tried to contact two teachers saturday 9th of March. We hope that this wont be too big of a problem.
 
