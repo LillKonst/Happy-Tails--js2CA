@@ -81,9 +81,10 @@
                 <div class="container d-flex flex-column align-items-center mt-3">
                     <div id="profile-details" class=" d-flex  flex-column align-items-center">
                         <div class="profile-img-container">
-                            <img id="profileImage" class="img rounded-circle">
+                            <a href="/html/my-profile/index.html">
+                                <img id="profileImage" class="img rounded-circle"></a>
                         </div>
-                        <div id="userName" class="fs-1 text"></div>
+                        <div id="userName" class="fs-1"></div>
                         <p id="userBio"></p>
                         <div class="d-flex">
                             <p class="pe-3 text-center">Followers <br><span id="followersCount"></span></p>
@@ -93,19 +94,20 @@
                         <a href="/html/edit-profile/index.html" class="link text-primary">Edit your
                             profile</a>
                     </div>
-
-                    <!-- <div class="posts col-12" id="userPosts"></div> -->
-
+                </div>
+            </div>
         </section>
         <section class="col-lg-9 d-flex flex-column align-items-center">
             <div class="col-12">
                 <div class="row">
                     <div class="d-flex justify-content-around align-items-center feed-btns">
-                        <h2 class="text-start">My Feed</h2>
+                        <h1 class="text-start">Feed</h1>
                         <div class="feed-search-btns">
-                            <input type="text" class="btn btn-outline-secondary" id="searchInput" placeholder="Search">
+                            <label for="searchInput" class="hidden">Search:</label>
+                            <input type="text" class="btn btn-outline-primary" id="searchInput" placeholder="Search"
+                                aria-label="search">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle text-white btn-custom" type="button"
+                                <button class="btn btn-secondary dropdown-toggle btn-custom" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Sort by:
                                 </button>
@@ -152,17 +154,25 @@
                         <div class="col-11 text-start secondary p-3 rounded">
                             <div class="form-floating">
                                 <form id="createPostForm">
-                                     <input type="text" id="image_input" accept="image/png, image/jpg"
-                                            class="form-control m-2" placeholder="paste URL here">
-                                      <textarea class="form-control title-box m-2" placeholder="Your Title"
-                                            id="post_title"></textarea>           
-                                    <div>
-                                        <textarea class="form-control m-2" placeholder="Post something here.."
-                                            id="post_body" style="height: 100px"></textarea>
+                                    <div class="form-group">
+                                        <label for="image_input" class="hidden">Image URL:</label>
+                                        <input type="text" id="image_input" accept="image/png, image/jpg"
+                                            class="form-control m-2" placeholder="Paste URL here">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="post_title" class="hidden">Title:</label>
+                                        <textarea class="form-control title-box m-2" id="post_title"
+                                            placeholder="Your Title"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="post_body" class="hidden">Post Body:</label>
+                                        <textarea class="form-control m-2" id="post_body"
+                                            placeholder="Post something here.." style="height: 100px"></textarea>
                                     </div>
                                     <button type="submit"
                                         class="btn btn-outline-primary btn-block w-100 btn-custom m-2">Post</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>

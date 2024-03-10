@@ -9,8 +9,17 @@ h1 {
   font-size: 2em;
 }
 
-h3 {
+.h1-edit {
+  font-size: 18px;
+}
+
+h2 {
   font-size: 20px;
+}
+
+h3 {
+  font-size: 12px;
+  color: $tertiary !important;
 }
 
 h4 {

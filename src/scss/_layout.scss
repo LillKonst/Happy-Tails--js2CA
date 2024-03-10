@@ -62,6 +62,9 @@ body {
 .card-custom {
   padding: 0;
   height: 550px;
+  &:hover {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+  }
 
   .card-img-top {
     width: 100%;
