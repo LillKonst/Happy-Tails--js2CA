@@ -66,6 +66,18 @@ h4 {
   color: $primary;
 }
 
+.delete-btn {
+  background-color: #ece9ea;
+  border-color: $primary;
+  color: $tertiary;
+
+  .delete-btn:hover {
+    background-color: $primary;
+    border-color: $primary;
+    color: $secondary;
+  }
+}
+
 .modal-custom {
   background-color: #ece9ea;
 }
@@ -75,5 +87,9 @@ h4 {
 }
 
 .text-tetriary {
+  color: $tertiary;
+}
+
+.username {
   color: $tertiary;
 }
