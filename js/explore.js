@@ -72,7 +72,8 @@ async function displayAllPosts(newestFirst = true, posts) {
 
       const likeButton = document.createElement("button");
       likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
-      likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+      likeButton.setAttribute("aria-label", "Like");
       reactionsContainer.appendChild(likeButton);
 
       const commentButton = document.createElement("button");
@@ -82,8 +83,8 @@ async function displayAllPosts(newestFirst = true, posts) {
         "btn-outline-primary",
         "m-1"
       );
-      commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
-      reactionsContainer.appendChild(commentButton);
+      commentButton.innerHTML = '<i class="far fa-comment"></i>';
+      commentButton.setAttribute("aria-label", "Comment");
 
       const postTitle = document.createElement("h3");
       postTitle.classList.add("card-title", "mr-auto");
