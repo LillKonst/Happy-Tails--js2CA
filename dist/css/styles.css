@@ -215,12 +215,19 @@ h4 {
   color: black;
 }
 
+.btn-secondary {
+  background-color: #a384d3;
+}
+.btn-secondary:active {
+  background-color: #8660c3;
+}
+
 .btn-custom,
 .btn-custom:focus,
 .btn-primary {
   background-color: #cab9e7;
   border-color: #cab9e7;
-  color: #a384d3;
+  color: white;
 }
 .btn-custom:hover, .btn-custom:disabled,
 .btn-custom:focus:hover,

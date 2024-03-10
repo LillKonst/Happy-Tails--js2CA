@@ -43,12 +43,19 @@ h4 {
   color: black;
 }
 
+.btn-secondary {
+  background-color: $secondary;
+  &:active {
+    background-color: $tertiary;
+  }
+}
+
 .btn-custom,
 .btn-custom:focus,
 .btn-primary {
   background-color: $primary;
   border-color: $primary;
-  color: $secondary;
+  color: white;
 
   &:hover,
   &:disabled {
