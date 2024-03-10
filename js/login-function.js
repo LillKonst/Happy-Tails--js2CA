@@ -29,7 +29,7 @@ export async function login(email, password) {
   const { accessToken, ...profile } = loginResponseJson.data;
 
   // Extract the username from the profile information
-  const loggedInUsername = profile.name; // Assuming 'profile.name' contains the username
+  const loggedInUsername = profile.name;
 
   localStorage.setItem("profile", JSON.stringify(profile));
   localStorage.setItem("access-token", accessToken);

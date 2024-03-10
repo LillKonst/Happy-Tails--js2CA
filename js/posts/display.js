@@ -135,7 +135,7 @@ async function displayPost(post) {
 
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
-    editBtn.innerHTML = '<i class="bi bi-three-dots-vertical"></i>';
+    editBtn.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
     editBtn.setAttribute("aria-label", "Edit");
 
     editBtn.addEventListener("click", () => {

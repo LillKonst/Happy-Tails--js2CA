@@ -28,28 +28,26 @@ async function createPost(postData) {
         document.getElementById("createPostForm").addEventListener("submit", async function (event) {
             event.preventDefault();
     
+            const createPostForm = document.getElementById("createPostForm");
+
             // Extract data from the form
             const title = document.getElementById("post_title").value;
             const body = document.getElementById("post_body").value;
-            const tagsInput = document.getElementById("tagInput").value;
-            const tags = tagsInput ? tagsInput.split(',') : []; 
             const imageInput = document.getElementById("image_input").value; 
-            const altText = document.getElementById("altText").value;
+
     
            //store the values from the inputs
             const postData = {
                 title: title,
                 body: body,
-                tags: tags,
                 media: {
                     url: imageInput,
-                    alt: altText
                 }
             };
             //calls the createPost to create
             try {
                 const data = await createPost(postData);
-                console.log(data); 
+                    window.location.reload();
                 alert("Post created successfully!");
             
             } catch (error) {
