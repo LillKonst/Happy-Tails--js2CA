@@ -67,8 +67,53 @@ span {
 }
 
 .logo {
-  width: 36%;
+  position: absolute;
+  top: 5px;
+  left: 40px;
+  width: 180px;
+  padding: 10px;
 }
+
+
+nav {
+  .nav-icon {
+  padding: 5px;
+}
+}
+
+.bottom-nav {
+  position: absolute;
+  top: 40px;
+  left: 225px;
+  width: fit-content;
+  bottom: auto;
+  box-shadow: none;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  background-color: transparent;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    background-color: #cab9e7;
+  }
+}
+
+#logout {
+  position: absolute;
+  top: 55px; 
+  right: 20px;
+}
+
 
 .button-custom {
   border-color: transparent;

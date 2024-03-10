@@ -4,6 +4,7 @@ body {
   background-color: white;
   margin: 0px 60px 0px 60px;
   font-family: Poppins, sans-serif;
+  position: relative;
 
   @media (max-width: 992px) {
     margin: 20px;
@@ -116,4 +117,8 @@ body {
 
 .username-display {
     font-size: 1.5em;
+}
+
+header {
+  height: 80px;
 }
