@@ -10,7 +10,6 @@ async function postData() {
   const errorContainer = document.querySelector(".postData-error");
 
   if (!postId) {
-   // console.error("Post ID not found.");
     errorContainer.textContent =
       "We are unable to find the requested post. Please check the URL or go back to the homepage to continue browsing.";
     return;
@@ -29,13 +28,11 @@ async function postData() {
     attachCommentListener(postId);
     postOptions(postData);
   } catch (error) {
-    // Handle error
+    //
   }
 }
 
 postData();
-
-// debugging
 
 function displayComments(comments, PostAuthor) {
   const commentsContainer = document
@@ -43,11 +40,8 @@ function displayComments(comments, PostAuthor) {
     .querySelector("#display-comments");
   commentsContainer.innerHTML = "";
 
-  console.log("Comments:", comments); // Log comments to check its content
-
   if (comments && comments.length > 0) {
     comments.forEach((comment) => {
-      console.log("Current Comment:", comment); // Log each comment for debugging
 
       // If user's post
       const deleteComment = PostAuthor || userName === comment.author.name;
@@ -86,7 +80,7 @@ function displayComments(comments, PostAuthor) {
 
         const commentText = document.createElement("p");
         commentText.classList.add("comment-text");
-        commentText.innerHTML = comment.body || "No Body"; // Assuming body is the property that contains the comment text
+        commentText.innerHTML = comment.body || "No Body";
         theComment.appendChild(commentText);
 
         commentsContainer.appendChild(theComment);
@@ -113,23 +107,15 @@ function attachCommentListener(postId) {
 
       const commentText = userComment.value.trim();
       if (!commentText) {
-        // likeCommentError.textContent = "Comment must have text.";
-        // likeCommentError.classList.remove("d-none");
-        clearElementAfterDuration(likeCommentError, 10000);
         return;
       }
 
       try {
         await commentPost(postId, commentText);
         userComment.value = "";
-        // likeCommentError.classList.add("d-none");
         window.location.reload();
       } catch (error) {
         console.error("Could not post comment:", error);
-        // likeCommentError.textComment =
-        //"Could not post comment. Please try again later.";
-        // likeCommentError.classList.remove("d-none");
-        clearElementAfterDuration(likeCommentError, 10000);
       }
     });
 }

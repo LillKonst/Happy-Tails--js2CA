@@ -21,7 +21,6 @@ async function postData() {
   const errorContainer = document.querySelector(".postData-error");
 
   if (!postId) {
-    //  console.error("Post ID not found.");
     errorContainer.textContent =
       "We are unable to find the requested post. Please check the URL or go back to the homepage to continue browsing.";
     return;
@@ -45,7 +44,6 @@ document.addEventListener("DOMContentLoaded", postData);
 
 async function displayPost(post) {
   const postId = getPostIdFromQuery();
-  console.log(post);
   if (!postId) {
     showError("Blog post is not found");
     return;
@@ -56,12 +54,6 @@ async function displayPost(post) {
 
     const postDisplay = document.getElementById("post-display");
     const commentSection = document.getElementById("display-comments");
-    console.log(
-      "Selected Elements:",
-      titleElement,
-      postDisplay,
-      commentSection
-    );
 
     titleElement.textContent = post.title || "No Title";
 
@@ -111,7 +103,6 @@ async function displayPost(post) {
 
     const reactionsContainer = document.createElement("div");
     reactionsContainer.classList.add("d-flex", "reactions-container");
-    console.log(reactionsContainer);
     topContainer.appendChild(reactionsContainer);
 
     const likeButton = document.createElement("button");
@@ -123,7 +114,6 @@ async function displayPost(post) {
     const hasLiked = post.reactions.some((reaction) =>
       reaction.reactors.includes(userName)
     );
-    console.log("test");
 
     if (hasLiked) {
       likeButton.classList.add("btn-custom-liked");
@@ -141,7 +131,6 @@ async function displayPost(post) {
     editBtn.addEventListener("click", () => {
       $("#editPost").modal("show");
     });
-    console.log("Creating edit button");
 
     reactionsContainer.appendChild(editBtn);
 
@@ -168,9 +157,6 @@ async function displayPost(post) {
     const commentsData = post.comments || [];
     displayComments(commentsData);
 
-    //const displayComments = document.getElementById("display-comments");
-    //displayComments.innerHTML = "No comments yet"; // if no comments yet. Add code to display comments.
-    //commentSection.appendChild(displayComments);
   } catch (error) {
     error.message;
   }

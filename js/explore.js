@@ -39,7 +39,7 @@ async function displayAllPosts(newestFirst = true, posts) {
       } else {
         // Display a default image
         const defaultImage = document.createElement("img");
-        defaultImage.setAttribute("src", "/images/default-image.jpg"); // Replace "default-image.jpg" with your default image file
+        defaultImage.setAttribute("src", "/images/default-image.jpg");
         defaultImage.setAttribute("alt", "Default Image");
         defaultImage.classList.add("card-img-top");
         cardInner.appendChild(defaultImage);
@@ -139,9 +139,6 @@ document
       const searchTerm = event.target.value;
       getPostsFromSearch(searchTerm).then((posts) => {
         displayAllPosts(true, posts);
-        // getProfilesFromSearch(event.target.value).then((profiles) => {
-        //   displayPosts(posts, profiles);
-        // });
       });
     }
   });

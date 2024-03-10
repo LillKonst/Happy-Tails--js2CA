@@ -5,9 +5,7 @@ import { whenDeletePost } from "./delete.js";
 export { postOptions };
 
 function postOptions(post) {
-  console.log("Post Options Called. User:", userName, "Post Author:", post.author.name);
   const postByCurrentUser = post.author.name === userName;
-  console.log(postByCurrentUser);
   const editBtn = document.querySelector(".edit-btn");
 
   if (postByCurrentUser) {

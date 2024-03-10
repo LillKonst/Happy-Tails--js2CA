@@ -39,7 +39,7 @@ async function displayPosts(posts) {
       } else {
         // Display a default image
         const defaultImage = document.createElement("img");
-        defaultImage.setAttribute("src", "/images/default-image.jpg"); // Replace "default-image.jpg" with your default image file
+        defaultImage.setAttribute("src", "/images/default-image.jpg");
         defaultImage.setAttribute("alt", "Default Image");
         defaultImage.classList.add("card-img-top");
         cardInner.appendChild(defaultImage);
@@ -98,7 +98,7 @@ async function displayPosts(posts) {
         post.body.length > MAX_TEXT_LENGTH
           ? post.body.substring(0, MAX_TEXT_LENGTH) + "..."
           : post.body;
-      postText.innerHTML = truncatedText || "No Body"; // Assuming body is the property that contains the post text
+      postText.innerHTML = truncatedText || "No Body";
       cardBody.appendChild(postText);
 
       const timestamp = document.createElement("h3");

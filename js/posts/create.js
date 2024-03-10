@@ -52,7 +52,7 @@ async function createPost(postData) {
             
             } catch (error) {
                 console.error(error);
-                //Create error message here
+                //
             }
         });
     });

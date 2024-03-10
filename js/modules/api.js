@@ -89,7 +89,7 @@ async function followUser(userName) {
   const response = await fetch(
     `${NOROFF_API_URL}/social/profiles/${userName}/follow`,
     {
-      method: "PUT", // Specify the request method as PUT
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,

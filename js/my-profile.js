@@ -25,7 +25,7 @@ function createPostCard(post, userName) {
   } else {
     // Display a default image
     const defaultImage = document.createElement("img");
-    defaultImage.setAttribute("src", "/images/default-image.jpg"); // Replace "default-image.jpg" with your default image file
+    defaultImage.setAttribute("src", "/images/default-image.jpg"); 
     defaultImage.setAttribute("alt", "Default Image");
     defaultImage.classList.add("card-img-top");
     cardInner.appendChild(defaultImage);
@@ -76,7 +76,7 @@ function createPostCard(post, userName) {
     post.body.length > MAX_TEXT_LENGTH
       ? post.body.substring(0, MAX_TEXT_LENGTH) + "..."
       : post.body;
-  postText.innerHTML = truncatedText || "No Body"; // Assuming body is the property that contains the post text
+  postText.innerHTML = truncatedText || "No Body"; 
   cardBody.appendChild(postText);
 
   const timestamp = document.createElement("h3");
@@ -88,18 +88,6 @@ function createPostCard(post, userName) {
   });
   timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
   cardBody.appendChild(timestamp);
-
-  /*// Add like button
-  const likeButton = document.createElement("button");
-  likeButton.classList.add("btn", "btn-sm", "btn-primary", "mr-1");
-  likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
-  cardBody.appendChild(likeButton);
-
-  // Add comment button
-  const commentButton = document.createElement("button");
-  commentButton.classList.add("btn", "btn-sm", "btn-outline-primary");
-  commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
-  cardBody.appendChild(commentButton);*/
 
   return postCard;
 }
