@@ -116,7 +116,7 @@ body {
 }
 
 header {
-  height: 80px;
+  height: 100px;
 }
 
 .profile-img-container {
@@ -176,7 +176,7 @@ span {
   display: none;
 }
 
-.logo {
+a .logo {
   position: absolute;
   top: 5px;
   left: 40px;
