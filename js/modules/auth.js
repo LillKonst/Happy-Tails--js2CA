@@ -6,8 +6,6 @@ export { clearToken };
 export const apiKey = "e02ddd5e-3f4a-4e42-8255-82c75a8d4327";
 localStorage.setItem("apiKey", apiKey);
 
-//export const accessToken = localStorage.getItem("access-token");
-
 //-------- JWT Token --------//
 
 function storeToken(token) {

@@ -6,9 +6,7 @@ export async function login(email, password) {
   if (!email.endsWith("@noroff.no") && !email.endsWith("@stud.noroff.no")) {
     return false;
   }
-  //if (!isRegistered(email)) {
-  //  return false;
- // }
+
   if (isLoggedIn(email)) {
     return true;
   }
@@ -58,8 +56,3 @@ export async function login(email, password) {
 function isLoggedIn(email) {
   return localStorage.getItem("logged-in-email") === email;
 }
-/*
-//register
-function isRegistered(email) {
-  return localStorage.getItem(`${email}-registered`) ? true : false;
-}*/

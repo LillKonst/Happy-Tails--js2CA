@@ -7,7 +7,6 @@ document
   .getElementById("register")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log(event);
     const name = event.target[0].value;
     const email = event.target[1].value;
     const password = event.target[2].value;
@@ -32,7 +31,6 @@ async function register(name, email, password) {
     return false;
   }
   if (isRegistered(email)) {
-    console.log("Already registered");
     return true;
   }
   const response = await fetch(`${NOROFF_API_URL}/auth/register`, {
@@ -57,7 +55,7 @@ async function register(name, email, password) {
     return false;
   }
 
-  localStorage.setItem("userName", name); 
+  localStorage.setItem("userName", name);
   localStorage.setItem(`${email}-registered`, true);
 
   return true;

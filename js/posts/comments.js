@@ -42,7 +42,6 @@ function displayComments(comments, PostAuthor) {
 
   if (comments && comments.length > 0) {
     comments.forEach((comment) => {
-
       // If user's post
       const deleteComment = PostAuthor || userName === comment.author.name;
       const deleteCommentBtn = deleteComment
