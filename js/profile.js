@@ -33,9 +33,12 @@ function createPostCard(post, userName) {
     image.classList.add("card-img-top");
     cardInner.appendChild(image);
   } else {
-    const noMediaStyle = document.createElement("div");
-    noMediaStyle.classList.add("no-media");
-    cardInner.appendChild(noMediaStyle);
+    // Display a default image
+    const defaultImage = document.createElement("img");
+    defaultImage.setAttribute("src", "/images/default-image.jpg"); // Replace "default-image.jpg" with your default image file
+    defaultImage.setAttribute("alt", "Default Image");
+    defaultImage.classList.add("card-img-top");
+    cardInner.appendChild(defaultImage);
   }
 
   const cardBody = document.createElement("div");

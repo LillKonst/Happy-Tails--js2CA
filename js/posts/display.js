@@ -61,7 +61,7 @@ async function displayPost(post) {
     titleElement.textContent = post.title || "No Title";
 
     const cardInner = document.createElement("div");
-    cardInner.classList.add("card", "card-body", "mx-auto", "card-custom");
+    cardInner.classList.add("card", "card-body", "mx-auto", "post-card-custom");
     postDisplay.appendChild(cardInner);
 
     // Check if post.media exists before accessing its properties
@@ -69,25 +69,27 @@ async function displayPost(post) {
       const image = document.createElement("img");
       image.setAttribute("src", post.media.url);
       image.setAttribute("alt", post.media.alt);
-      image.classList.add("card-img-top");
+      image.classList.add("card-img");
       cardInner.appendChild(image);
     } else {
-      // Display the post without an image
-      const noMediaStyle = document.createElement("div");
-      noMediaStyle.classList.add("no-media");
-      cardInner.appendChild(noMediaStyle);
+     // Display a default image
+     const defaultImage = document.createElement("img");
+     defaultImage.setAttribute("src", "/images/default-image.jpg"); // Replace "default-image.jpg" with your default image file
+     defaultImage.setAttribute("alt", "Default Image");
+     defaultImage.classList.add("card-img-top");
+     cardInner.appendChild(defaultImage);
     }
 
     const displayBody = document.createElement("div");
-    displayBody.classList.add("display-body");
+    displayBody.classList.add("display-body-specific");
     cardInner.appendChild(displayBody);
 
     const topContainer = document.createElement("div");
-    topContainer.classList.add("d-flex", "top-container");
+    topContainer.classList.add("d-flex", "justify-content-between", "top-container");
     displayBody.appendChild(topContainer);
 
     const username = document.createElement("p");
-    username.classList.add("username-display");
+    username.classList.add("username-display", "username");
     username.innerHTML = `${
       post.author && post.author.name ? post.author.name : "Unknown"
     }`;
@@ -121,12 +123,6 @@ async function displayPost(post) {
         } 
   reactionsContainer.appendChild(likeButton);
 
-/*
-    const commentButton = document.createElement("button");
-    commentButton.classList.add("btn", "btn-sm", "btn-outline-primary", "m-1");
-    commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
-    reactionsContainer.appendChild(commentButton);
-*/
 
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn", "btn-sm", "btn-primary", "m-1");
