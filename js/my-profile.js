@@ -1,20 +1,22 @@
 import { fetchUserProfile, fetchPostsByUserName } from "../js/modules/api.js";
 export { displayUserProfile };
 
+export const MAX_TEXT_LENGTH = 20; // Maximum number of characters to display
+
 // Function to generate HTML structure for a post card
 function createPostCard(post, userName) {
   const postCard = document.createElement("div");
   postCard.classList.add("col-md-5", "col-sm-6", "m-2");
   postCard.addEventListener("click", () => {
-    window.location.href = `/html/post/post-specific.html?id=${post.id}&title=${post.title.rendered}`;
+    window.location.href = `/html/post/index.html?id=${post.id}&title=${post.title.rendered}`;
   });
 
   const cardInner = document.createElement("div");
   cardInner.classList.add(
     "card",
     "card-body",
-    "text-center",
     "mx-auto",
+    "card-custom",
     "shadow-sm"
   );
   postCard.appendChild(cardInner);
@@ -35,30 +37,52 @@ function createPostCard(post, userName) {
   cardBody.classList.add("card-body");
   cardInner.appendChild(cardBody);
 
+  const topContainer = document.createElement("div");
+  topContainer.classList.add("d-flex", "top-container");
+  cardBody.appendChild(topContainer);
+
   // Display the username
   const userNameElement = document.createElement("h1");
-  userNameElement.classList.add("card-text");
+  userNameElement.classList.add("username");
   userNameElement.textContent = ` ${userName}`;
-  cardBody.appendChild(userNameElement);
+  topContainer.appendChild(userNameElement);
 
-  // Add edit icon
-  const editIcon = document.createElement("i");
-  editIcon.classList.add("fa-regular", "fa-pen-to-square", "ms-2");
-  userNameElement.appendChild(editIcon);
+  const reactionsContainer = document.createElement("div");
+  reactionsContainer.classList.add("d-flex", "reactions-container");
+  topContainer.appendChild(reactionsContainer);
 
-  // Add delete icon
-  const deleteIcon = document.createElement("i");
-  deleteIcon.classList.add("fa-solid", "fa-trash-can", "ms-2");
-  userNameElement.appendChild(deleteIcon);
+      const likeButton = document.createElement("button");
+      likeButton.classList.add("btn", "btn-sm", "btn-primary", "m-1");
+      likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      reactionsContainer.appendChild(likeButton);
 
-  const postTitle = document.createElement("h3");
-  postTitle.classList.add("card-title");
-  postTitle.textContent = post.title || "No Title";
-  cardBody.appendChild(postTitle);
+      const commentButton = document.createElement("button");
+      commentButton.classList.add(
+        "btn",
+        "btn-sm",
+        "btn-outline-primary",
+        "m-1"
+      );
+      commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
+      reactionsContainer.appendChild(commentButton);
+
+      const postTitle = document.createElement("h3");
+      postTitle.classList.add("card-title", "mr-auto");
+      const truncatedTitle =
+        post.title.length > MAX_TEXT_LENGTH
+          ? post.title.substring(0, MAX_TEXT_LENGTH) + "..."
+          : post.title;
+      postTitle.innerHTML = truncatedTitle || "No Title";
+      cardBody.appendChild(postTitle);
+
 
   const postText = document.createElement("p");
   postText.classList.add("card-text");
-  postText.textContent = post.body || "No Body";
+  const truncatedText =
+    post.body.length > MAX_TEXT_LENGTH
+      ? post.body.substring(0, MAX_TEXT_LENGTH) + "..."
+      : post.body;
+  postText.innerHTML = truncatedText || "No Body"; // Assuming body is the property that contains the post text
   cardBody.appendChild(postText);
 
   const timestamp = document.createElement("h4");
@@ -71,7 +95,7 @@ function createPostCard(post, userName) {
   timestamp.innerHTML = `${formattedDate} ${formattedTime}` || "No Timestamp";
   cardBody.appendChild(timestamp);
 
-  // Add like button
+  /*// Add like button
   const likeButton = document.createElement("button");
   likeButton.classList.add("btn", "btn-sm", "btn-primary", "mr-1");
   likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
@@ -81,7 +105,7 @@ function createPostCard(post, userName) {
   const commentButton = document.createElement("button");
   commentButton.classList.add("btn", "btn-sm", "btn-outline-primary");
   commentButton.innerHTML = '<i class="fa-regular fa-comment"></i>';
-  cardBody.appendChild(commentButton);
+  cardBody.appendChild(commentButton);*/
 
   return postCard;
 }

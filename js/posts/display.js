@@ -21,7 +21,7 @@ async function postData() {
   const errorContainer = document.querySelector(".postData-error");
 
   if (!postId) {
-    console.error("Post ID not found.");
+  //  console.error("Post ID not found.");
     errorContainer.textContent =
       "We are unable to find the requested post. Please check the URL or go back to the homepage to continue browsing.";
     return;
