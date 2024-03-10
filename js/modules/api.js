@@ -91,7 +91,6 @@ async function followUser(userName) {
     {
       method: "PUT", // Specify the request method as PUT
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
         "X-Noroff-API-Key": apiKey,
       },
@@ -109,7 +108,7 @@ async function unfollowUser(userName) {
   const response = await fetch(
     `${NOROFF_API_URL}/social/profiles/${userName}/unfollow`,
     {
-      method: "PUT", // Specify the request method as PUT
+      method: "PUT", // Change method to PUT
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
@@ -118,7 +117,6 @@ async function unfollowUser(userName) {
     }
   );
   if (!response.ok) {
-    const errorMessage = await response.text();
     throw new Error(`Could not unfollow user`);
   }
 }
@@ -365,7 +363,7 @@ async function commentPost(postId, body, replyToId = null) {
 
 // edit post
 async function updatePost(postId, newData) {
-  console.log (postId);
+  console.log(postId);
   const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "PUT",
     headers: {
@@ -389,11 +387,10 @@ async function deletePost(postId) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
-        "X-Noroff-API-Key": apiKey,
-      }
-    });
-
+      Authorization: `Bearer ${getToken()}`,
+      "X-Noroff-API-Key": apiKey,
+    },
+  });
 
   if (!response.ok) {
     throw new Error("Failed to delete the post");
