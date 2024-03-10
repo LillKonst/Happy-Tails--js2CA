@@ -63,12 +63,12 @@ body {
 
 .card-custom {
   padding: 0;
-  max-height: 550px;
+  height: 550px;
 }
 .card-custom .card-img-top {
   width: 100%;
   object-fit: cover;
-  max-height: 385px;
+  height: 385px;
 }
 .card-custom .top-container {
   justify-content: space-between;
@@ -241,6 +241,17 @@ h4 {
   color: #cab9e7;
 }
 
+.delete-btn {
+  background-color: #ece9ea;
+  border-color: #cab9e7;
+  color: #8660c3;
+}
+.delete-btn .delete-btn:hover {
+  background-color: #cab9e7;
+  border-color: #cab9e7;
+  color: #a384d3;
+}
+
 .modal-custom {
   background-color: #ece9ea;
 }
@@ -250,6 +261,10 @@ h4 {
 }
 
 .text-tetriary {
+  color: #8660c3;
+}
+
+.username {
   color: #8660c3;
 }
 

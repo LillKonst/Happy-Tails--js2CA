@@ -117,6 +117,32 @@
             <button id="applyBtn" class="btn btn-primary">Apply Changes</button>
             <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
         </section>
+        <section>
+            <div class="modal" tabindex="-1" id="createPost">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content position-relative modal-custom">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-1"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="col-11 text-start secondary p-3 rounded">
+                            <div class="form-floating">
+                                <form id="createPostForm">
+                                     <input type="text" id="image_input" accept="image/png, image/jpg"
+                                            class="form-control m-2" placeholder="paste URL here">
+                                      <textarea class="form-control title-box m-2" placeholder="Your Title"
+                                            id="post_title"></textarea>           
+                                    <div>
+                                        <textarea class="form-control m-2" placeholder="Post something here.."
+                                            id="post_body" style="height: 100px"></textarea>
+                                    </div>
+                                    <button type="submit"
+                                        class="btn btn-outline-primary btn-block w-100 btn-custom m-2">Post</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
 
