@@ -81,9 +81,6 @@ body {
   width: 70%;
   height: fit-content;
 }
-#post-container .display-body .username-display {
-  font-size: 1.5em;
-}
 #post-container .display-body .post-title {
   font-size: 1.5em;
   font-weight: 600;
@@ -101,6 +98,23 @@ body {
 .feed-btns {
   flex-wrap: wrap;
   row-gap: 10px;
+}
+
+.post-card-custom {
+  padding: 0;
+  height: 100%;
+}
+
+.card-img {
+  height: 100%;
+}
+
+.display-body-specific {
+  padding: 10px;
+}
+
+.username-display {
+  font-size: 1.5em;
 }
 
 .profile-img-container {
@@ -256,8 +270,8 @@ h4 {
 }
 
 .btn-custom-liked {
-  background-color: #a384d3;
-  color: #cab9e7;
+  background-color: #8660c3;
+  color: #fff;
 }
 
 .delete-btn {
