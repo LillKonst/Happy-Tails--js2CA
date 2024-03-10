@@ -78,9 +78,6 @@ body {
   height: fit-content;
 
   .display-body {
-    .username-display {
-      font-size: 1.5em;
-    }
 
     .post-title {
       font-size: 1.5em;
@@ -103,4 +100,20 @@ body {
 .feed-btns {
   flex-wrap: wrap;
   row-gap: 10px;
+}
+
+.post-card-custom {
+  padding: 0;
+  height: 100%; 
+}
+.card-img {
+  height: 100%;
+}
+
+.display-body-specific {
+  padding: 10px; 
+}
+
+.username-display {
+    font-size: 1.5em;
 }
