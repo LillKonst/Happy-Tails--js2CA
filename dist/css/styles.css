@@ -45,6 +45,7 @@ body {
   .posts {
     flex-direction: column;
     align-items: center;
+    padding: 0px;
   }
 }
 
@@ -76,6 +77,11 @@ body {
 }
 .card-custom .top-container {
   justify-content: space-between;
+}
+@media (max-width: 767px) {
+  .card-custom {
+    width: 100%;
+  }
 }
 
 #post-container {
@@ -186,6 +192,12 @@ a .logo {
   width: 180px;
   padding: 10px;
 }
+@media (max-width: 700px) {
+  a .logo {
+    width: 130px;
+    left: 10px;
+  }
+}
 
 nav .nav-icon {
   padding: 5px;
@@ -210,12 +222,15 @@ nav .nav-icon {
 @media (max-width: 768px) {
   .bottom-nav {
     position: fixed;
+    top: auto;
     bottom: 0px;
     left: 0;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     z-index: 999;
     background-color: #cab9e7;
+    padding: 10px;
+    margin: 0px;
   }
 }
 
@@ -223,6 +238,12 @@ nav .nav-icon {
   position: absolute;
   top: 55px;
   right: 20px;
+}
+@media (max-width: 700px) {
+  #logout {
+    top: 35px;
+    right: 10px;
+  }
 }
 
 .button-custom {

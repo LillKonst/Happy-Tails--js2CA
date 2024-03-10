@@ -6,7 +6,7 @@ export const MAX_TEXT_LENGTH = 20; // Maximum number of characters to display
 // Function to generate HTML structure for a post card
 function createPostCard(post, userName) {
   const postCard = document.createElement("div");
-  postCard.classList.add("col-md-5", "col-sm-6", "m-2");
+  postCard.classList.add("col-md-5", "col-sm-10", "m-2");
   postCard.addEventListener("click", () => {
     window.location.href = `/html/post/index.html?id=${post.id}&title=${post.title.rendered}`;
   });
