@@ -1,0 +1,150 @@
+// Here we will add all styles concerning components, such as buttons, cards etc
+
+@mixin object-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$circleSize: 165px;
+$radius: 100px;
+$shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+$fontColor: rgb(250, 250, 250);
+
+.profile-img-container {
+  width: 200px;
+  height: 200px;
+
+  .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.profile-pic {
+  color: transparent;
+  transition: all 0.3s ease;
+  @include object-center;
+  position: relative;
+  transition: all 0.3s ease;
+
+  .img-media {
+    position: absolute;
+    object-fit: cover;
+    width: $circleSize;
+    height: $circleSize;
+    box-shadow: $shadow;
+    border-radius: $radius;
+    z-index: 0;
+  }
+}
+
+.-label {
+  cursor: pointer;
+  height: $circleSize;
+  width: $circleSize;
+}
+
+.-label:hover {
+  @include object-center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: $fontColor;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: $radius;
+  margin-bottom: 0;
+}
+
+span {
+  display: inline-flex;
+  padding: 0.2em;
+  height: 2em;
+}
+
+#file {
+  display: none;
+}
+
+a {
+  .logo {
+  position: absolute;
+  top: 5px;
+  left: 40px;
+  width: 180px;
+  padding: 10px;
+
+  @media (max-width: 700px) {
+    width: 130px;
+    left: 10px;
+  }
+}
+}
+
+
+nav {
+  .nav-icon {
+  padding: 5px;
+}
+}
+
+.bottom-nav {
+  position: absolute;
+  top: 40px;
+  left: 225px;
+  width: fit-content;
+  bottom: auto;
+  box-shadow: none;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  background-color: transparent;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: auto; 
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    background-color: #cab9e7;
+    padding: 10px;
+    margin: 0px;
+  }
+}
+
+#logout {
+  position: absolute;
+  top: 55px; 
+  right: 20px;
+
+  @media (max-width: 700px) {
+    top: 35px; 
+    right: 10px;
+  }
+}
+
+
+.button-custom {
+  border-color: transparent;
+}
+
+//Trying to remove the border when icon is clicked. Currently not working
+.btn-icon {
+  .btn-icon:focus {
+    border: none;
+  }
+}
+
+.title-box {
+  height: 42.8px;
+}
+
+.media-btn {
+  width: fit-content;
+}

@@ -1,0 +1,139 @@
+// Here we will add all styles concerning the layout such as size, margin/padding etc
+
+body {
+  background-color: white;
+  margin: 0px 60px 0px 60px;
+  font-family: Poppins, sans-serif;
+  position: relative;
+
+  @media (max-width: 992px) {
+    margin: 20px;
+  }
+}
+
+.profile-section {
+  border-right: 0.1em solid rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px 0px 0px 20px;
+
+  @media (max-width: 992px) {
+    border: none;
+    padding: 0;
+  }
+}
+
+#image-display {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+
+#explore-container,
+#feed-container,
+.posts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+  }
+}
+
+.posts-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feed-search-btns {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  justify-content: center;
+  row-gap: 10px;
+}
+
+.card-custom {
+  padding: 0;
+  height: 550px;
+  &:hover {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-img-top {
+    width: 100%;
+    object-fit: cover;
+    height: 385px;
+  }
+
+  .top-container {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+#post-container {
+  width: 70%;
+  height: fit-content;
+
+  .display-body {
+
+    .post-title {
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    .post-text {
+      font-size: 1em;
+    }
+
+    h4 {
+      font-size: 0.8em;
+    }
+  }
+
+  #display-comments {
+    height: fit-content;
+  }
+}
+.feed-btns {
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.post-card-custom {
+  padding: 0;
+  height: 100%; 
+}
+.card-img {
+  height: 100%;
+}
+
+.display-body-specific {
+  padding: 10px; 
+}
+
+.username-display {
+    font-size: 1.5em;
+}
+
+header {
+  height: 100px;
+}
+
+@media (max-width: 700px) {
+  #create-comment-form {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,116 @@
+// Here we will put all styles concerning colours and fonts
+
+// Colors - change to correct colors
+$primary: #cab9e7;
+$secondary: #a384d3;
+$tertiary: #8660c3;
+
+h1 {
+  font-size: 2em;
+}
+
+.h1-edit {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 12px;
+  color: $tertiary !important;
+}
+
+h4 {
+  font-size: 10px;
+  color: $tertiary !important;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.bg-primary {
+  background-color: #cab9e7;
+}
+
+.text-primary,
+.btn-outline-primary {
+  color: $tertiary !important ;
+  border-color: $tertiary;
+  --bs-btn-active-bg: $primary;
+  --bs-btn-hover-bg: #cab9e7;
+  --bs-btn-hover-border-color: $tertiary;
+}
+
+.btn-custom {
+  background-color: $primary !important;
+}
+
+.icon {
+  color: black;
+}
+
+.btn-secondary {
+  background-color: $secondary;
+  &:active {
+    background-color: $tertiary;
+  }
+}
+
+.btn-custom,
+.btn-custom:focus,
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: white;
+
+  &:hover,
+  &:disabled {
+    background-color: $tertiary;
+    border-color: $tertiary;
+  }
+
+  &:active {
+    background-color: $tertiary !important;
+  }
+}
+
+.btn-custom-liked {
+  background-color: $tertiary;
+  color: #fff;
+}
+
+.edit-btn {
+  background-color: #fff;
+  color: $tertiary;
+}
+
+.delete-btn {
+  background-color: #ece9ea;
+  border-color: $primary;
+  color: $tertiary;
+
+  .delete-btn:hover {
+    background-color: $primary;
+    border-color: $primary;
+    color: $secondary;
+  }
+}
+
+.modal-custom {
+  background-color: #ece9ea;
+}
+
+.text-secondary {
+  color: $secondary;
+}
+
+.text-tetriary {
+  color: $tertiary;
+}
+
+.username {
+  color: $tertiary;
+}
