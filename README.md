@@ -13,7 +13,7 @@ Happy Tails, is a some plattform where you can share posts with an image to conn
 ## Build width
 - HTML
 - Bootstrap / SCSS
-- JavaScripthttps://www.figma.com/files/drafts?fuid=1195341419255758385
+- JavaScript
 
 ## Getting started
 To get a closer look at this website you can 
