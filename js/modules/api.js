@@ -10,7 +10,6 @@ export { getAllPosts };
 export { fetchUserProfile };
 export { fetchPostsByUserName };
 export { getPostSpecific };
-// export { updateBio };
 export { updateProfileImage };
 export { getPostsFromFollowing };
 export { getPostsFromSearch };
@@ -84,6 +83,7 @@ async function getAllProfiles() {
   const result = await response.json();
   return result.data;
 }
+
 // Follow API
 async function followUser(userName) {
   const response = await fetch(
@@ -109,7 +109,7 @@ async function unfollowUser(userName) {
   const response = await fetch(
     `${NOROFF_API_URL}/social/profiles/${userName}/unfollow`,
     {
-      method: "PUT", // Specify the request method as PUT
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
@@ -275,7 +275,7 @@ async function updateProfileImage(userName, profileImgUrl) {
 
 // Function to react to post
 /**
- * Reacto to a post
+ * React to a post
  * @param {number|string} postId
  * @param {string} symbol
  */
@@ -336,7 +336,7 @@ async function commentPost(postId, body, replyToId = null) {
 
 // edit post
 async function updatePost(postId, newData) {
-  console.log (postId);
+  console.log(postId);
   const response = await fetch(`${NOROFF_API_URL}/social/posts/${postId}`, {
     method: "PUT",
     headers: {
@@ -360,11 +360,10 @@ async function deletePost(postId) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`,
-        "X-Noroff-API-Key": apiKey,
-      }
-    });
-
+      Authorization: `Bearer ${getToken()}`,
+      "X-Noroff-API-Key": apiKey,
+    },
+  });
 
   if (!response.ok) {
     throw new Error("Failed to delete the post");

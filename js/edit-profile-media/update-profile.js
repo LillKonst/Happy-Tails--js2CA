@@ -12,10 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add event listener to the apply button
   applyBtn.addEventListener("click", async () => {
     try {
-      // Get the new profile image URL from the input field
       const newProfileImgUrl = profileImageInput.value;
-
-      // Retrieve the username from local storage or URL parameters
       const loggedInUser = JSON.parse(localStorage.getItem("profile"));
       const userName = loggedInUser.name;
 
@@ -29,10 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Clear the input field
       profileImageInput.value = "";
-
     } catch (error) {
       console.error("Error updating profile image:", error);
-      // Display error message or perform any other necessary actions
     }
   });
 
